@@ -6,7 +6,7 @@ namespace :load_data do
 
     artists['artists'].each {|artist|
 
-			LoadDataArtistJob.perform_now(artist)
+			LoadDataArtistJob.perform_later(artist)
     }
 	end
 
