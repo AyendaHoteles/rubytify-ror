@@ -17,6 +17,9 @@ require "rails/test_unit/railtie"
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
+RSpotify::authenticate("f3d4090d3a0448c899e0f7c12c5fffba", "c43160ddc6f2465889f0261d1c3a14f6")
+
+
 module AyendaTest
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
@@ -30,6 +33,11 @@ module AyendaTest
     # Only loads a smaller set of middleware suitable for API only apps.
     # Middleware like session, flash, cookies can be added back manually.
     # Skip views, helpers and assets when generating a new resource.
+    #
+    #
+    config.autoload_paths += %W(#{config.root}/app/services)
+
+
     config.api_only = true
   end
 end
