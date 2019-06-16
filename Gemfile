@@ -3,6 +3,8 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.2'
 
+gem 'active_model_serializers', '~> 0.10.0'
+
 gem 'rails', '~> 5.2.3'
 
 gem 'puma', '~> 3.11'
@@ -17,6 +19,9 @@ gem 'rack-cors', :require => 'rack/cors'
 
 # spotify web api client
 gem 'rspotify'
+
+gem 'sidekiq'
+gem 'le'
 
 
 group :development, :test do

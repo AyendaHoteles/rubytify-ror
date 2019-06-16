@@ -1,0 +1,13 @@
+metallica:
+  name: "Reload"
+  spotify_url: "spotify:album:0Ip2GlQPoAIgdkqCO2YkMa"
+  id: 20
+  image: "http://spotify/album/image"
+  total_tracks: 13
+  artist_id: 1
+nirvana:
+  name: "Música para Llegar al Nirvana - Canciones Budistas para Encontrar la Paz Interior y Sanar el Alma"
+  spotify_url: "spotify:album:4fdoIaJxxLtJd1479KemM1"
+  id: 125
+  image: null
+  total_tracks: 25

@@ -31,6 +31,11 @@ GEM
       erubi (~> 1.4)
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.0, >= 1.0.3)
+    active_model_serializers (0.10.9)
+      actionpack (>= 4.1, < 6)
+      activemodel (>= 4.1, < 6)
+      case_transform (>= 0.2)
+      jsonapi-renderer (>= 0.1.1.beta1, < 0.3)
     activejob (5.2.3)
       activesupport (= 5.2.3)
       globalid (>= 0.3.6)
@@ -63,8 +68,11 @@ GEM
       bundler (>= 1.2.0, < 3)
       thor (~> 0.18)
     byebug (11.0.1)
+    case_transform (0.2)
+      activesupport
     coderay (1.1.2)
     concurrent-ruby (1.1.5)
+    connection_pool (2.2.2)
     crack (0.4.3)
       safe_yaml (~> 1.0.0)
     crass (1.0.4)
@@ -95,7 +103,9 @@ GEM
     i18n (1.6.0)
       concurrent-ruby (~> 1.0)
     json (2.2.0)
+    jsonapi-renderer (0.2.2)
     jwt (2.2.1)
+    le (2.7.6)
     listen (3.1.5)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
@@ -148,6 +158,8 @@ GEM
     puma (3.12.1)
     rack (2.0.7)
     rack-cors (1.0.3)
+    rack-protection (2.0.5)
+      rack
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
     rack-timeout (0.5.1)
@@ -179,6 +191,7 @@ GEM
     rb-fsevent (0.10.3)
     rb-inotify (0.10.0)
       ffi (~> 1.0)
+    redis (4.1.2)
     rest-client (2.0.2)
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 4.0)
@@ -208,6 +221,11 @@ GEM
     ruby_dep (1.5.0)
     safe_yaml (1.0.5)
     shoulda (2.11.3)
+    sidekiq (5.2.7)
+      connection_pool (~> 2.2, >= 2.2.2)
+      rack (>= 1.5.0)
+      rack-protection (>= 1.5.0)
+      redis (>= 3.3.5, < 5)
     simplecov (0.16.1)
       docile (~> 1.1)
       json (>= 1.8, < 3)
@@ -245,6 +263,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  active_model_serializers (~> 0.10.0)
   bootsnap (>= 1.1.0)
   brakeman
   bullet
@@ -253,6 +272,7 @@ DEPENDENCIES
   database_cleaner
   dotenv-rails
   factory_bot_rails (~> 4.11.1)
+  le
   listen (>= 3.0.5, < 3.2)
   pg
   pry-rails
@@ -267,6 +287,7 @@ DEPENDENCIES
   rspotify
   shoulda
   shoulda-matchers!
+  sidekiq
   simplecov
   spring
   spring-watcher-listen (~> 2.0.0)

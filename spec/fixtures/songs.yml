@@ -1,0 +1,21 @@
+metallica_song1:
+  name: "Too Late Too Late"
+  spotify_url: "spotify:track:1mOrFr6ycCtOYIuUyy7uTC"
+  preview_url: "https://p.scdn.co/mp3-preview/cb5355fbcfd562ce87655126bb85c4972aaa8154?cid=9348f14c714045698066e14d218b28cd"
+  duration_ms: 192133
+  explicit: false
+  album_id: 20
+metallica_song2:
+  name: "Stone Dead Forever"
+  spotify_url: "spotify:track:266SNdiM0KGi2lM1alS4ym"
+  preview_url: "https://p.scdn.co/mp3-preview/50e8eac9b7f95857f88c1b572b0e3cea37dc4a85?cid=9348f14c714045698066e14d218b28cd"
+  duration_ms: 291960
+  explicit: false
+  album_id: 20
+nirvana_song:
+  name: "Damage Case"
+  spotify_url: "spotify:track:1z12wAVxBan3TOYmuGseya"
+  preview_url: "https://p.scdn.co/mp3-preview/4757fc7b9ba92f3a5662cba6cdf32a50b2677f56?cid=9348f14c714045698066e14d218b28cd"
+  duration_ms: 220306
+  explicit: false
+  album_id: 125

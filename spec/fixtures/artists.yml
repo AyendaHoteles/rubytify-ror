@@ -1,0 +1,42 @@
+nirvana:
+  id: 5
+  name: "Nirvana"
+  spotify_url: "spotify:artist:6olE6TJLqED3rqDCT0FyPh"
+  image: null
+  genres:
+    - "alternative rock"
+    - "grunge"
+    - "permanent wave"
+    - "post-grunge"
+    - "rock"
+  popularity: 83
+
+metallica:
+  id: 1
+  name: "Metallica"
+  spotify_url: "spotify:artist:2ye2Wgw4gimLv2eAKyk1NB"
+  image: null
+  genres:
+    - "metal"
+    - "old school thrash"
+    - "rock"
+    - "speed metal"
+    - "thrash metal"
+  popularity: 83
+
+calle13:
+  id: 54
+  name: "Calle 13"
+  spotify_url: "spotify:artist:0yNSzH5nZmHzeE2xn6Xshb"
+  image: null
+  genres:
+    - "latin"
+    - "latin afrobeat"
+    - "latin alternative"
+    - "latin hip hop"
+    - "puerto rican rock"
+    - "rap conciencia"
+    - "reggaeton"
+    - "rock en espanol"
+    - "tropical"
+  popularity: 74

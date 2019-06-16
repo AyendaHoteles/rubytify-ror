@@ -17,8 +17,10 @@ require "rails/test_unit/railtie"
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-Dotenv::Railtie.load
-
+if ['development', 'test'].include? ENV['RAILS_ENV']
+  Dotenv::Railtie.load
+end
+ 
 module AyendaTest
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
@@ -34,6 +36,17 @@ module AyendaTest
     # Skip views, helpers and assets when generating a new resource.
     config.generators do |g|
       g.test_framework :rspec
+    end
+
+    config.middleware.insert_before 0, Rack::Cors, logger: (-> { Rails.logger }) do
+      allow do
+        origins '*'
+
+        resource '*',
+        headers: :any,
+        methods: [:get, :post, :delete, :put, :patch, :options, :head],
+                  max_age: 0
+      end
     end
     
     config.api_only = true

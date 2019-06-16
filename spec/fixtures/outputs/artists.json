@@ -1,0 +1,50 @@
+{
+  "data": [
+    {
+      "name": "Calle 13",
+      "spotify_url": "spotify:artist:0yNSzH5nZmHzeE2xn6Xshb",
+      "id": 54,
+      "image": null,
+      "genres": [
+        "latin",
+        "latin afrobeat",
+        "latin alternative",
+        "latin hip hop",
+        "puerto rican rock",
+        "rap conciencia",
+        "reggaeton",
+        "rock en espanol",
+        "tropical"
+      ],
+      "popularity": 74
+    },
+    {
+      "name": "Metallica",
+      "spotify_url": "spotify:artist:2ye2Wgw4gimLv2eAKyk1NB",
+      "id": 1,
+      "image": null,
+      "genres": [
+        "metal",
+        "old school thrash",
+        "rock",
+        "speed metal",
+        "thrash metal"
+      ],
+      "popularity": 83
+    },
+    {
+      "name": "Nirvana",
+      "spotify_url": "spotify:artist:6olE6TJLqED3rqDCT0FyPh",
+      "id": 5,
+      "image": null,
+      "genres": [
+        "alternative rock",
+        "grunge",
+        "permanent wave",
+        "post-grunge",
+        "rock"
+      ],
+      "popularity": 83
+    }
+  ]
+}
