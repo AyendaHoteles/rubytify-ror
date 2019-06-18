@@ -13,7 +13,7 @@ namespace :artists do
       puts "Fetching #{artist}"
       sleep 10
       spotify_artist = RSpotify::Artist.search(artist.to_s)
-      # if artist does not exist in spotify it should not fech
+      # if artist does not exist in spotify it should not fetch
       next unless spotify_artist && spotify_artist != []
 
       # create artist in DB
