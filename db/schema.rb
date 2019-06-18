@@ -10,32 +10,35 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_15_211428) do
+ActiveRecord::Schema.define(version: 2019_06_18_141843) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "albums", force: :cascade do |t|
     t.string "name"
-    t.string "spofity_url"
+    t.string "spotify_url"
     t.integer "total_tracks"
-    t.integer "spotify_id"
+    t.string "spotify_id"
     t.string "image"
     t.bigint "artist_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["artist_id"], name: "index_albums_on_artist_id"
+    t.index ["name"], name: "index_albums_on_name"
   end
 
   create_table "artists", force: :cascade do |t|
     t.string "name"
     t.string "image"
     t.string "genres"
-    t.string "popularity"
+    t.integer "popularity"
     t.string "spotify_url"
-    t.integer "spotify_id"
+    t.string "spotify_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["genres"], name: "index_artists_on_genres"
+    t.index ["name"], name: "index_artists_on_name"
   end
 
   create_table "roles", force: :cascade do |t|
@@ -53,12 +56,13 @@ ActiveRecord::Schema.define(version: 2019_06_15_211428) do
     t.string "spotify_url"
     t.string "preview_url"
     t.integer "duration_ms"
-    t.string "explicit"
-    t.integer "spotify_id"
+    t.boolean "explicit"
+    t.string "spotify_id"
     t.bigint "album_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["album_id"], name: "index_songs_on_album_id"
+    t.index ["name"], name: "index_songs_on_name"
   end
 
   create_table "users", force: :cascade do |t|

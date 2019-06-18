@@ -30,6 +30,11 @@ module Rubytify
     # Only loads a smaller set of middleware suitable for API only apps.
     # Middleware like session, flash, cookies can be added back manually.
     # Skip views, helpers and assets when generating a new resource.
+    config.eager_load_paths += ["#{config.root}/app/controllers/auth"]
+    config.eager_load = true
+    config.eager_load_paths << Rails.root.join('lib')
+    RSpotify::authenticate("83cd7253acd34039bcd6cfc6a3fd3fe9", "1143be87bd2b49cea893bb70b92a9beb")
+    ActiveModelSerializers.config.adapter = :json
     config.api_only = true
   end
 end

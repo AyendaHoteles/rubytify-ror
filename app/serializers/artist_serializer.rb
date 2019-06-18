@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: artists
@@ -13,8 +15,11 @@
 #  updated_at  :datetime         not null
 #
 
-require 'rails_helper'
-
-RSpec.describe Artist, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+class ArtistSerializer < ActiveModel::Serializer
+  attributes :id,
+             :name,
+             :image,
+             :genres,
+             :popularity,
+             :spotify_url
 end
