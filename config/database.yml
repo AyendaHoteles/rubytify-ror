@@ -83,6 +83,6 @@ test:
 #
 production:
   <<: *default
-  database: rubytify_production
-  username: rubytify
-  password: <%= ENV['RUBYTIFY_DATABASE_PASSWORD'] %>
+  database: myapp_production
+  username: myap
+  password: <%= ENV['MYAPP_DATABASE_PASSWORD'] %>

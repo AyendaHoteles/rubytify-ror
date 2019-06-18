@@ -6,6 +6,7 @@
 #        api_v1_album_songs GET  /api/v1/albums/:album_id/songs(.:format)                                                 api/v1/songs#index
 #      api_v1_artist_albums GET  /api/v1/artists/:artist_id/albums(.:format)                                              api/v1/albums#index
 #            api_v1_artists GET  /api/v1/artists(.:format)                                                                api/v1/artists#index
+#                    api_v1 GET  /api/v1/genres/:genre_name/random_song(.:format)                                         api/v1/songs#random
 #          auth_login_admin POST /auth/login_admin(.:format)                                                              authentication#authenticate_admin
 #              signup_admin POST /signup/admin(.:format)                                                                  users#create_admin
 #        rails_service_blob GET  /rails/active_storage/blobs/:signed_id/*filename(.:format)                               active_storage/blobs#show
@@ -23,9 +24,7 @@ Rails.application.routes.draw do
           resources :songs, only: [:index]
         end
       end
-      resources :genres, only: [:index] do
-         
-      end
+      get 'genres/:genre_name/random_song', to: 'songs#random'
     end
   end
   post 'auth/login_admin', to: 'authentication#authenticate_admin'
