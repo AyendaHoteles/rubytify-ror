@@ -11,7 +11,7 @@ namespace :artists do
       next if artist_guard
 
       puts "Fetching #{artist}"
-      sleep 1
+      sleep 5
       spotify_artist = RSpotify::Artist.search(artist.to_s)
       # if artist does not exist in spotify it should not fech
       next unless spotify_artist && spotify_artist != []
