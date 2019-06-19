@@ -22,5 +22,6 @@ class SongSerializer < ActiveModel::Serializer
              :spotify_url,
              :preview_url,
              :duration_ms,
-             :explicit
+             :explicit,
+             :spotify_id
 end

@@ -21,7 +21,8 @@ class ArtistSerializer < ActiveModel::Serializer
              :image,
              :popularity,
              :spotify_url,
-             :genres
+             :genres,
+             :spotify_id
 
   def genres
     object.genres&.map(&:name)

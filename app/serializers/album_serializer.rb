@@ -20,5 +20,6 @@ class AlbumSerializer < ActiveModel::Serializer
              :name,
              :image,
              :spotify_url,
-             :total_tracks
+             :total_tracks,
+             :spotify_id
 end
