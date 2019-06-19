@@ -16,7 +16,7 @@
 class Artist < ApplicationRecord
   has_and_belongs_to_many :genres
   default_scope { order(popularity: :desc) }
-  before_save { self.name = name.downcase }
+  before_save { self.name = name&.downcase }
   serialize :genres, Array
   has_many :albums, dependent: :destroy
   has_many :songs, through: :albums

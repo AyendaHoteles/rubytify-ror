@@ -16,5 +16,12 @@
 require 'rails_helper'
 
 RSpec.describe Album, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it {should belong_to(:artist)}
+  it { should have_many(:songs) }
+  it { should validate_presence_of(:image)}
+  it { should validate_presence_of(:spotify_id)}
+  it { should validate_presence_of(:spotify_url)}
+  it { should validate_presence_of(:total_tracks)}
+  it { should validate_uniqueness_of(:spotify_id)}
+  it { should validate_uniqueness_of(:spotify_url)}
 end
