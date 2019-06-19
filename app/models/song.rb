@@ -18,7 +18,7 @@
 
 class Song < ApplicationRecord
   belongs_to :album
-  validates :name, :spotify_url, :preview_url, :duration_ms, :explicit, :spotify_id, presence: true
+  validates :name, :spotify_url, :duration_ms, :spotify_id, presence: true
   validates :spotify_url, :spotify_id, uniqueness: true
 
   # def uniqueness_name_for_diferent_artists
