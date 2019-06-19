@@ -6,7 +6,7 @@ class Api::V1::SongsController < ApplicationController
   end
 
   def random
-    songs = Genre.find_by(name: params[:genre_name]).songs
+    songs = Genre.find_by!(name: params[:genre_name]).songs
     song = songs[SecureRandom.random_number(songs.length - 1)]
     render json: song, root: 'data'
   end

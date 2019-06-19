@@ -47,10 +47,61 @@ RSpec.describe 'artist API', type: :request do
     end
     context 'when artist does not exist' do
       before do
-        get "/api/v1/albums/1/songs", headers: header
+        get '/api/v1/albums/1/songs', headers: header
       end
       it 'return valid code' do
         expect(response).to have_http_status(404)
+      end
+    end
+
+    describe '/api/v1/genres/:genre_name/random_song' do
+      context 'fetch a random song when genre exist' do
+        before do
+          album = create(:album)
+          create_list(:song, 10, album_id: album.id)
+          genre = create(:genre)
+          album.artist.genres << genre
+          get "/api/v1/genres/#{genre.name}/random_song", headers: header
+        end
+
+        it 'return valid code' do
+          expect(response).to have_http_status(200)
+        end
+
+        it 'return data key in response' do
+          expect(JSON.parse(response.body)).to have_key('data')
+        end
+
+        it 'return valid song' do
+          expect(JSON.parse(response.body)['data']).to have_key('name')
+          expect(JSON.parse(response.body)['data']).to have_key('duration_ms')
+          expect(JSON.parse(response.body)['data']).to have_key('explicit')
+          expect(JSON.parse(response.body)['data']).to have_key('spotify_url')
+          expect(JSON.parse(response.body)['data']).to have_key('preview_url')
+          expect(JSON.parse(response.body)['data']).to have_key('spotify_id')
+        end
+      end
+
+      context 'when request is invalid ' do
+        before do
+          album = create(:album)
+          create_list(:song, 10, album_id: album.id)
+          genre = create(:genre)
+          album.artist.genres << genre
+          get "/api/v1/genres/#{genre.name}/random_song", headers: invalid_header
+        end
+        it 'return valid code' do
+          expect(response).to have_http_status(422)
+        end
+      end
+
+      context 'when genre does not exist ' do
+        before do
+          get "/api/v1/genres/'latin'/random_song", headers: header
+        end
+        it 'return valid code' do
+          expect(response).to have_http_status(404)
+        end
       end
     end
   end

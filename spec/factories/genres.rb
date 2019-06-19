@@ -11,6 +11,8 @@
 #
 
 
-class GenreSerializer < ActiveModel::Serializer
-  attributes :name
+FactoryBot.define do
+  factory :genre do
+    name { Faker::Number.number(5) }
+  end
 end

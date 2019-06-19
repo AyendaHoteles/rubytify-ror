@@ -16,6 +16,7 @@
 #
 
 class Album < ApplicationRecord
+  default_scope { includes(:songs) }
   belongs_to :artist
   has_many :songs, dependent: :destroy
   validate :uniqueness_image_for_diferent_artists
