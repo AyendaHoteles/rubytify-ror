@@ -9,10 +9,9 @@
 
 - Set `.env` file with the next format:
   ```
-  SPOTIFY_CLIENT_SECRET
-  SPOTIFY_CLIENT_ID
+  SPOTIFY_CLIENT_SECRET=
+  SPOTIFY_CLIENT_ID=
   ```
-
 - run `bundle install`
 - run `rake db:create`
 - run `rake db:migrate`
