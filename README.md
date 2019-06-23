@@ -17,5 +17,5 @@
 - run `rake db:migrate`
 
 ## Instructions to import artists
-- modify `storage/files_to_import/artists.yml` with the artists that you want import
+- modify `files_to_import/artists.yml` with the artists that you want import
 - run `rake artists:import` this take several minutes
