@@ -10,14 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_23_100128) do
+ActiveRecord::Schema.define(version: 2019_06_23_112824) do
 
   create_table "albums", force: :cascade do |t|
     t.integer "artist_id"
     t.string "name"
     t.string "image"
     t.string "spotify_url"
-    t.string "total_tracks"
+    t.integer "total_tracks", default: 0
     t.string "spotify_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
