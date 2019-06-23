@@ -19,3 +19,6 @@
 ## Instructions to import artists
 - modify `files_to_import/artists.yml` with the artists that you want import
 - run `rake artists:import` this take several minutes
+
+## Heroku application to test in live
+- The application is in https://ayenda-test-flx.herokuapp.com/
