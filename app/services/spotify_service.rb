@@ -19,7 +19,7 @@ class SpotifyService
 		artist_found = response['artists']['items'].first
 		artist_db = Artist.find_or_create_by(spotify_id: artist_found['id'])
 		artist_db.update(name: artist_found['name'], image: artist_found['images'].first['url'], genres: artist_found['genres'].join(', '), popularity: artist_found['popularity'], spotify_url: artist_found['href'])
-		update_albums(artist_db)
+		update_albums(artist_db) unless artist_db.albums.any?
 		artist_db
 	end
 
