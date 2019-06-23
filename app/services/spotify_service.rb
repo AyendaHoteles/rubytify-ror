@@ -10,4 +10,16 @@ class SpotifyService
 		end
 		@authorization = cache.read('token_app')
 	end
+
+	def search_artist(artist)
+		q = artist.gsub(/\s/,'%20')
+		url = "https://api.spotify.com/v1/search?q=#{q}&type=artist"
+		headers = {Authorization: @authorization}
+		response = HTTParty.get(url, headers: JSON.parse(headers.to_json)).parsed_response
+		return nil unless response['artists']['total'].positive?
+		artist_found = response['artists']['items'].first
+		artist_db = Artist.find_or_create_by(spotify_id: artist_found['id'])
+		artist_db.update(name: artist_found['name'], image: artist_found['images'].first['url'], genres: artist_found['genres'].join(', '), popularity: artist_found['popularity'], spotify_url: artist_found['href'])
+		artist_db
+	end
 end
