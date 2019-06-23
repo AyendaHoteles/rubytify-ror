@@ -6,7 +6,7 @@ class SpotifyService
 			headers = {Authorization: "Basic #{Base64.strict_encode64("#{ENV['SPOTIFY_CLIENT_ID']}:#{ENV['SPOTIFY_CLIENT_SECRET']}")}"}
 			params = {grant_type: 'client_credentials'}
 			response = HTTParty.post(url, body: params, headers: JSON.parse(headers.to_json)).parsed_response
-			cache.write('token_app', "#{response['token_type']} #{response['access_token']}")
+			cache.write('token_app', "#{response['token_type']} #{response['access_token']}", expires_in: response['expires_in'].seconds)
 		end
 		@authorization = cache.read('token_app')
 	end
