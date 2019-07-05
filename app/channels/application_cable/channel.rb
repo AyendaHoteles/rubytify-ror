@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Base application cable channel
 module ApplicationCable
   class Channel < ActionCable::Channel::Base
   end
