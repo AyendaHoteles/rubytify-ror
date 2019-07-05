@@ -1,0 +1,9 @@
+rubocop:
+  description: 'Rubocop'
+  command:     'bundle exec rubocop'
+  required:    true
+
+rspec-rails:
+  description: 'RSpec'
+  command:     'RAILS_ENV=test bundle exec rspec'
+  required:    true
