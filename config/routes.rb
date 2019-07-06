@@ -7,6 +7,16 @@ Rails.application.routes.draw do
         resources :artists, only: %i[index] do
           resources :albums, only: %i[index]
         end
+
+        resources :albums, only: %[] do
+          resources :songs, only: %i[index]
+        end
+
+        resources :genres, param: :genre_name, only: %[] do
+          member do
+            get :random_song
+          end
+        end
       end
     end
   end
