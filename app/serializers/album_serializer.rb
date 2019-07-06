@@ -4,7 +4,7 @@
 #
 # Its responsibility is to behave like a serializer,
 # the model stays intact.
-class ArtistSerializer < SimpleDelegator
+class AlbumSerializer < SimpleDelegator
   def initialize(article, options = {})
     super(article)
     @article = article
@@ -18,7 +18,7 @@ class ArtistSerializer < SimpleDelegator
   # the serializer initialization phase.
   def as_json(_options = nil)
     super(
-      only: %i[id name genres popularity spotify_url],
+      only: %i[id name total_tracks spotify_url],
       include: {
         image: {
           only: %i[height width url]

@@ -2,19 +2,40 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Items API' do
-  before do
-    @artist_a = Artist.create!(
+RSpec.describe 'Artists API' do
+  let!(:artist_a) do
+    Artist.create!(
       name: 'Tom',
       genres: %w[party electro],
       popularity: 80,
-      spotify_url: 'http://open.spotify.com/artist/tom'
+      spotify_url: 'http://open.spotify.com/artists/tom'
     )
-    @artist_b = Artist.create!(
+  end
+
+  let!(:artist_b) do
+    Artist.create!(
       name: 'Mike',
       genres: %w[chill raggae],
       popularity: 100,
-      spotify_url: 'http://open.spotify.com/artist/mike'
+      spotify_url: 'http://open.spotify.com/artists/mike'
+    )
+  end
+
+  let!(:image_a) do
+    Image.create!(
+      height: 10,
+      width: 10,
+      url: 'http://open.spotify.com/images/tom',
+      owner: artist_a
+    )
+  end
+
+  let!(:image_b) do
+    Image.create!(
+      height: 10,
+      width: 10,
+      url: 'http://open.spotify.com/images/mike',
+      owner: artist_b
     )
   end
 
@@ -38,18 +59,28 @@ RSpec.describe 'Items API' do
       expect(json_body['data']).to eq(
         [
           {
-            'id' => @artist_b.id,
+            'id' => artist_b.id,
             'name' => 'Mike',
             'genres' => %w[chill raggae],
             'popularity' => 100,
-            'spotify_url' => 'http://open.spotify.com/artist/mike'
+            'spotify_url' => 'http://open.spotify.com/artists/mike',
+            'image' => {
+              'height' => 10,
+              'width' => 10,
+              'url' => 'http://open.spotify.com/images/mike'
+            }
           },
           {
-            'id' => @artist_a.id,
+            'id' => artist_a.id,
             'name' => 'Tom',
             'genres' => %w[party electro],
             'popularity' => 80,
-            'spotify_url' => 'http://open.spotify.com/artist/tom'
+            'spotify_url' => 'http://open.spotify.com/artists/tom',
+            'image' => {
+              'height' => 10,
+              'width' => 10,
+              'url' => 'http://open.spotify.com/images/tom'
+            }
           }
         ]
       )

@@ -1,3 +1,9 @@
+# frozen_string_literal: true
+
+# Not found handler module
+#
+# Responsible for handling errors caused by
+# records that could not be found.
 module NotFoundHandler
   extend ActiveSupport::Concern
 

@@ -4,9 +4,9 @@
 #
 # NOTES:
 #
-# - Has many images.
+# - Has one image.
 # - Has albums.
 class Artist < ApplicationRecord
-  has_many :images, as: :owner, dependent: :destroy
+  has_one :image, as: :owner, dependent: :destroy
   has_many :albums, dependent: :destroy
 end

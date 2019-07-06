@@ -21,7 +21,7 @@ Style/MixinUsage:
 Style/FrozenStringLiteralComment:
   Exclude:
     - 'bin/*'
-    - 'db/schema.rb'
+    - 'db/**/*'
 
 Style/StringLiterals:
   Exclude:
@@ -42,3 +42,4 @@ Style/WordArray:
 Metrics/BlockLength:
   Exclude:
     - 'spec/**/*'
+    - 'db/**/*'

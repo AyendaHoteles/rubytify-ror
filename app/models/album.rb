@@ -5,8 +5,8 @@
 # NOTES:
 #
 # - Belongs to an artist.
-# - Has images.
+# - Has one image.
 class Album < ApplicationRecord
   belongs_to :artist
-  has_many :images, as: :owner, dependent: :destroy
+  has_one :image, as: :owner, dependent: :destroy
 end

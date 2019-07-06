@@ -12,7 +12,7 @@ RSpec.describe NotFoundHandler, type: :controller do
   end
 
   before do
-    routes.draw { get :action, to: "anonymous#action" }
+    routes.draw { get :action, to: 'anonymous#action' }
     get :action
   end
 
