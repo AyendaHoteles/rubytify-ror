@@ -6,7 +6,9 @@
 #
 # - Belongs to an artist.
 # - Has one image.
+# - Has songs.
 class Album < ApplicationRecord
   belongs_to :artist
   has_one :image, as: :owner, dependent: :destroy
+  has_many :songs, dependent: :destroy
 end

@@ -12,7 +12,7 @@ Metrics/LineLength:
     - 'config/application.rb'
     - 'config/environments/*'
     - 'config/puma.rb'
-    - 'db/schema.rb'
+    - 'db/**/*'
 
 Style/MixinUsage:
   Exclude:

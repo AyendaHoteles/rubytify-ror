@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe ArtistSerializer do
+RSpec.describe AlbumSerializer do
   let!(:artist) do
     Artist.create!(
       name: 'Tom',

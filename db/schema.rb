@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_06_102424) do
+ActiveRecord::Schema.define(version: 2019_07_06_103830) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,5 +47,18 @@ ActiveRecord::Schema.define(version: 2019_07_06_102424) do
     t.index ["owner_type", "owner_id"], name: "index_images_on_owner_type_and_owner_id"
   end
 
+  create_table "songs", force: :cascade do |t|
+    t.bigint "album_id"
+    t.string "name"
+    t.string "spotify_url"
+    t.string "preview_url"
+    t.integer "duration_ms"
+    t.boolean "explicit", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["album_id"], name: "index_songs_on_album_id"
+  end
+
   add_foreign_key "albums", "artists"
+  add_foreign_key "songs", "albums"
 end

@@ -48,7 +48,7 @@ RSpec.describe 'Albums API' do
     )
   end
 
-  describe 'GET /api/v1/albums' do
+  describe 'GET /api/v1/artists/:artist_id/albums' do
     before { get "/api/v1/artists/#{artist.id}/albums" }
 
     it 'has status code OK' do

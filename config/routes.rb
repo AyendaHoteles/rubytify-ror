@@ -8,11 +8,11 @@ Rails.application.routes.draw do
           resources :albums, only: %i[index]
         end
 
-        resources :albums, only: %[] do
+        resources :albums, only: %i[] do
           resources :songs, only: %i[index]
         end
 
-        resources :genres, param: :genre_name, only: %[] do
+        resources :genres, param: :genre_name, only: %i[] do
           member do
             get :random_song
           end

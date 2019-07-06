@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
-# Album serializer class
+# Song serializer class
 #
 # Its responsibility is to behave like a serializer,
 # the model stays intact.
-class AlbumSerializer < SimpleDelegator
-  def initialize(album, options = {})
-    super(album)
+class SongSerializer < SimpleDelegator
+  def initialize(song, options = {})
+    super(song)
     @options = options
   end
 
@@ -17,12 +17,7 @@ class AlbumSerializer < SimpleDelegator
   # the serializer initialization phase.
   def as_json(_options = nil)
     super(
-      only: %i[id name total_tracks spotify_url],
-      include: {
-        image: {
-          only: %i[height width url]
-        }
-      }
+      only: %i[name spotify_url preview_url duration_ms explicit]
     ).merge(@options)
   end
 end

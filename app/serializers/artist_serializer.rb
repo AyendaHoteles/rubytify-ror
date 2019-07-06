@@ -7,7 +7,6 @@
 class ArtistSerializer < SimpleDelegator
   def initialize(article, options = {})
     super(article)
-    @article = article
     @options = options
   end
 
