@@ -16,6 +16,7 @@ group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'massa', '~> 0.5.0'
   gem 'rspec-rails', '~> 3.8'
+  gem 'rspec-rails-swagger', '~> 0.1.5'
 end
 
 group :development do
@@ -26,8 +27,9 @@ group :development do
 end
 
 group :test do
-  gem 'simplecov', '~> 0.17.0', require: false
+  gem 'database_cleaner', '~> 1.7'
   gem 'shoulda-matchers', '~> 4.1'
+  gem 'simplecov', '~> 0.17.0', require: false
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

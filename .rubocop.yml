@@ -1,3 +1,6 @@
+Style/GuardClause:
+  Enabled: false
+
 Style/Documentation:
   Exclude:
     - 'config/application.rb'
@@ -18,6 +21,7 @@ Style/MixinUsage:
 Style/FrozenStringLiteralComment:
   Exclude:
     - 'bin/*'
+    - 'db/schema.rb'
 
 Style/StringLiterals:
   Exclude:
@@ -30,3 +34,11 @@ Style/NumericLiterals:
 Layout/EmptyLinesAroundBlockBody:
   Exclude:
     - 'db/schema.rb'
+
+Style/WordArray:
+  Exclude:
+    - 'db/schema.rb'
+
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*'
