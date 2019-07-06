@@ -1,1 +1,19 @@
-inherit_from: .rubocop_todo.yml
+Style/Documentation:
+  Exclude:
+    - 'config/application.rb'
+    - 'config/environments/*'
+
+Metrics/LineLength:
+  Exclude:
+    - 'config/application.rb'
+    - 'config/environments/*'
+    - 'config/puma.rb'
+    - 'db/puma.rb'
+
+Style/MixinUsage:
+  Exclude:
+    - 'bin/*'
+
+Style/FrozenStringLiteralComment:
+  Exclude:
+    - 'bin/*'
