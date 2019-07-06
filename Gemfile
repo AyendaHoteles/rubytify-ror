@@ -12,7 +12,6 @@ gem 'puma_worker_killer'
 gem 'rack-cors'
 gem 'rails', '~> 5.2.3'
 
-
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'massa', '~> 0.5.0'
@@ -28,6 +27,7 @@ end
 
 group :test do
   gem 'simplecov', '~> 0.17.0', require: false
+  gem 'shoulda-matchers', '~> 4.1'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

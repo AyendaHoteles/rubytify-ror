@@ -10,9 +10,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 2019_07_06_035337) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "artists", force: :cascade do |t|
+    t.string "name"
+    t.text "genres", default: [], array: true
+    t.integer "popularity"
+    t.string "spotify_url"
+    t.string "spotify_identifier"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["genres"], name: "index_artists_on_genres", using: :gin
+  end
+
+  create_table "images", force: :cascade do |t|
+    t.string "url"
+    t.integer "width"
+    t.integer "height"
+    t.string "owner_type"
+    t.bigint "owner_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["owner_type", "owner_id"], name: "index_images_on_owner_type_and_owner_id"
+  end
 
 end

@@ -2,13 +2,14 @@ Style/Documentation:
   Exclude:
     - 'config/application.rb'
     - 'config/environments/*'
+    - 'db/**/*'
 
 Metrics/LineLength:
   Exclude:
     - 'config/application.rb'
     - 'config/environments/*'
     - 'config/puma.rb'
-    - 'db/puma.rb'
+    - 'db/schema.rb'
 
 Style/MixinUsage:
   Exclude:
@@ -17,3 +18,15 @@ Style/MixinUsage:
 Style/FrozenStringLiteralComment:
   Exclude:
     - 'bin/*'
+
+Style/StringLiterals:
+  Exclude:
+    - 'db/schema.rb'
+
+Style/NumericLiterals:
+  Exclude:
+    - 'db/schema.rb'
+
+Layout/EmptyLinesAroundBlockBody:
+  Exclude:
+    - 'db/schema.rb'
