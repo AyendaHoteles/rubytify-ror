@@ -11,7 +11,7 @@ module Api
       before_action :set_artist, only: %i[index]
 
       def index
-        albums = @artist.albums.all
+        albums = @artist.albums.includes(:image).all
 
         if stale?(albums)
           render(

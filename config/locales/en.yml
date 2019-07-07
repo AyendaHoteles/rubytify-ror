@@ -1,3 +1,4 @@
 
 en:
-  not_found: "Not found"
+  not_found: 'Not found'
+  not_enough_songs: 'We do not have songs matching tha genre %{genre_name} - come back later'

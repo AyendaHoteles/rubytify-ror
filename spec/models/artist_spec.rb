@@ -7,4 +7,31 @@ RSpec.describe Artist, type: :model do
     it { is_expected.to have_one(:image).dependent(:destroy) }
     it { is_expected.to have_many(:albums).dependent(:destroy) }
   end
+
+  describe 'named scopes' do
+    describe '.by_genre' do
+      let(:artist_a) { Artist.create!(genres: ['party']) }
+      let(:artist_b) { Artist.create!(genres: ['chill']) }
+
+      context 'when genre matches exactly' do
+        it 'returns artists filter by genre' do
+          expect(
+            Artist.by_genre('party')
+          ).to include(artist_a)
+
+          expect(
+            Artist.by_genre('party')
+          ).not_to include(artist_b)
+        end
+      end
+
+      context 'when genre does NOT matches exactly' do
+        it 'returns artists filter by genre' do
+          expect(
+            Artist.by_genre('party')
+          ).to be_empty
+        end
+      end
+    end
+  end
 end

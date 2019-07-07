@@ -1,3 +1,9 @@
+Style/Lambda:
+  EnforcedStyle: literal
+
+Layout/MultilineMethodCallIndentation:
+  EnforcedStyle: indented
+
 Style/GuardClause:
   Enabled: false
 

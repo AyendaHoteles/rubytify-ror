@@ -10,7 +10,7 @@ module Api
     # most popular are first.
     class ArtistsController < ApplicationController
       def index
-        artists = Artist.order(popularity: :desc)
+        artists = Artist.includes(:image).order(popularity: :desc)
 
         if stale?(artists)
           render(
