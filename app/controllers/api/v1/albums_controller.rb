@@ -26,7 +26,11 @@ module Api
       private
 
       def set_artist
-        @artist = Artist.find(params[:artist_id])
+        @artist = Rails.cache.fetch(
+          "artist/#{params[:artist_id]}"
+        ) do
+          Artist.find(params[:artist_id])
+        end
       end
     end
   end

@@ -23,6 +23,15 @@ end
 
 RSpec.configure do |config|
   config.include RequestSpecHelper, type: :request
+  config.include Tasks, type: :task
+
+  config.define_derived_metadata(file_path: %r{/spec/tasks/}) do |metadata|
+    metadata[:type] = :task
+  end
+
+  config.before(:suite) do
+    Rails.application.load_tasks
+  end
 
   config.infer_spec_type_from_file_location!
   config.filter_rails_from_backtrace!

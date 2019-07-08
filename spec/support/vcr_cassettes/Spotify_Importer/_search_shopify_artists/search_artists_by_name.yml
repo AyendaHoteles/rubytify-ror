@@ -1,0 +1,55 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.spotify.com/v1/search?limit=20&offset=0&q=Area21&type=artist
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*"
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (darwin18.6.0 x86_64) ruby/2.6.2p47
+      Authorization:
+      - Bearer BQD0CGI5eSdnCmb3O_ZrxrxTchGV0LBjSmUcqXXuadkVAh8JJPhJ0uuHdWz4yZii07we90OwhxMpPPdrJQM
+      Host:
+      - api.spotify.com
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      Cache-Control:
+      - public, max-age=7200
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - Accept, Authorization, Origin, Content-Type, Retry-After
+      Access-Control-Allow-Methods:
+      - GET, POST, OPTIONS, PUT, DELETE, PATCH
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Max-Age:
+      - '604800'
+      Content-Encoding:
+      - gzip
+      Date:
+      - Sun, 07 Jul 2019 13:55:26 GMT
+      Via:
+      - 1.1 google
+      Alt-Svc:
+      - clear
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        H4sIAAAAAAAAAJRUy27bMBC85ysEHnwyIlGkXgaMwocW7alFLkVRBAUlLi0CkshQVFI38L+XetiWXSdpTgJnyZnhLkfPN56HmLGytS3yVt6zWzukNCD6JSqt1e3K95mWt61WVordbaFq/xH7LTBTlB8eOjC79cYAC/HC7jSsR7qFEqIFuw4WlaylXYcBWo7k0kI9iP2c5BwGvy2YhlW/OlPNjAy1SffMj9LQnBkaRf0k/vFFff+syZ0kD1gVX7/ZT380msj2y4OeUFWlnsBcah0u3nRVtTzBVllW9TiOYhrjf+i20BiY7oRyufWMUjVaeogDaG8OAB8/FRTWKK9UXQvIuz8y/U/np3m9dNkjl+QD05vbaraFi4H0TkBuS9vDMQ1mvXATOjPo7BW8cd78gcjPaRoJQlMqaJQBozSPiWCUcxpnmBAcM5Zkggk043yS3JaT1LG5182Q8D1mwiTACaZplid5ACLiSU4jnuc8BYKB0IBkoRBpfNWMk3rDDI7f1RngBQs48JRSDiGJQ05FSnBKCElplIjEtScKr5txUgczs+fSsBoGzc3dx02IT0PVSncVM9IOuYnSY6GP6HBifEWnE52RAz49ttVYX72WqKMTNGS8P36YDmpcpM+ThMY/Qg8eNmkDj9JF4GLjKW5uvb/Z/wUAAP//AwC3Zc7NpgQAAA==
+    http_version: 
+  recorded_at: Sun, 07 Jul 2019 13:55:26 GMT
+recorded_with: VCR 5.0.0

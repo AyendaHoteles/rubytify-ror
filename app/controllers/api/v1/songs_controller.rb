@@ -26,7 +26,11 @@ module Api
       private
 
       def set_album
-        @album = Album.find(params[:album_id])
+        @album = Rails.cache.fetch(
+          "album/#{params[:album_id]}"
+        ) do
+          Album.find(params[:album_id])
+        end
       end
     end
   end
