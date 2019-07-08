@@ -11,6 +11,7 @@ Rails.application.routes.draw do
           get 'songs', to: 'songs#index'
         end
       end
+      get 'genres/:genre_name/random_song', to: 'songs#random_song'
     end
   end
 end

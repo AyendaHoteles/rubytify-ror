@@ -11,4 +11,13 @@ class Api::V1::SongsController < ApplicationController
       render json: {error: "Album not found"}, status: 404
     end
   end
+
+  def random_song
+    artists = Artist.get_artists_by_genre(params[:genre_name])
+    if artists.any?
+      render json: artists.sample.songs.sample, adapter: :json_api, status: :ok
+    else
+      render json: {error: "There's not songs with that genre"}, status: 404
+    end
+  end
 end
