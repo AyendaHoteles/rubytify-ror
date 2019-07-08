@@ -5,6 +5,12 @@ Rails.application.routes.draw do
       resources :artists, only: [:index] do
         resources :albums, only: [:index]
       end
+
+      resources :albums, only: [] do
+        member do
+          get 'songs', to: 'songs#index'
+        end
+      end
     end
   end
 end
