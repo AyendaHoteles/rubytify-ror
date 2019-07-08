@@ -150,4 +150,27 @@ RSpec.describe Spotify::Importer, :vcr do
       end.to change { Song.count }.by(1)
     end
   end
+
+  describe '.build_image' do
+     let(:spotify_song) do
+      {
+        'url' => 'http://open.spotify.com/images/abc',
+        'width' => 20,
+        'height' => 20
+      }
+
+
+      it 'builds an image' do
+        expect(
+          Spotify::Importer.create_song(album, spotify_song)
+        ).to eq(
+          Image.new(
+            url: 'http://open.spotify.com/images/abc',
+            width: 20,
+            height: 20
+          )
+        )
+      end
+    end
+  end
 end

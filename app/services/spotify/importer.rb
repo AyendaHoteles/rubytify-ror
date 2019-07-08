@@ -62,9 +62,9 @@ module Spotify
     def self.build_image(spotify_image)
       return unless spotify_image
       Image.new(
-        url: spotify_image[:url],
-        width: spotify_image[:width],
-        height: spotify_image[:height]
+        url: spotify_image['url'],
+        width: spotify_image['width'],
+        height: spotify_image['height']
       )
     end
   end
