@@ -3,7 +3,8 @@ class Api::V1::AlbumsController < ApplicationController
     artist = Artist.find(params[:artist_id])
     if artist
       if artist.albums.any?
-      render json: artist.albums, adapter: :json_api, status: :ok
+        albums = artist.albums
+        render json: { data: serializable_resource(albums) }, status: :ok
       else
         render json: {error: "The artist doesn't have albums"}, status: 404
       end
