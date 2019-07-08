@@ -30,9 +30,9 @@ RSpec.describe Spotify::Importer, :vcr do
     end
   end
 
-  describe '.search_shopify_artists' do
+  describe '.search_spotify_artists' do
     it 'search artists by name' do
-      expect(Spotify::Importer.search_shopify_artists(['Area21']).size).to eq(1)
+      expect(Spotify::Importer.search_spotify_artists(['Area21']).size).to eq(1)
     end
   end
 

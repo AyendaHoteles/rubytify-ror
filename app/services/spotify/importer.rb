@@ -9,7 +9,7 @@ module Spotify
 
     def self.call(artists_names)
       ActiveRecord::Base.transaction do
-        search_shopify_artists(artists_names).each do |spotify_artist|
+        search_spotify_artists(artists_names).each do |spotify_artist|
           artist = create_artist(spotify_artist)
           spotify_artist.albums(limit: LIMIT).each do |spotify_album|
             album = create_album(artist, spotify_album)
@@ -21,7 +21,7 @@ module Spotify
       end
     end
 
-    def self.search_shopify_artists(artists_names)
+    def self.search_spotify_artists(artists_names)
       artists_names.map do |artist_name|
         RSpotify::Artist.search(artist_name).first
       end.reject(&:blank?)
