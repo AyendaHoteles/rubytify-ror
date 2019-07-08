@@ -27,13 +27,14 @@ class SpotifyService
                            total_tracks: data_album.tracks.count,
                            spotify_id: data_album.id,
                            image: data_album.images)
-      create_songs(album, data_album.tracks)
+      create_songs(artist, album, data_album.tracks)
     end
   end
 
-  def create_songs(album, tracks)
+  def create_songs(artist, album, tracks)
     tracks.each do |track|
-      album.songs.create(name: track.name,
+      album.songs.create!(artist: artist,
+                         name: track.name,
                          spotify_url: track.external_urls["spotify"],
                          preview_url: track.preview_url,
                          duration_ms: track.duration_ms,
