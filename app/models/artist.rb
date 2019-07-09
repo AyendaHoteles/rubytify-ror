@@ -1,3 +1,18 @@
+# == Schema Information
+#
+# Table name: artists
+#
+#  id          :integer          not null, primary key
+#  name        :string
+#  genres      :text
+#  popularity  :string
+#  spotify_url :text
+#  spotify_id  :text
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  image       :text
+#
+
 class Artist < ApplicationRecord
   serialize :genres
   has_many :albums
