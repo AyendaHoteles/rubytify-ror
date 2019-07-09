@@ -3,7 +3,8 @@ class SpotifyService
     @client = SpotifyClient.new
   end
 
-  def update_artists(artists)
+  def update_artists
+    artists = Artist.all
     artists.each do  |artist|
       data = @client.get_artist_data(artist.name)
       if data
