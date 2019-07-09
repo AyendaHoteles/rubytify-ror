@@ -40,7 +40,7 @@ task fetch_data: :environment do
           album.spotify_url = album_data.external_urls['spotify']
         end
 
-        album_data.tracks do |track_data|
+        album_data.tracks.each do |track_data|
           album.songs.where(spotify_id: track_data.id).first_or_create do |track|
             track.name = track_data.name
             track.spotify_url = track_data.external_urls['spotify']

@@ -9,11 +9,11 @@ module API
         route_param :genre_name do
           desc 'Pick a random song for a given genre'
           get :random_song do
-            artists_ids = Artist.where(genre: genre_name).pluck(:id)
+            artists_ids = Artist.where("? = ANY(genres)", params[:genre_name]).pluck(:id)
 
             song = Song.where(artist_id: artists_ids).order('RANDOM()').first
 
-            present songs, with: API::Entities::Song
+            present song, with: API::Entities::Song
           end
         end
       end
