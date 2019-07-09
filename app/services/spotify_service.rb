@@ -4,19 +4,21 @@ class SpotifyService
   end
 
   def update_artists(artists)
-    artists.each { |artist| update_artist(artist) }
+    artists.each do  |artist|
+      data = @client.get_artist_data(artist.name)
+      if data
+        update_artist(data, artist)
+        create_albums(artist, data.albums)
+      end
+    end
   end
 
-  def update_artist(artist)
-    data = @client.get_artist_data(artist.name)
-    if data
-      artist.update(genres: data.genres,
+  def update_artist(data, artist)
+    artist.update(genres: data.genres,
                     popularity: data.popularity,
                     spotify_url: data.external_urls["spotify"],
                     spotify_id: data.id,
                     image: data.images)
-      create_albums(artist, data.albums)
-    end
   end
 
   def create_albums(artist, albums)
