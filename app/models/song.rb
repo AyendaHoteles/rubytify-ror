@@ -16,6 +16,7 @@
 #
 
 class Song < ApplicationRecord
+  validates_uniqueness_of :name, :spotify_id
   belongs_to :album
   belongs_to :artist
 end

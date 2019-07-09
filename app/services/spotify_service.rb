@@ -3,6 +3,17 @@ class SpotifyService
     @client = SpotifyClient.new
   end
 
+  def service_ejecution(artist_names)
+    create_artist(artist_names)
+    update_artists
+  end
+
+  def create_artist(artist_names)
+    artist_names.each do |artist|
+      artist = Artist.create(name: artist)
+    end
+  end
+
   def update_artists
     artists = Artist.all
     artists.each do  |artist|
@@ -30,13 +41,13 @@ class SpotifyService
                            total_tracks: data_album.tracks.count,
                            spotify_id: data_album.id,
                            image: data_album.images)
-      create_songs(artist, album, data_album.tracks)
+      create_songs(artist, album, data_album.tracks) if album.persisted?
     end
   end
 
   def create_songs(artist, album, tracks)
     tracks.each do |track|
-      album.songs.create!(artist: artist,
+      Song.create(artist: artist, album: album,
                          name: track.name,
                          spotify_url: track.external_urls["spotify"],
                          preview_url: track.preview_url,

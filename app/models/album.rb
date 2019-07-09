@@ -14,6 +14,7 @@
 #
 
 class Album < ApplicationRecord
+  validates_uniqueness_of :name, :spotify_id
   belongs_to :artist
   has_many :songs
   serialize :image

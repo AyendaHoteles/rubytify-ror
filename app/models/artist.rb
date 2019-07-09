@@ -14,6 +14,7 @@
 #
 
 class Artist < ApplicationRecord
+  validates_uniqueness_of :name
   serialize :genres
   has_many :albums
   has_many :songs
