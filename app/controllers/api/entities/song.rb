@@ -1,6 +1,6 @@
 module API
   module Entities
-    class Album < Grape::Entity
+    class Song < Grape::Entity
       root 'data'
 
       expose :name, documentation: { type: 'String', desc: 'Name' }
