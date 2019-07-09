@@ -225,6 +225,7 @@ GEM
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 4.0)
       netrc (~> 0.8)
+    retryable (3.0.4)
     rspec (3.8.0)
       rspec-core (~> 3.8.0)
       rspec-expectations (~> 3.8.0)
@@ -315,6 +316,7 @@ DEPENDENCIES
   rack-cors
   rails (~> 5.2.3)
   rest-client
+  retryable
   rspec-rails
   rspotify
   shoulda-callback-matchers (~> 1.1.1)

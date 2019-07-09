@@ -31,6 +31,8 @@ gem 'rack-cors'
 gem 'rest-client'
 
 gem 'rspotify'
+
+gem 'retryable'
 # API
 gem 'jbuilder', '~> 2.5'
 gem 'grape'
