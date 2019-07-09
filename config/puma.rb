@@ -1,20 +1,32 @@
-# Puma can serve each request in a thread from an internal thread pool.
-# The `threads` method setting takes two numbers: a minimum and maximum.
-# Any libraries that use thread pools should be configured to match
-# the maximum value specified for Puma. Default is set to 5 threads for minimum
-# and maximum; this matches the default thread size of Active Record.
+# https://devcenter.heroku.com/articles/deploying-rails-applications-with-the-puma-web-server
+
+# The environment variable WEB_CONCURRENCY may be set to a default value based
+# on dyno size. To manually configure this value use heroku config:set
+# WEB_CONCURRENCY.
 #
-threads_count = ENV.fetch("RAILS_MAX_THREADS") { 5 }
+# Increasing the number of workers will increase the amount of resting memory
+# your dynos use. Increasing the number of threads will increase the amount of
+# potential bloat added to your dynos when they are responding to heavy
+# requests.
+#
+# Starting with a low number of workers and threads provides adequate
+# performance for most applications, even under load, while maintaining a low
+# risk of overusing memory.
+workers Integer(ENV['WEB_CONCURRENCY'] || 2)
+threads_count = Integer(ENV['RAILS_MAX_THREADS'] || 5)
 threads threads_count, threads_count
 
-# Specifies the `port` that Puma will listen on to receive requests; default is 3000.
-#
-port        ENV.fetch("PORT") { 3000 }
+preload_app!
 
-# Specifies the `environment` that Puma will run in.
-#
-environment ENV.fetch("RAILS_ENV") { "development" }
+rackup      DefaultRackup
+port        ENV['PORT']     || 3000
+environment ENV['RACK_ENV'] || 'development'
 
+on_worker_boot do
+  # Worker specific setup for Rails 4.1+
+  # See: https://devcenter.heroku.com/articles/deploying-rails-applications-with-the-puma-web-server#on-worker-boot
+  ActiveRecord::Base.establish_connection
+end
 # Specifies the number of `workers` to boot in clustered mode.
 # Workers are forked webserver processes. If using threads and workers together
 # the concurrency of the application would be max `threads` * `workers`.
