@@ -20,5 +20,14 @@ FactoryBot.define do
     spotify_url { "https://urlspotifyexample.com" }
     spotify_id { Faker::Alphanumeric.alphanumeric(10) }
     image { [{ 'url' => 'www.urlimageexample.com' }]}
+
+    factory :empty_artist do
+      name { Faker::Name.first_name }
+      genres { }
+      popularity { }
+      spotify_url { }
+      spotify_id { }
+      image { }
+    end
   end
 end
