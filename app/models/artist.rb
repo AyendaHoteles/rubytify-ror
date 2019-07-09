@@ -16,4 +16,8 @@
 class Artist < ApplicationRecord
   has_many :albums
   has_many :songs
+
+  validates :spotify_id, uniqueness: true, presence: true
+  validates :spotify_url, uniqueness: true, presence: true
+  validates :name, presence: true
 end

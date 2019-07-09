@@ -11,9 +11,9 @@ module API
           get :random_song do
             artists_ids = Artist.where("? = ANY(genres)", params[:genre_name]).pluck(:id)
 
-            song = Song.where(artist_id: artists_ids).order('RANDOM()').first
+            song = Song.where(artist_id: artists_ids).order('RANDOM()').first!
 
-            present song, with: API::Entities::Song
+            present [song], with: API::Entities::Song
           end
         end
       end

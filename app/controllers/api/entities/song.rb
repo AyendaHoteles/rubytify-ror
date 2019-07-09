@@ -1,7 +1,7 @@
 module API
   module Entities
     class Song < Grape::Entity
-      root 'data'
+      root 'data', 'data'
 
       expose :name, documentation: { type: 'String', desc: 'Name' }
       expose :spotify_url, documentation: { type: 'String', desc: 'Spotify URL' }

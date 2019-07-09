@@ -3,10 +3,10 @@ FactoryGirl.define do
     artist nil
     album nil
     name "MyString"
-    spotify_url "MyString"
     preview_url "MyString"
     duration_ms 1
     explicit false
-    spotify_id "MyString"
+    sequence(:spotify_url) { |n| "https://test.com/tracks/#{n}" }
+    sequence(:spotify_id) { |n| "trackabc12#{n}" }
   end
 end

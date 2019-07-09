@@ -16,6 +16,12 @@ module API
           def logger
             Rails.logger
           end
+
+          def present_array(key, data, entity)
+            d = (data.class.respond_to? :count) ? [data] : data
+            d = [] if d.nil?
+            present key, d, entity
+          end
         end
 
         rescue_from ActiveRecord::RecordNotFound do
