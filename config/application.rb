@@ -29,8 +29,9 @@ module AyendaTest
     config.paths.add File.join('app', 'services'), glob: File.join('**', '*.rb')
     config.autoload_paths += Dir[Rails.root.join('app', 'services', '*')]
 
-     config.paths.add File.join('app', 'client'), glob: File.join('**', '*.rb')
+    config.paths.add File.join('app', 'client'), glob: File.join('**', '*.rb')
     config.autoload_paths += Dir[Rails.root.join('app', 'client', '*')]
+    config.active_job.queue_adapter = :sidekiq
 
     # Only loads a smaller set of middleware suitable for API only apps.
     # Middleware like session, flash, cookies can be added back manually.
