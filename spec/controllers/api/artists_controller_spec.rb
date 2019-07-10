@@ -15,9 +15,9 @@ RSpec.describe Api::V1::ArtistsController, type: :controller do
     end
 
     it "returns correctly specific data" do
-      first_artist = Artist.first
-
       artist_responsed = @artists.first
+      first_artist = Artist.find_by(spotify_id: artist_responsed["spotify_id"])
+
       expect(artist_responsed["id"]).to eq(first_artist.id)
       expect(artist_responsed["name"]).to eq(first_artist.name)
       expect(artist_responsed["genres"]).to eq(first_artist.genres)
