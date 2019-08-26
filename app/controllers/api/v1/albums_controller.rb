@@ -1,6 +1,6 @@
 class Api::V1::AlbumsController < ApplicationController
   def index
-  @artist = Artist.find(params['page_id'])
+  @artist = Artist.find(params['artist_id'])
   @spotify_artist = RSpotify::Artist.find(@artist.spotify_id)
   if @artist.albums.empty?
     @spotify_artist.albums.each do |album|
