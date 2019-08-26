@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 2019_08_26_093153) do
     t.integer "total_tracks"
     t.string "spotify_url"
     t.string "spotify_id"
+    t.string "artist_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -38,8 +39,9 @@ ActiveRecord::Schema.define(version: 2019_08_26_093153) do
     t.string "spotify_url"
     t.string "preview_url"
     t.integer "duration_ms"
-    t.string "explicit"
+    t.boolean "explicit"
     t.string "spotify_id"
+    t.string "album_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

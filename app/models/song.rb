@@ -5,10 +5,13 @@ class Song < ApplicationRecord
         "preview_url",
         "duration_ms",
         "explicit",
-        "spotify_id"
+        "spotify_id",
+        "album_id",
     ]
 
     def self.map_to_schema(entity)
+        entity["spotify_id"] = entity["id"]
+        entity["spotify_url"] = entity["external_urls"]["spotify"]
         Base.map_to_schema(entity, @valid_fields)
     end
 end

@@ -1,12 +1,15 @@
 require "net/http"
 require "dotenv"
 require "base64"
+require "singleton"
 
 
 Dotenv.load(".env")
 
 
 class SpotifyService
+  include Singleton
+
   def initialize()
     @auth = "#{ENV["CLIENT_ID"]}:#{ENV["CLIENT_SECRET"]}"
     @auth_64 = "Basic " + Base64.strict_encode64(@auth)
