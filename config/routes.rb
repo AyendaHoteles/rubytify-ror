@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root to: "artists#home"
+  root to: "api/v1/artists#index"
   namespace :api do
     namespace :v1 do
       resources :artists, only: [:index] do

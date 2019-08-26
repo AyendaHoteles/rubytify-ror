@@ -12,7 +12,7 @@ RSpec.describe Api::V1::AlbumsController, :type => :controller do
       expect(response.status).to eq(200)
     end
 
-    it "returns data ordered by popularity" do
+    it "returns correct data" do
       data = JSON.parse(response.body)['data']
 
       expect(data.first['id'].to_i).to eq album_one.id

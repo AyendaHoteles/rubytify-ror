@@ -5,7 +5,7 @@ class Api::V1::GenresController < ApplicationController
   def random
     genre_seach = params['genre_name']
     artist = Artist.select {|artist| artist.genres.include?(genre_seach)}.shuffle.last.spotify_id
-    artist = RSpotify::Artist.find(@artist)
+    artist = RSpotify::Artist.find(artist)
     random_song = artist.albums.shuffle.last.tracks.shuffle.last
     
     random_song = build_random_song_json(random_song)
