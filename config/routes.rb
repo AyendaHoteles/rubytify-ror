@@ -7,6 +7,7 @@ Rails.application.routes.draw do
           resources :songs
         end
       end
+      get '/genres/:genre_name/random_song', to: 'genres#random'
     end
   end
 end
