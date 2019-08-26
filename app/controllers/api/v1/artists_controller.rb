@@ -4,20 +4,9 @@ class Api::V1::ArtistsController < ApplicationController
   def index
     artists = Artist.all.order(popularity: :desc)
     if artists.where(spotify_id: nil).present?
-      missing_info = artists.where(spotify_id: nil).each do |artist|
-        spot_artist = RSpotify::Artist.search(artist.name).first
-        if spot_artist.present?
-          artist.update(
-            spotify_id: spot_artist.id,
-            genres: spot_artist.genres,
-            popularity: spot_artist.popularity,
-            spotify_url: spot_artist.external_urls["spotify"],
-            image: spot_artist.images.first)
-        end
-      end
+      build_artist_information(artists)
     end
     artists_json = build_artists_json(artists)
-
     render json: artists_json
   end
 
@@ -25,6 +14,20 @@ class Api::V1::ArtistsController < ApplicationController
 
   def spotify_authenticate
     RSpotify.authenticate(ENV['SPOTIFY_ID'], ENV['SPOTIFY_SECRET'])
+  end
+
+  def build_artist_information(artists)
+    artists.where(spotify_id: nil).each do |artist|
+      spot_artist = RSpotify::Artist.search(artist.name).first
+      if spot_artist.present?
+        artist.update(
+          spotify_id: spot_artist.id,
+          genres: spot_artist.genres,
+          popularity: spot_artist.popularity,
+          spotify_url: spot_artist.external_urls["spotify"],
+          image: spot_artist.images.first)
+      end
+    end
   end
 
   def build_artists_json(artists)

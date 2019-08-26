@@ -13,8 +13,7 @@ class Api::V1::SongsController < ApplicationController
         album_id: album.id)
       end
     end
-    songs = album.songs
-    songs_json = build_songs_json(songs)
+    songs_json = build_songs_json(album.songs)
 
     render json: songs_json
     end
