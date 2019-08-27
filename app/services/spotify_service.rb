@@ -1,10 +1,13 @@
 require "net/http"
-require "dotenv"
 require "base64"
 require "singleton"
+require "pathname"
 
 
-Dotenv.load(".env")
+if ENV['RAILS_ENV'] != 'production'
+  require "dotenv"
+  Dotenv.load(".env")
+end
 
 
 class SpotifyService
