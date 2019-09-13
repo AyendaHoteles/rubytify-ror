@@ -3,7 +3,7 @@ namespace :database do
   desc "Save changes on database"
   task create: :environment do
 
-    list_artist = YAML.load_file('config/locales/create_db.yml')
+    list_artist = YAML.load_file('config/create_db.yml')
     list_artist["artists"].each do |a|
       artist = RSpotify::Artist.search(a.to_s).first
       if artist != nil && Artist.where(name: artist.name).empty?

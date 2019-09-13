@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  # Api Routes endpoints
   namespace :api do
     namespace :v1 do
       get 'artists', to: 'artists#index'
@@ -7,4 +8,9 @@ Rails.application.routes.draw do
       get 'genres/:genre_name/random_song', to: 'genres#show'
     end
   end
+  # test routes
+  get 'artists', to: 'artists#index'
+  get 'artists/:id/albums', to: 'albums#index'
+  get 'albums/:id/songs', to: 'songs#index'
+  get 'genres/:id/random_song', to:'genres#index'
 end
