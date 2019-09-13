@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root to: "artists#index"
   # Api Routes endpoints
   namespace :api do
     namespace :v1 do
