@@ -1,3 +1,6 @@
 class Gender < ApplicationRecord
-  has_many :songs
+  # model association
+  has_many :songs, dependent: :destroy
+  #validation
+  validates_presence_of :name
 end
