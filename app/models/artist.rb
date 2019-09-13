@@ -1,4 +1,6 @@
 class Artist < ApplicationRecord
-  has_many :albums
-  validates :name, :image, :popularity, :spotify_url, :spotify_id, presence: true
+  # model association
+  has_many :albums, dependent: :destroy
+  # validation
+  validates_presence_of :name, :image, :popularity, :spotify_url, :spotify_id
 end
