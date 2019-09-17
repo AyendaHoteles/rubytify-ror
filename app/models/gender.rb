@@ -1,6 +1,6 @@
 class Gender < ApplicationRecord
-  # model association
   has_many :songs, dependent: :destroy
-  #validation
+  has_many :relations, dependent: :destroy
+  has_many :artists, through: :relations, dependent: :destroy
   validates_presence_of :name
 end

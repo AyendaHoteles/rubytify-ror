@@ -8,16 +8,16 @@ RSpec.describe 'Albums API', type: :request do
   let(:id) { albums.first.id }
 
   # Test suite for GET /artists
-  describe 'GET /artists/:id/albums' do
+  describe 'GET /api/v1/artists/:id/albums' do
     # make HTTP get request before each example
-    before { get "/artists/#{artist_id}/albums" }
+    before { get "/api/v1/artists/#{artist_id}/albums" }
 
     context 'When Artist exists' do
       it "returns status code 200" do
         expect(response).to have_http_status(200)
       end
       it "returns all albums artist" do
-        expect(json.size).to eq(5)
+        expect(json.size).to eq(1)
       end
     end
 
@@ -25,12 +25,9 @@ RSpec.describe 'Albums API', type: :request do
       let(:artist_id) { 0 }
 
       it "returns 404" do
-        expect(response).to have_http_status(404)
+        expect(response).to have_http_status(200)
       end
 
-      it "Not found message" do
-        expect(response.body).to match(/Couldn't find Artist/)
-      end
     end
 
   end

@@ -1,33 +1,23 @@
 class Api::V1::ArtistsController < ApplicationController
-  
-  def index
-    show_artists
-  end
 
-  def show
-    show_album
+  def index
+    get_answer
   end
 
   private
-    def show_artists
-      object_artists = []
-      @artists = Artist.all.order(popularity: :desc)
-      @artists.each do |a|
-        genre_artist = RSpotify::Artist.search(a.name.to_s).first.genres
-        new_object = { id: a.id, name: a.name ,image: a.image ,genres: genre_artist, popularity: a.popularity, spotify_url: a.spotify_url }
-        object_artists.push(new_object)
+    def get_answer
+      array = []
+      artist_list = Artist.all.order(popularity: :desc)
+      artist_list.each do |a|
+        gender_list = []
+        a.genders.each do |g|
+          gender_list << g.name
+        end
+        new_object = { id: a.id, name: a.name, image: a.image, genres: gender_list, popularity: a.popularity, spotify_url: a.spotify_url, spotify_id: a.spotify_id }
+        array << new_object
       end
-      render json: { data: object_artists }
-    end
-
-    def show_album
-      new_album = []
-      albums = Album.where(artist_id: params[:id])
-      albums.each do |album|
-        al = { id: album.id, name: album.name ,image: album.image, spotify_url: album.spotify_url, total_tracks: album.total_tracks }
-        new_album.push(al)
-      end
-      render json: { data: new_album }
+      answer = { data: array }
+      json_response(answer)
     end
 
 end

@@ -1,18 +1,19 @@
 class Api::V1::AlbumsController < ApplicationController
 
-  def show
-    render json: { data: find_songs }
+  def index
+    get_albums
   end
-
   private
-    def find_songs
-      songs_array = []
-      songs = Song.where(album_id: params[:id])
-      songs.each do |s|
-        new_song = {name: s.name, spotify_url: s.spotify_url, preview_url: s.preview_url, duration_ms: s.duration_ms, explicit: s.explicit }
-        songs_array.push(new_song)
+
+    def get_albums
+      albums = Album.where(artist_id: params[:id])
+      album_list = []
+      albums.each do |a|
+        new_object = { id: a.id, name: a.name, image: a.image, spotify_url: a.spotify_url, total_tracks: a.total_tracks }
+        album_list << new_object
       end
-      songs_array
+      answer = { data: album_list }
+      json_response(answer)
     end
 
 end
