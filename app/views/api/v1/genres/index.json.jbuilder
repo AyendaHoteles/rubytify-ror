@@ -1,5 +1,5 @@
 json.data do
   json.array! @genres do |genre|
-    json.extract! genre, :name, :id
+    json.genre genre
   end
 end
