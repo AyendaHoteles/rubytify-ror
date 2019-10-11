@@ -1,0 +1,23 @@
+<div class="container" style="font-size: 24px;
+    padding: 48px;">
+  <div class="title">
+    <h1>Ayenda test - Daniel López</h1>
+  </div>
+  <h2>Endopoints</h2>
+  <div class="routes">
+    <ul>
+      <li>
+        <%= link_to "artists -> /api/v1/artists", api_v1_artists_path  %>
+      </li>
+      <li>
+        <%= link_to "artist's albums -> /api/v1/artists/:id/albums", api_v1_artists_path(Artist.first.id)  %>
+      </li>
+      <li>
+        <%= link_to "album's songs -> /api/v1/albums/:id/songs", api_v1_album_songs_path(Album.first.id)  %>
+      </li>
+      <li>
+        <%= link_to "Random genre' song -> /api/v1/genres/:genre_name/random_song", random_api_v1_genre_path("rock")  %>
+      </li>
+    </ul>
+  </div>
+</div>
