@@ -15,6 +15,7 @@ gem "pundit"
 gem "rails", "~> 5.2.3"
 gem "rails-controller-testing"
 gem "rspotify"
+gem "shoulda", "~> 3.5"
 # Use sqlite3 as the database for Active Record
 gem "sqlite3"
 # Use Redis adapter to run Action Cable in production
@@ -29,7 +30,7 @@ gem "sqlite3"
 # gem "capistrano-rails", group: :development
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
-# gem "rack-cors"
+gem "rack-cors"
 
 group :development, :test do
   # Call "byebug" anywhere in the code to stop execution and get a debugger console
