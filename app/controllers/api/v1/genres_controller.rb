@@ -3,7 +3,7 @@ class Api::V1::GenresController < Api::V1::BaseController
   before_action :all_genres, only: %i[index show random]
 
   def index
-    @genres.keys
+    @genres = @genres.keys
   end
 
   def show
