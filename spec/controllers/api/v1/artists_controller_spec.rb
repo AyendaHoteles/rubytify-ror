@@ -17,9 +17,6 @@ RSpec.describe Api::V1::ArtistsController do
       it "returns http success" do
         expect(response).to have_http_status(:success)
       end
-      it "returns data array" do
-        expect(response.body).to include("data")
-      end
     end
 
     describe "show" do
