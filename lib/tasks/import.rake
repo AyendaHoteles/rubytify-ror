@@ -6,7 +6,7 @@ file = "artists_respald.yml"
 
 namespace :import do
   task artists: :environment do
-    destroy_old_records
+    # destroy_old_records
     artists = YAML.load_file(file)
     array = artists["artists"].split(", ")
     array.each do |artist_name|
