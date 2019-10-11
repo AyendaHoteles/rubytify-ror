@@ -119,6 +119,7 @@ GEM
     omniauth-oauth2 (1.5.0)
       oauth2 (~> 1.1)
       omniauth (~> 1.2)
+    pg (1.1.4)
     public_suffix (3.1.1)
     puma (3.12.1)
     pundit (2.1.0)
@@ -230,6 +231,7 @@ DEPENDENCIES
   jbuilder (~> 2.7)
   json_spec (~> 1.1, >= 1.1.4)
   listen (>= 3.0.5, < 3.2)
+  pg
   puma (~> 3.11)
   pundit
   rack-cors
