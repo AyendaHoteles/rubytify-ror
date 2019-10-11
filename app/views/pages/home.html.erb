@@ -16,7 +16,7 @@
         <%= link_to "Album's songs -> /api/v1/albums/:id/songs", api_v1_album_songs_path(Album.first.id)  %>
       </li>
       <li>
-        <%= link_to "Random genre' song -> /api/v1/genres/:genre_name/random_song", random_api_v1_genre_path("rock")  %>
+        <%= link_to "Random genre' song -> /api/v1/genres/:genre_name/random_song", random_api_v1_genre_path(Genre.genres.keys.sample)  %>
       </li>
     </ul>
   </div>
