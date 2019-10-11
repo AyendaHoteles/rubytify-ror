@@ -13,6 +13,11 @@ namespace :import do
       spotify_artist = find_artist(artist_name)
       local_artist = save_artist(spotify_artist)
       save_artist_albums(local_artist, spotify_artist)
+    rescue RestClient::TooManyRequests, Exception => e
+      puts e
+      sleep 900
+
+      retry
     end
   end
 end
@@ -70,6 +75,7 @@ end
 
 def save_album_songs(local_album, spotify_album)
   spotify_album.tracks.each do |song|
+    sleep(1.0 / 3)
     instance = Song.new(
       name: song.name,
       spotify_url: song.external_urls["spotify"],
