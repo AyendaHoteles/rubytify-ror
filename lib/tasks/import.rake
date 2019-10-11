@@ -13,7 +13,7 @@ namespace :import do
       spotify_artist = find_artist(artist_name)
       local_artist = save_artist(spotify_artist)
       save_artist_albums(local_artist, spotify_artist)
-    rescue RestClient::TooManyRequests, Exception => e
+    rescue RestClient::TooManyRequests => e
       puts e
       sleep 900
 
@@ -41,11 +41,13 @@ def find_the_exact_coincidence(artists, artist_name)
 end
 
 def save_artist(artist)
-  instance = Artist.new(name: artist.name,
-    image: artist.images[0]["url"],
-    popularity: artist.popularity,
-    spotify_url: artist.external_urls["spotify"],
-    spotify_id: artist.id)
+  instance = Artist.new(
+      name: artist.name,
+      image: artist.images[0]["url"],
+      popularity: artist.popularity,
+      spotify_url: artist.external_urls["spotify"],
+      spotify_id: artist.id
+    )
   instance.genres = artist.genres
   instance.save!
   p "#{artist.name} Guardado"
