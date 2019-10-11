@@ -1,4 +1,4 @@
 class Song < ApplicationRecord
   belongs_to :album
-  # belongs_to :genre
+  validates :name, :spotify_url, :spotify_id, :duration_ms, presence: true
 end
