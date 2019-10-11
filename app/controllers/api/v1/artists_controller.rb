@@ -3,7 +3,7 @@ class Api::V1::ArtistsController < Api::V1::BaseController
   before_action :find_artist_genres, only: %i[show]
 
   def index
-    @artists = Artist.all
+    @artists = Artist.order(popularity: :desc)
   end
 
   def show; end

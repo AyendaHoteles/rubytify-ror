@@ -11,7 +11,7 @@ AllCops:
     - app/mailers/*
     - bin/*
     - Rakefile
-    - cors.rb
+    - config/initializers/cors.rb
 Metrics/LineLength:
   Max: 120
 
