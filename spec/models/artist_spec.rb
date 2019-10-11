@@ -12,11 +12,11 @@ RSpec.describe Artist, :type => :model do
       @artist.name = ""
       expect(@artist).to_not be_valid
     end
-    it "is not valid without a spotify_url" do
+    it "is not valid without an spotify_url" do
       @artist.spotify_url = ""
       expect(@artist).to_not be_valid
     end
-    it "is not valid without a spotify_id" do
+    it "is not valid without an spotify_id" do
       @artist.spotify_id = ""
       expect(@artist).to_not be_valid
     end
