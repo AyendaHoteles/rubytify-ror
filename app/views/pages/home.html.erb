@@ -7,13 +7,13 @@
   <div class="routes">
     <ul>
       <li>
-        <%= link_to "artists -> /api/v1/artists", api_v1_artists_path  %>
+        <%= link_to "Artists -> /api/v1/artists", api_v1_artists_path  %>
       </li>
       <li>
-        <%= link_to "artist's albums -> /api/v1/artists/:id/albums", api_v1_artists_path(Artist.first.id)  %>
+        <%= link_to "Artist's albums -> /api/v1/artists/:id/albums", api_v1_artists_path(Artist.first.id)  %>
       </li>
       <li>
-        <%= link_to "album's songs -> /api/v1/albums/:id/songs", api_v1_album_songs_path(Album.first.id)  %>
+        <%= link_to "Album's songs -> /api/v1/albums/:id/songs", api_v1_album_songs_path(Album.first.id)  %>
       </li>
       <li>
         <%= link_to "Random genre' song -> /api/v1/genres/:genre_name/random_song", random_api_v1_genre_path("rock")  %>
