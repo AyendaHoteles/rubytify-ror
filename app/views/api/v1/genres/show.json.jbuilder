@@ -1,4 +1,6 @@
 json.data do
-  json.extract! @genre, :name
-  json.total_tracks @total_tracks
+  json.genre @genre
+  json.artists @artists do |artist|
+    json.name artist
+  end
 end
