@@ -23,7 +23,6 @@ FactoryBot.define do
 
   factory :song do
     album
-    genre
     name { "Make It" }
     spotify_url { "https://open.spotify.com/track/2RMHHMQ5c2rL8V4QzQ4dyv" }
     preview_url { "https://p.scdn.co/mp3-preview/94b69e2aa85ed4841a0a5465c077c521eafce464?cid=774b29d4f13844c495f206cafdad9c86" }
