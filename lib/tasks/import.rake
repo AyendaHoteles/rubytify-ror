@@ -4,12 +4,9 @@ require "rspotify"
 
 file = "artists_respald.yml"
 
-Song.destroy_all
-Album.destroy_all
-Artist.destroy_all
-
 namespace :import do
   task artists: :environment do
+    destroy_old_records
     artists = YAML.load_file(file)
     array = artists["artists"].split(", ")
     array.each do |artist_name|
@@ -21,10 +18,26 @@ namespace :import do
 
   task genres: :environment do
     Artist.all.each do |artist|
-      byebug
-      artist.genres
+      artist.genres.each do |genre|
+        next if Genre.all.include? genre
+
+        genre = Genre.new(
+          name: genre,
+          artist: artist
+        )
+        genre.save!
+        byebug
+      end
     end
   end
+end
+
+private
+
+def destroy_old_records
+  Song.destroy_all
+  Album.destroy_all
+  Artist.destroy_all
 end
 
 def find_artist(artist_name)
