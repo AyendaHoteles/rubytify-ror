@@ -15,21 +15,6 @@ namespace :import do
       save_artist_albums(local_artist, spotify_artist)
     end
   end
-
-  task genres: :environment do
-    Artist.all.each do |artist|
-      artist.genres.each do |genre|
-        next if Genre.all.include? genre
-
-        genre = Genre.new(
-          name: genre,
-          artist: artist
-        )
-        genre.save!
-        byebug
-      end
-    end
-  end
 end
 
 private
