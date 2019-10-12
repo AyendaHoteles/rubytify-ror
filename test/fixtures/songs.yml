@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  id: MyString
+  integer: MyString
+  name: MyString
+  string: MyString
+  sporify_url: MyString
+  preview_url: MyString
+  string: MyString
+  duration_ms: MyString
+  integer: MyString
+  explicit: MyString
+  boolean: MyString
+
+two:
+  id: MyString
+  integer: MyString
+  name: MyString
+  string: MyString
+  sporify_url: MyString
+  preview_url: MyString
+  string: MyString
+  duration_ms: MyString
+  integer: MyString
+  explicit: MyString
+  boolean: MyString
