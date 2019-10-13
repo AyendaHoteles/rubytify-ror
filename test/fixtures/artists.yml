@@ -6,7 +6,7 @@
 #  genres      :string
 #  image       :string
 #  name        :string
-#  poputarity  :integer
+#  popularity  :integer
 #  spotify_url :string
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null

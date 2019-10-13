@@ -50,6 +50,7 @@ group :test do
   gem 'simplecov'
   gem 'simplecov-rcov'
   gem 'shoulda-matchers'
+  gem 'factory_bot'
 end
 
 group :development do

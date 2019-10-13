@@ -6,7 +6,7 @@
 #  genres      :string
 #  image       :string
 #  name        :string
-#  poputarity  :integer
+#  popularity  :integer
 #  spotify_url :string
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
@@ -37,7 +37,7 @@ class Artist < ApplicationRecord
       name:        self.name,
       image:       self.image,
       genres:      genres.map(&:name).join(", "),
-      popularity:  self.poputarity,
+      popularity:  self.popularity,
       spotify_url: self.spotify_url
     }
   end
@@ -53,7 +53,7 @@ class Artist < ApplicationRecord
       id:          response_parsed[:id],
       name:        response_parsed[:name].capitalize,
       image:       response_parsed[:image],
-      poputarity:  response_parsed[:popularity],
+      popularity:  response_parsed[:popularity],
       spotify_url: response_parsed[:spotify_url]
     )
 
