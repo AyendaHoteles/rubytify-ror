@@ -21,8 +21,6 @@ class Artist < ApplicationRecord
   def create_albums
     puts "creating all albus album of #{self.name}"
 
-    
-
     response = Spotify::ComunicationService.get_albums(name: self.name)
     
     if response.nil?
@@ -52,7 +50,7 @@ class Artist < ApplicationRecord
 
     artist = find_artist(name: name)
 
-    unless artist.size.empty?
+    unless artist.empty?
       puts "Artist #{artist.first.name} was already created"
       return true
     end
