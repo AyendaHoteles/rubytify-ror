@@ -1,4 +1,4 @@
-require_relative 'boot'
+require_relative "boot"
 
 require "rails"
 # Pick the frameworks you want:
@@ -14,7 +14,7 @@ require "action_cable/engine"
 require "rails/test_unit/railtie"
 
 # Require the gems listed in Gemfile, including any gems
-# you've limited to :test, :development, or :production.
+# you"ve limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
 module AyendaTest
@@ -31,5 +31,10 @@ module AyendaTest
     # Middleware like session, flash, cookies can be added back manually.
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
+
+    config.action_dispatch.default_headers = {
+    "Access-Control-Allow-Origin"   => "https://rubitify13.herokuapp.com/",
+    "Access-Control-Request-Method" => %w{GET POST OPTIONS}.join(",")
+  }
   end
 end

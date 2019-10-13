@@ -1,0 +1,156 @@
+{
+  "RSpec": {
+    "coverage": {
+      "/home/deif/Dropbox/Elite/job_applications/ayenda/test/app/controllers/api/v1/albums_controller.rb": [
+        1,
+        1,
+        0,
+        null,
+        null
+      ],
+      "/home/deif/Dropbox/Elite/job_applications/ayenda/test/app/controllers/application_controller.rb": [
+        1,
+        null
+      ],
+      "/home/deif/Dropbox/Elite/job_applications/ayenda/test/app/controllers/api/v1/artists_controller.rb": [
+        1,
+        1,
+        0,
+        null,
+        null,
+        1,
+        0,
+        null,
+        null
+      ],
+      "/home/deif/Dropbox/Elite/job_applications/ayenda/test/app/controllers/api/v1/songs_controller.rb": [
+        1,
+        1,
+        null,
+        null,
+        null
+      ],
+      "/home/deif/Dropbox/Elite/job_applications/ayenda/test/app/models/album.rb": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        1,
+        1,
+        1,
+        null,
+        1,
+        null
+      ],
+      "/home/deif/Dropbox/Elite/job_applications/ayenda/test/app/models/application_record.rb": [
+        1,
+        1,
+        null
+      ],
+      "/home/deif/Dropbox/Elite/job_applications/ayenda/test/app/models/artist.rb": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        1,
+        1,
+        1,
+        1,
+        null,
+        1,
+        null
+      ],
+      "/home/deif/Dropbox/Elite/job_applications/ayenda/test/app/models/song.rb": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        1,
+        1,
+        null,
+        1,
+        1,
+        null,
+        1,
+        null
+      ],
+      "/home/deif/Dropbox/Elite/job_applications/ayenda/test/app/models/genre.rb": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        1,
+        1,
+        1,
+        null,
+        1,
+        null
+      ],
+      "/home/deif/Dropbox/Elite/job_applications/ayenda/test/app/channels/application_cable/connection.rb": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "/home/deif/Dropbox/Elite/job_applications/ayenda/test/app/channels/application_cable/channel.rb": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "/home/deif/Dropbox/Elite/job_applications/ayenda/test/app/mailers/application_mailer.rb": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "/home/deif/Dropbox/Elite/job_applications/ayenda/test/app/jobs/application_job.rb": [
+        0,
+        0
+      ],
+      "/home/deif/Dropbox/Elite/job_applications/ayenda/test/app/controllers/api/v1/genres_controller.rb": [
+        0,
+        0
+      ]
+    },
+    "timestamp": 1570928277
+  }
+}
