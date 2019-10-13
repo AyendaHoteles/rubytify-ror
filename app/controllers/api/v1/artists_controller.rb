@@ -1,9 +1,11 @@
 class Api::V1::ArtistsController < ApplicationController
   def index
-     render json: {name: "david"}.to_json , status: 201
-  end
+    artists = Artist.all.map { |artist| artist.create_body }
 
-  def albums
-    render json: {name: "metallica"}.to_json , status: 201
+    if artists.length > 0
+      render json: {data: artists}, status: 200
+    else
+      render json: {errors: "No artist not found"}, status: 422
+    end
   end
 end
