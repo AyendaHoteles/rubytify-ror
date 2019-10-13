@@ -2,8 +2,12 @@ module Spotify
   class ComunicationService 
     def self.get_artist(name:)
       artist_id = get_artist_id(name: name)
-
-      response = send_request(url: artist_url(id: artist_id))
+      
+      if artist_id 
+        response = send_request(url: artist_url(id: artist_id))
+      else
+        nil
+      end
     end
     
     def self.get_artist_id(name:)
@@ -11,7 +15,7 @@ module Spotify
 
       response = send_request(url: url)
 
-      JSON.parse(response.body)["artists"]["items"].first["id"]
+      JSON.parse(response.body).dig("artists","items")&.first&.dig("id")
     end
     
     def self.send_request(url:)
@@ -24,10 +28,11 @@ module Spotify
 
     def self.get_token
       response = HTTParty.post("https://accounts.spotify.com/api/token",
-       body: {"grant_type" => "client_credentials"},
-       headers: {
-        Authorization: "Basic YTU3MjYzMzVjMTExNGUwZTg1OWI4MzM0NzRhMmNmODM6Yzk2ZGEyOTNjYThkNDYyOTg3YmZiMjQ4MzIyNmIwZjQ=",
-      })
+        body:    {"grant_type" => "client_credentials"},
+        headers: {
+          Authorization: "Basic YTU3MjYzMzVjMTExNGUwZTg1OWI4MzM0NzRhMmNmODM6Yzk2ZGEyOTNjYThkNDYyOTg3YmZiMjQ4MzIyNmIwZjQ=",
+        }
+      )
       
       JSON.parse(response.body)["access_token"]
     end

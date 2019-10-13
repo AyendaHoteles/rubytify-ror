@@ -3,7 +3,6 @@
 # Table name: artists
 #
 #  id          :bigint           not null, primary key
-#  genres      :string
 #  image       :string
 #  name        :string
 #  popularity  :integer

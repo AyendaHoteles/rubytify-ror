@@ -32,6 +32,9 @@ module AyendaTest
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
 
+    config.autoload_paths += Dir["#{config.root}/app/models/**/"]
+    config.autoload_paths += Dir["#{config.root}/app/services/**/"]
+    
     config.action_dispatch.default_headers = {
     "Access-Control-Allow-Origin"   => "https://rubitify13.herokuapp.com/",
     "Access-Control-Request-Method" => %w{GET POST OPTIONS}.join(",")
