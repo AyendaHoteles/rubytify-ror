@@ -9,6 +9,16 @@ module Spotify
         nil
       end
     end
+
+    def self.get_albums(name:)
+      artist_id = get_artist_id(name: name)
+      
+      if artist_id 
+        response = send_request(url: album_url(artist_id: artist_id))
+      else
+        nil
+      end
+    end
     
     def self.get_artist_id(name:)
       url = "https://api.spotify.com/v1/search?q=#{name}&type=artist"
@@ -39,6 +49,10 @@ module Spotify
 
     def self.artist_url(id:)
       "https://api.spotify.com/v1/artists/#{id}" 
+    end
+
+    def self.album_url(artist_id:)
+      "https://api.spotify.com/v1/artists/#{artist_id}/albums" 
     end
   end
 end

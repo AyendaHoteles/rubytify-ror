@@ -17,6 +17,35 @@ class Artist < ApplicationRecord
   has_many                :albums
 
   validates :name, :spotify_url, presence: true
+  
+  def create_albums
+    puts "creating all albus album of #{self.name}"
+
+    
+
+    response = Spotify::ComunicationService.get_albums(name: self.name)
+    
+    if response.nil?
+      puts "Could not be found any album in spotify for #{self.name}"
+      return false
+    end
+    
+    response_parsed = Spotify::ParserService.album(spotify_response: response)
+    
+    response_parsed.each do | album_params|
+      next if Album.find_by(name: album_params[:name])
+      
+      new_album = self.albums.create!(   
+        id:           album_params[:id],
+        name:         album_params[:name],
+        image:        album_params[:image],
+        spotify_url:  album_params[:spotify_url],
+        total_tracks: album_params[:total_tracks]
+      )
+    end
+
+    puts "Albums were created for artist #{self.name}"
+  end
 
   def self.create_artist(name:)
     puts "creating new artist #{name}"
@@ -41,7 +70,6 @@ class Artist < ApplicationRecord
     
     begin 
       new_artist = Artist.create!(
-        id:          response_parsed[:id],
         name:        response_parsed[:name],
         image:       response_parsed[:image],
         popularity:  response_parsed[:popularity],

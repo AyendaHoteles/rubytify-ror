@@ -17,4 +17,21 @@ class Album < ApplicationRecord
   has_many   :songs
 
   validates :name, :spotify_url, presence: true
+  
+  private 
+    def create_body
+      {
+        id:           self.id,
+        name:         self.name,
+        image:        self.image,
+        spotify_url:  self.spotify_url,
+        total_tracks: self.total_tracks
+      }
+    end
+
+    def self.find_album(name:)
+      Album.all.select do |album|
+        album.name.split.map { |album_name| /#{artist_name}/ =~ "#{name}"}.any?
+      end
+    end
 end
