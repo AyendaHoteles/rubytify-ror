@@ -9,6 +9,7 @@
 #  spotify_url :string
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
+#  spotify_id  :string
 #
 
 class Artist < ApplicationRecord
@@ -28,13 +29,13 @@ class Artist < ApplicationRecord
       return false
     end
     
-    response_parsed = Spotify::ParserService.album(spotify_response: response)
+    response_parsed = Spotify::ParserService.albums(spotify_response: response)
     
     response_parsed.each do | album_params|
       next if Album.find_by(name: album_params[:name])
       
       new_album = self.albums.create!(   
-        id:           album_params[:id],
+        spotify_id:   album_params[:id],
         name:         album_params[:name],
         image:        album_params[:image],
         spotify_url:  album_params[:spotify_url],
@@ -68,6 +69,7 @@ class Artist < ApplicationRecord
     
     begin 
       new_artist = Artist.create!(
+        spotify_id:  response_parsed[:id],
         name:        response_parsed[:name],
         image:       response_parsed[:image],
         popularity:  response_parsed[:popularity],
@@ -85,20 +87,20 @@ class Artist < ApplicationRecord
     end
   end
   
+  def create_body
+    genres = self.genres
+
+    {
+      id:          self.spotify_id,
+      name:        self.name,
+      image:       self.image,
+      genres:      genres.map(&:name).join(", "),
+      popularity:  self.popularity,
+      spotify_url: self.spotify_url
+    }
+  end
+
   private 
-    def create_body
-      genres = self.genres
-
-      {
-        id:          self.id,
-        name:        self.name,
-        image:       self.image,
-        genres:      genres.map(&:name).join(", "),
-        popularity:  self.popularity,
-        spotify_url: self.spotify_url
-      }
-    end
-
     def self.add_genres(artist:, genres_names:)
       genres_names.each do |name|
         artist.genres << Genre.find_by(name: name)

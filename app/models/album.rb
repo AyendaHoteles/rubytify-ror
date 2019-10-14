@@ -10,6 +10,7 @@
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #  artist_id    :integer
+#  spotify_id   :string
 #
 
 class Album < ApplicationRecord
@@ -18,29 +19,52 @@ class Album < ApplicationRecord
 
   validates :name, :spotify_url, presence: true
   
-  private 
-    def create_body
-      {
-        id:           self.id,
-        name:         self.name,
-        image:        self.image,
-        spotify_url:  self.spotify_url,
-        total_tracks: self.total_tracks
-      }
+  def create_songs
+    puts "creating all the songs of the #{self.name} album"
+
+    response = Spotify::ComunicationService.get_songs(album_id: self.spotify_id)
+    
+    if response.nil?
+      puts "Could not be found any song in spotify for album #{self.name}"
+      return false
     end
     
-    def create_songs
-      puts "creating all the songs of the #{self.name} album"
+    response_parsed = Spotify::ParserService.songs(spotify_response: response)
+    
+    response_parsed.each do | song_params|
+      next if Song.find_by(name: song_params[:name])
+      
+      new_song = self.songs.create!(   
+        name:         song_params[:name],
+        duration_ms:  song_params[:duration_ms],
+        spotify_url:  song_params[:spotify_url],
+        preview_url:  song_params[:preview_url],
+        explicit:     song_params[:explicit],
+        genre_id:     Genre.first.id
+      )
+    end
+    
+    puts "Songs for album #{self.name} were created"
+  end
 
-      response = Spotify::ComunicationService.get_songs(name: self.name)
-      
-      if response.nil?
-        puts "Could not be found any album in spotify for #{self.name}"
-        return false
+  def create_body
+    {
+      id:           self.spotify_id,
+      name:         self.name,
+      image:        self.image,
+      spotify_url:  self.spotify_url,
+      total_tracks: self.total_tracks
+    }
+  end
+
+  private 
+    def self.find_album(name:)
+      Album.all.select do |album|
+        album.name.split.map { |album_name| /#{artist_name}/ =~ "#{name}"}.any?
       end
-      
-      response_parsed = Spotify::ParserService.album(spotify_response: response)
-      
+    end
+
+    def chucha
       response_parsed.each do | album_params|
         next if Album.find_by(name: album_params[:name])
         
@@ -51,14 +75,6 @@ class Album < ApplicationRecord
           spotify_url:  album_params[:spotify_url],
           total_tracks: album_params[:total_tracks]
         )
-      end
-
-      puts "Albums were created for artist #{self.name}"
-    end
-
-    def self.find_album(name:)
-      Album.all.select do |album|
-        album.name.split.map { |album_name| /#{artist_name}/ =~ "#{name}"}.any?
       end
     end
 end

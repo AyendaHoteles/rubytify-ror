@@ -7,7 +7,7 @@ module Spotify
 
       JSON.parse(response.body).dig("artists","items")&.first&.dig("id")
     end
-    
+
     def self.get_artist(name:)
       artist_id = get_artist_id(name: name)
       
@@ -22,20 +22,14 @@ module Spotify
       artist_id = get_artist_id(name: name)
       
       if artist_id 
-        response = send_request(url: album_url(artist_id: artist_id))
+        response = send_request(url: albums_url(artist_id: artist_id))
       else
         nil
       end
     end
 
-     def self.get_albums(name:)
-      artist_id = get_artist_id(name: name)
-      
-      if artist_id 
-        response = send_request(url: album_url(artist_id: artist_id))
-      else
-        nil
-      end
+    def self.get_songs(album_id:)
+      response = send_request(url: songs_url(album_id: album_id))
     end
     
     def self.send_request(url:)
@@ -61,8 +55,12 @@ module Spotify
       "https://api.spotify.com/v1/artists/#{id}" 
     end
 
-    def self.album_url(artist_id:)
+    def self.albums_url(artist_id:)
       "https://api.spotify.com/v1/artists/#{artist_id}/albums" 
+    end
+
+    def self.songs_url(album_id:)
+      "https://api.spotify.com/v1/albums/#{album_id}/tracks" 
     end
   end
 end

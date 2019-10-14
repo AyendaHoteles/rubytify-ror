@@ -21,4 +21,14 @@ class Song < ApplicationRecord
   belongs_to :genre
 
   validates :name, :spotify_url, presence: true
+
+  def create_body
+    {
+      name:        self.name,
+      spotify_url: self.spotify_url,
+      preview_url: self.preview_url,
+      duration_ms: self.duration_ms,
+      explicit:    self.explicit
+    }
+  end
 end

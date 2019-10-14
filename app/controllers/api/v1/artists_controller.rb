@@ -1,7 +1,9 @@
 class Api::V1::ArtistsController < ApplicationController
   def index
-    artists = Artist.all.map { |artist| artist.create_body }
+    artists = Artist.all.sort_by{ |artist| artist.popularity }
 
-    render json: {data: artists}, status: 200
+    artists_data = artists.reverse.map { |artist| artist.create_body }
+
+    render json: {data: artists_data}, status: 200
   end
 end
