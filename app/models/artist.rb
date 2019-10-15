@@ -19,6 +19,47 @@ class Artist < ApplicationRecord
 
   validates :name, :spotify_url, presence: true
   
+  def self.create_artist(name:)
+    puts "creating new artist #{name}"
+
+    artist = find_artist(name: name)
+
+    unless artist.empty?
+      puts "Artist #{artist.first.name} was already created"
+      return true
+    end
+
+    response = Spotify::ComunicationService.get_artist(name: name)
+    
+    if response.nil?
+      puts "Artist #{name} could not be found in spotify"
+      return false
+    end
+
+    response_parsed = Spotify::ParserService.artist(spotify_response: response)
+
+    response_parsed[:genres].each { |genre_name| Genre.find_or_create_by(name: genre_name) } 
+
+    begin 
+      new_artist = Artist.create!(
+        spotify_id:  response_parsed[:id],
+        name:        response_parsed[:name],
+        image:       response_parsed[:image],
+        popularity:  response_parsed[:popularity],
+        spotify_url: response_parsed[:spotify_url]
+      )
+
+      add_genres(artist: new_artist, genres_names: response_parsed[:genres])
+
+      puts "new artist #{new_artist.name} was successfully created"
+
+      return true
+    rescue => e
+      puts e
+      puts "something went wrong create the new artist #{name}"
+    end
+  end
+  
   def create_albums
     puts "creating all albums album of #{self.name}"
 
@@ -46,47 +87,6 @@ class Artist < ApplicationRecord
     puts "Albums were created for artist #{self.name}"
   end
 
-  def self.create_artist(name:)
-    puts "creating new artist #{name}"
-
-    artist = find_artist(name: name)
-
-    unless artist.empty?
-      puts "Artist #{artist.first.name} was already created"
-      return true
-    end
-
-    response = Spotify::ComunicationService.get_artist(name: name)
-    
-    if response.nil?
-      puts "Artist #{name} could not be found in spotify"
-      return false
-    end
-    
-    response_parsed = Spotify::ParserService.artist(spotify_response: response)
-
-    response_parsed[:genres].each { |genre_name| Genre.find_or_create_by(name: genre_name) } 
-    
-    begin 
-      new_artist = Artist.create!(
-        spotify_id:  response_parsed[:id],
-        name:        response_parsed[:name],
-        image:       response_parsed[:image],
-        popularity:  response_parsed[:popularity],
-        spotify_url: response_parsed[:spotify_url]
-      )
-
-      add_genres(artist: new_artist, genres_names: response_parsed[:genres])
-
-      puts "new artist #{new_artist.name} was successfully created"
-
-      return true
-    rescue => e
-      puts e
-      puts "something went wrong create the new artist #{name}"
-    end
-  end
-  
   def create_body
     genres = self.genres
 

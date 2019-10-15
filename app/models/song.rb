@@ -34,8 +34,12 @@ class Song < ApplicationRecord
 
   def self.random_song(genre_name:)
     genre = Genre.find_by(name: genre_name)
-    
-    songs = Song.all.where(genre_id: genre.id) unless genre.nil?
+
+    unless genre.nil?
+      songs = Song.all.where(genre_id: genre.id)
+    else
+     return nil 
+   end
 
     i = rand(0..songs.length)
     

@@ -34,6 +34,7 @@ module AyendaTest
 
     config.autoload_paths += Dir["#{config.root}/app/models/**/"]
     config.autoload_paths += Dir["#{config.root}/app/services/**/"]
+    config.autoload_paths += Dir["#{config.root}/app/services/spotify/"]
     
     config.action_dispatch.default_headers = {
     "Access-Control-Allow-Origin"   => "https://rubitify13.herokuapp.com/",

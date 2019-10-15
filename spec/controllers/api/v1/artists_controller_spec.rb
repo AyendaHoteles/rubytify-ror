@@ -35,14 +35,9 @@ RSpec.describe Api::V1::ArtistsController, type: :controller do
     context "when there are no artist stored" do
       let(:response_body) { {data: []}.to_json }
 
-      it "returns error message" do
+      it "returns status 204" do
         subject
-        expect(response.body).to be ==(response_body)
-      end
-
-      it "returns status ok" do
-        subject
-        expect(response.status).to eq(200)
+        expect(response.status).to eq(204)
       end
     end
   end

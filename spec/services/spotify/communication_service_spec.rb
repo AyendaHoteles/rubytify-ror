@@ -6,7 +6,7 @@ RSpec.describe Spotify::ComunicationService, type: :service do
           spotify: "https://open.spotify.com/artist/3MqjsWDLhq8SyY6N3PE8yW"
         },
         followers: {
-          href: null,
+          href: nil,
           total: 390826
         },
         genres: [ "colombian rock", "cumbia", "latin", "latin alternative", "latin pop", "latin rock", "rock en espanol" ],
@@ -14,7 +14,7 @@ RSpec.describe Spotify::ComunicationService, type: :service do
         id: "3MqjsWDLhq8SyY6N3PE8yW",
         images: [ {
           height: 640,
-          url "https://i.scdn.co/image/3d1ac6131bac714406d00c0cafdf069a2ae294c2",
+          url: "https://i.scdn.co/image/3d1ac6131bac714406d00c0cafdf069a2ae294c2",
           width: 640
         }, {
           height: 320,
@@ -41,7 +41,7 @@ RSpec.describe Spotify::ComunicationService, type: :service do
               spotify: "https://open.spotify.com/artist/3MqjsWDLhq8SyY6N3PE8yW"
             },
             followers: {
-              href: null,
+              href: nil,
               total: 390826
             },
             genres: [ "colombian rock", "cumbia", "latin", "latin alternative", "latin pop", "latin rock", "rock en espanol" ],
@@ -66,9 +66,9 @@ RSpec.describe Spotify::ComunicationService, type: :service do
             uri: "spotify:artist:3MqjsWDLhq8SyY6N3PE8yW"
           } ],
           limit: 20,
-          next: null,
+          next: nil,
           offset: 0,
-          previous: null,
+          previous: nil,
           total: 1
         }
       }
@@ -80,9 +80,9 @@ RSpec.describe Spotify::ComunicationService, type: :service do
           href:     "https://api.spotify.com/v1/search?query=atercipelados&type=artist&offset=0&limit=20",
           items:    [ ],
           limit:    20,
-          next:     null,
+          next:     nil,
           offset:   0,
-          previous: null,
+          previous: nil,
           total:    0
         }
       }
