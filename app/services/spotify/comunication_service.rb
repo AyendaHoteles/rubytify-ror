@@ -35,11 +35,15 @@ module Spotify
     end
     
     def self.send_request(url:)
-      response = HTTParty.get(url, 
+      response = HTTParty.get(parse_url(url), 
         headers: {
           Authorization: "Bearer " + get_token,
         }
       )
+    end
+    
+    def self.parse_url(url)
+      URI.parse "#{URI.encode(url)}"
     end
 
     def self.get_token

@@ -65,21 +65,6 @@ class Album < ApplicationRecord
     end
     
     def get_genre
-      puts "2222222222222222222222222222222222222222"
-      puts self.artist.genres.first
       self.artist.genres.first || Genre.all.first
     end
-    # def chucha
-    #   response_parsed.each do | album_params|
-    #     next if Album.find_by(name: album_params[:name])
-        
-    #     new_album = self.albums.create!(   
-    #       id:           album_params[:id],
-    #       name:         album_params[:name],
-    #       image:        album_params[:image],
-    #       spotify_url:  album_params[:spotify_url],
-    #       total_tracks: album_params[:total_tracks]
-    #     )
-    #   end
-    # end
 end
