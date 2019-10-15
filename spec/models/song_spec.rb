@@ -21,4 +21,18 @@ RSpec.describe Song, type: :model do
   it { is_expected.to belong_to(:genre) }
   it { is_expected.to validate_presence_of(:name) }
   it { is_expected.to validate_presence_of(:spotify_url) }
+
+  describe ".random_song" do
+    context "when gender does exist" do
+      context "song does have the corresponding genre" do
+      end
+
+      context "song does not have the corresponding genre" do
+      end
+    end
+
+    context "when gender does not exist" do
+
+    end
+  end
 end

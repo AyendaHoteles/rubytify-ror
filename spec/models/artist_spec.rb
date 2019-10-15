@@ -50,4 +50,35 @@ RSpec.describe Artist, type: :model do
         end
     end
   end
+
+  describe ".create_albums" do
+    context "when artist does not exist" do
+      context "when album data is complete" do
+        it "create artist" do
+        end
+      end
+
+      context "when album could not be found in spotify" do
+        it "returns false" do
+        end
+
+        it "does not call parse service" do
+        end
+
+        it "Album does not increase its elements" do
+        end
+      end
+
+      context "when album data is not complete" do
+        it "rise error" do
+
+        end
+      end
+    end
+    
+    context "when album does exist" do
+      it "returns true" do
+        end
+    end
+  end
 end

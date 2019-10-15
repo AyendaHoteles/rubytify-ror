@@ -10,7 +10,6 @@ default: &default
   password: <%= ENV["DB_PASSWORD"]  %>
 
 development:
-
   <<: *default
   database: rubytify
 
@@ -48,6 +47,6 @@ test:
 #
 production:
   <<: *default
-  database: rubytify
-  username: postgres
-  password: <%= ENV['TEST_DATABASE_PASSWORD'] %>
+  database: d37qtoshfpkp60
+  username: <%= ENV['DB_USER_NAME'] %>
+  password: <%= ENV["DB_PASSWORD"]  %>
