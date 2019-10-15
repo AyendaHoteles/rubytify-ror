@@ -9,6 +9,7 @@
 #  spotify_url :string
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
+#  spotify_id  :string
 #
 
 FactoryBot.define do

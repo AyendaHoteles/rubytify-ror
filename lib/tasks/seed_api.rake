@@ -24,8 +24,7 @@ task seed_api: :environment do |task, args|
     "Los Hermanos Zuleta",
     "Carlos Vives",
     "Muse",
-  ]
-  ["Calle 13", "Masacre", "Nirvana", "Carlos Vives", "Muse", "Metallica"].each do |artist_name|
+  ].each do |artist_name|
     Artist.create_artist(name: artist_name)
   end
 

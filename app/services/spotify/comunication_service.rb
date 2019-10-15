@@ -1,5 +1,7 @@
 module Spotify
   class ComunicationService 
+    SPOTIFY_KEY = ENV["SPOTIFY_BASE64"]
+
     def self.get_artist_id(name:)
       url = "https://api.spotify.com/v1/search?q=#{name}&type=artist"
 
@@ -44,7 +46,7 @@ module Spotify
       response = HTTParty.post("https://accounts.spotify.com/api/token",
         body:    {"grant_type" => "client_credentials"},
         headers: {
-          Authorization: "Basic YTU3MjYzMzVjMTExNGUwZTg1OWI4MzM0NzRhMmNmODM6Yzk2ZGEyOTNjYThkNDYyOTg3YmZiMjQ4MzIyNmIwZjQ=",
+          Authorization: "Basic #{SPOTIFY_KEY}",
         }
       )
       

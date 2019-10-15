@@ -20,7 +20,7 @@ class Artist < ApplicationRecord
   validates :name, :spotify_url, presence: true
   
   def create_albums
-    puts "creating all albus album of #{self.name}"
+    puts "creating all albums album of #{self.name}"
 
     response = Spotify::ComunicationService.get_albums(name: self.name)
     

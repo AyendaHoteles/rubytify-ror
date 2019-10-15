@@ -9,7 +9,6 @@ require 'rspec/rails'
 
 require 'simplecov'
 
-
 SimpleCov.start
 # Add additional requires below this line. Rails is not loaded until this point!
 

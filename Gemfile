@@ -46,7 +46,6 @@ group :test do
   gem "rspec-json_expectations"
   gem "rspec-rails", "~> 3.8"
   gem "rspec_junit_formatter"
-  #gem "simplecov", "0.15.1", require: false
   gem 'simplecov'
   gem 'simplecov-rcov'
   gem 'shoulda-matchers'

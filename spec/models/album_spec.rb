@@ -10,6 +10,7 @@
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #  artist_id    :integer
+#  spotify_id   :string
 #
 
 require 'rails_helper'

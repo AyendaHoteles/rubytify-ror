@@ -15,6 +15,12 @@
 #           rails_direct_uploads POST /rails/active_storage/direct_uploads(.:format)                                           active_storage/direct_uploads#create
 
 Rails.application.routes.draw do
+  namespace :api do
+    namespace :v1 do
+      get 'random_song/index'
+    end
+  end
+  get 'random_song/index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   namespace :api do
     namespace :v1 do
