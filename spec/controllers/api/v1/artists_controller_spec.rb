@@ -23,7 +23,7 @@ RSpec.describe Api::V1::ArtistsController, type: :controller do
 
       it "returns artist" do
         subject
-        expect(response.body).to be ==(response_body)
+        expect(response.body).to eq(response_body)
       end
 
       it "returns status ok" do

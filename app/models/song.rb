@@ -38,8 +38,8 @@ class Song < ApplicationRecord
     unless genre.nil?
       songs = Song.all.where(genre_id: genre.id)
     else
-     return nil 
-   end
+      return nil 
+    end
 
     i = rand(0..songs.length)
     
