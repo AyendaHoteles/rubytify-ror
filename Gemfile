@@ -12,8 +12,8 @@ gem 'rails', '~> 5.2.3'
 # PostgreSQL DB
 gem 'pg'
 
-# CORS setup
-gem 'rack-cors'
+# Spotify API wrapper
+gem 'rspotify'
 
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
@@ -34,7 +34,7 @@ gem 'puma', '~> 3.11'
 gem 'bootsnap', '>= 1.1.0', require: false
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
-# gem 'rack-cors'
+gem 'rack-cors'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
