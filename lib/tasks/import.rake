@@ -5,16 +5,16 @@ namespace :import do
   desc 'Import data from spotify API'
   task artists: :environment do
     file = YAML.load_file('artist.yml')
-    artist = file['artists'].split(', ')
-    
-    artist.each do |name|
+    artists = file['artists'].split(', ')
+
+    artists.each do |name|
       artist = find_artist_information(name)
 
       # Save artist data
       artist_local_id = create_artist_data(artist)
 
       # Save artist albums data and songs
-      album_local_id = create_artist_albums(artist, artist_local_id)
+      create_artist_albums(artist, artist_local_id)
     end
   end
 end
@@ -25,9 +25,8 @@ def find_artist_information(name)
   client_id = Rails.application.credentials.spotify[:client_id]
   client_secret = Rails.application.credentials.spotify[:client_secret]
   RSpotify.authenticate(client_id, client_secret)
-  
-  artists = RSpotify::Artist.search(name)
-  artist = artists.first
+
+  RSpotify::Artist.search(name).first
 end
 
 def create_artist_data(artist)
