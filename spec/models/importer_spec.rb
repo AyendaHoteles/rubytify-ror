@@ -10,6 +10,7 @@ RSpec.describe Importer, :vcr do
   it 'create correct number artists' do
     subject
     expect(Artist.count).to eq(3)
+    expect(Artist.first.image).not_to be(nil)
   end
 
   it 'create genres' do

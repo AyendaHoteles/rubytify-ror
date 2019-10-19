@@ -14,6 +14,7 @@ module Importer
         if artist
           app_artist = Artist.find_or_create_by(
             name: artist.name,
+            image: artist.images.first['url'],
             popularity: artist.popularity,
             spotify_id: artist.id,
             spotify_url: artist.uri
