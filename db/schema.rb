@@ -10,7 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_19_204939) do
+ActiveRecord::Schema.define(version: 2019_10_19_220839) do
+
+  create_table "albums", force: :cascade do |t|
+    t.string "name"
+    t.text "image"
+    t.text "spotify_url"
+    t.integer "total_tracks"
+    t.string "spotify_id"
+    t.integer "artist_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["artist_id"], name: "index_albums_on_artist_id"
+  end
 
   create_table "artists", force: :cascade do |t|
     t.string "name"
