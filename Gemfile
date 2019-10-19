@@ -27,6 +27,9 @@ gem 'rubocop', '~> 0.70.0', require: false
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
+#Spotify API wrapper
+gem 'rspotify'
+
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 # gem 'rack-cors'
 
