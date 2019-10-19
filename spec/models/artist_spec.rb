@@ -11,5 +11,6 @@ RSpec.describe Artist, type: :model do
   context 'associations' do
     it { have_many(:albums) }
     it { have_many(:songs) }
+    it { have_and_belong_to_many(:genres) }
   end
 end
