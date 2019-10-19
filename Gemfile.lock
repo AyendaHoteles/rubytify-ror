@@ -54,6 +54,7 @@ GEM
     diff-lcs (1.3)
     domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
+    dotenv (2.7.5)
     erubi (1.8.0)
     faraday (0.17.0)
       multipart-post (>= 1.2, < 3)
@@ -168,6 +169,12 @@ GEM
       omniauth-oauth2 (~> 1.5.0)
       rest-client (~> 2.0.2)
     ruby_dep (1.5.0)
+    shoulda (3.6.0)
+      shoulda-context (~> 1.0, >= 1.0.1)
+      shoulda-matchers (~> 3.0)
+    shoulda-context (1.2.2)
+    shoulda-matchers (3.1.3)
+      activesupport (>= 4.0.0)
     spring (2.0.2)
       activesupport (>= 4.2)
     spring-watcher-listen (2.0.1)
@@ -188,6 +195,7 @@ GEM
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.7.6)
+    vcr (5.0.0)
     websocket-driver (0.7.0)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.3)
@@ -197,6 +205,7 @@ PLATFORMS
 
 DEPENDENCIES
   bootsnap (>= 1.1.0)
+  dotenv
   listen (>= 3.0.5, < 3.2)
   pry
   puma (~> 3.11)
@@ -204,10 +213,12 @@ DEPENDENCIES
   rails (~> 5.2.3)
   rspec-rails
   rspotify
+  shoulda
   spring
   spring-watcher-listen (~> 2.0.0)
   sqlite3
   tzinfo-data
+  vcr
 
 RUBY VERSION
    ruby 2.6.5p114
