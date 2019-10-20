@@ -9,9 +9,15 @@ class Api::V1::GenresController < ApplicationController
     render json: song
   end
 
+  def not_register_genre
+    render json: { data: { message: 'Not register genre' }}
+  end
+
   private
 
   def load_genre
     @genre = Genre.find_by(name: params[:genre_name])
+
+    return not_register_genre unless @genre
   end
 end
