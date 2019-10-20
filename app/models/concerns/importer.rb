@@ -8,7 +8,7 @@ module Importer
 
     unless yml.nil?
       yml['artists'].each do |name|
-        artist = RSpotify::Artist.search(name).first
+        artist = RSpotify::Artist.search(name.to_s).first
 
         if artist
           app_artist = Artist.find_or_create_by(
