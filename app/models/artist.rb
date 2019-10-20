@@ -15,5 +15,5 @@
 class Artist < ApplicationRecord
     has_many :albums, dependent: :destroy
     has_and_belongs_to_many :genres
-    validates_presence_of :name, :image, :popularity, :spotify_url, :spotify_id, :created_at
+    validates_presence_of :name, :image, :popularity, :spotify_url, :spotify_id
 end

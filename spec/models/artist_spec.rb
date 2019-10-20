@@ -21,5 +21,4 @@ RSpec.describe Artist, type: :model do
     it { should validate_presence_of(:popularity) }
     it { should validate_presence_of(:spotify_url) }
     it { should validate_presence_of(:spotify_id) }
-    it { should validate_presence_of(:created_at) }
 end
