@@ -25,10 +25,12 @@ namespace :db do
         artist_fetched.genres.each do |genre|
           begin
             new_genre = Genre.create({ name: genre })
-            new_genre.save!
             new_artist.genres << new_genre
+            new_genre.save!
           rescue => exception
           end
+          existing_genre = Genre.find_by(name: new_genre.name)
+          new_artist.genres << existing_genre unless new_artist.genres.include?(existing_genre)
         end
       end
 

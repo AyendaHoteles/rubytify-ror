@@ -1,7 +1,13 @@
 class ArtistsController < ApplicationController
+    
+    def sanitize_genres(arr)
+        arr.pluck(:name)
+    end
+    
     def index
         @artists = Artist.all.order('popularity DESC')
-        render json: { data: @artists.as_json(except: [:spotify_id, :created_at, :updated_at]) }, status: :ok
+        render json: { data: @artists.as_json(except: [:spotify_id, :created_at, :updated_at], 
+                        include: :genres )}, status: :ok
     end
 
     def show
