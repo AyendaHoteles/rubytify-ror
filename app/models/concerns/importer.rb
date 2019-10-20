@@ -17,7 +17,7 @@ module Importer
             image: artist.images.first['url'],
             popularity: artist.popularity,
             spotify_id: artist.id,
-            spotify_url: artist.uri
+            spotify_url: artist.href
           )
 
           artist.genres.each do |g|
@@ -29,7 +29,7 @@ module Importer
               name: album.name,
               image: album.images.first['url'],
               spotify_id: album.id,
-              spotify_url: album.uri,
+              spotify_url: album.href,
               total_tracks: album.tracks.count
             )
 
@@ -40,7 +40,7 @@ module Importer
                   preview_url: track.preview_url,
                   duration_ms: track.duration_ms,
                   explicit: track.explicit,
-                  spotify_url: track.uri,
+                  spotify_url: track.href,
                   spotify_id: track.id
                 )
               end
