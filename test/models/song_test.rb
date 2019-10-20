@@ -7,7 +7,7 @@
 #  spotify_url :text
 #  preview_url :text
 #  duration_ms :integer
-#  explicit    :boolean
+#  explicit    :boolean          default(FALSE)
 #  spotify_id  :string
 #  album_id    :integer
 #  created_at  :datetime         not null

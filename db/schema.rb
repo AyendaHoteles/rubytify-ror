@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_20_000409) do
+ActiveRecord::Schema.define(version: 2019_10_20_010206) do
 
   create_table "albums", force: :cascade do |t|
     t.string "name"
@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 2019_10_20_000409) do
     t.text "spotify_url"
     t.text "preview_url"
     t.integer "duration_ms"
-    t.boolean "explicit"
+    t.boolean "explicit", default: false
     t.string "spotify_id"
     t.integer "album_id"
     t.datetime "created_at", null: false
