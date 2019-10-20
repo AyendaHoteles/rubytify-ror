@@ -18,10 +18,10 @@ end
 
 describe 'GET /api/v1/artists/:id/albums' do
   let(:artist) { create(:artist) }
-  let(:album) { create(:album, artist: artist) }
+  let!(:album) { create(:album, artist: artist) }
 
   it 'return all albums for an artist' do
-    get "/api/v1/artists/#{album.id}/albums"
+    get "/api/v1/artists/#{artist.id}/albums"
 
     expect(response.status).to eq(200)
     expect(JSON.parse(response.body)['data'][0]['id']).to eq(album.id)
