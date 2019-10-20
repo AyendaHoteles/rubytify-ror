@@ -43,13 +43,6 @@ namespace :db do
     end
 
     # populates songs table
-    #  name        :string
-    #  spotify_url :text
-    #  preview_url :text
-    #  duration_ms :integer
-    #  explicit    :boolean
-    #  spotify_id  :string
-    #  album_id    :integer
     albums_db = Album.all 
     albums_db.each do |album|
       res = RSpotify::Album.find(album.spotify_id)
