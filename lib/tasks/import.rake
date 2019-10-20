@@ -15,6 +15,16 @@ namespace :import do
 
       # Save artist albums data and songs
       create_artist_albums(artist, artist_local_id)
+
+    rescue RestClient::TooManyRequests => e
+      sleep_time = if e.response.headers[:retry_after].present?
+                     (e.response.headers[:retry_after]).to_i.seconds + 0.5
+                   else
+                     0.5
+                   end
+      p "#{e}, I will sleep and retry in a #{sleep_time} seconds"
+      sleep(sleep_time)
+      retry
     end
   end
 end
