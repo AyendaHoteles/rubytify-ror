@@ -1,7 +1,3 @@
-class AlbumSerializer < ActiveModel::Serializer
+class AlbumSerializer < BaseSerializer
   attributes :id, :name, :image, :spotify_url, :total_tracks
-
-  def root
-    'data'
-  end
 end

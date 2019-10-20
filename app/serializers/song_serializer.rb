@@ -1,7 +1,3 @@
-class SongSerializer < ActiveModel::Serializer
+class SongSerializer < BaseSerializer
   attributes :id, :spotify_url, :preview_url, :duration_ms, :explicit
-
-  def root
-    'data'
-  end
 end
