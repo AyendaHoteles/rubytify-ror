@@ -50,23 +50,24 @@ namespace :db do
     #  explicit    :boolean
     #  spotify_id  :string
     #  album_id    :integer
-    albums_db = Album.all 
-    albums_db.each do |album|
-      res = RSpotify::Album.find(album.spotify_id)
-      if res
-        res.tracks.each do |track|
-          new_track = Song.create({
-            name: track.name,
-            spotify_url: track.external_urls["spotify"],
-            preview_url: track.preview_url,
-            duration_ms: track.duration_ms,
-            explicit: track.explicit,
-            spotify_id: track.id,
-            album_id: abum.id
-          })
-          new_track.save!
-        end
-      end
-    end    
+    # albums_db = Album.all 
+    # albums_db.each do |album|
+    #   res = RSpotify::Album.find(album.spotify_id)
+    #   if res
+    #     res.tracks.each do |track|
+    #       new_track = Song.create({
+    #         name: track.name,
+    #         spotify_url: track.external_urls["spotify"],
+    #         preview_url: track.preview_url,
+    #         duration_ms: track.duration_ms,
+    #         explicit: track.explicit ? track.explicit : false,
+    #         spotify_id: track.id,
+    #         album_id: album.id
+    #       })
+    #       new_track.save!
+    #     end
+    #   end
+    # end    
+    
   end
 end
