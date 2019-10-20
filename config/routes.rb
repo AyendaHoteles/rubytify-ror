@@ -9,6 +9,7 @@ Rails.application.routes.draw do
       resources :albums, only: [] do
         get :songs, on: :member
       end
+      get '/genres/:genre_name/random_song' => 'songs#random_song'
     end
   end
 end
