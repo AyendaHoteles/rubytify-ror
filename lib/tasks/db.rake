@@ -37,43 +37,43 @@ namespace :db do
     end
 
     # populates albums table
-    # artists_db = Artist.all
-    # artists_db.each do |artist|
-    #   res = RSpotify::Artist.find(artist.spotify_id)
-    #   if res
-    #     res.albums.each do |album|
-    #       new_album = Album.create({
-    #         name: album.name,
-    #         image: album.images[0]["url"],
-    #         spotify_url: album.external_urls["spotify"],
-    #         total_tracks: album.total_tracks,
-    #         spotify_id: album.id,
-    #         artist_id: artist.id
-    #       })
-    #       new_album.save!
-    #     end
-    #   end
-    # end
+    artists_db = Artist.all
+    artists_db.each do |artist|
+      res = RSpotify::Artist.find(artist.spotify_id)
+      if res
+        res.albums.each do |album|
+          new_album = Album.create({
+            name: album.name,
+            image: album.images[0]["url"],
+            spotify_url: album.external_urls["spotify"],
+            total_tracks: album.total_tracks,
+            spotify_id: album.id,
+            artist_id: artist.id
+          })
+          new_album.save!
+        end
+      end
+    end
 
-    # # populates songs table
-    # albums_db = Album.all 
-    # albums_db.each do |album|
-    #   res = RSpotify::Album.find(album.spotify_id)
-    #   if res
-    #     res.tracks.each do |track|
-    #       new_track = Song.create({
-    #         name: track.name,
-    #         spotify_url: track.external_urls["spotify"],
-    #         preview_url: track.preview_url ? track.preview_url : 'not found',
-    #         duration_ms: track.duration_ms ? track.duration_ms : 'not found',
-    #         explicit: track.explicit ? track.explicit : false,
-    #         spotify_id: track.id,
-    #         album_id: album.id
-    #       })
-    #       new_track.save!
-    #     end
-    #   end
-    # end    
+    # populates songs table
+    albums_db = Album.all 
+    albums_db.each do |album|
+      res = RSpotify::Album.find(album.spotify_id)
+      if res
+        res.tracks.each do |track|
+          new_track = Song.create({
+            name: track.name,
+            spotify_url: track.external_urls["spotify"],
+            preview_url: track.preview_url ? track.preview_url : 'not found',
+            duration_ms: track.duration_ms ? track.duration_ms : 'not found',
+            explicit: track.explicit ? track.explicit : false,
+            spotify_id: track.id,
+            album_id: album.id
+          })
+          new_track.save!
+        end
+      end
+    end    
     
   end
 end
