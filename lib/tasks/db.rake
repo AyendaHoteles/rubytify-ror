@@ -11,16 +11,29 @@ namespace :db do
     artists_yaml["artists"].each do |artist|
       artists = RSpotify::Artist.search(artist.to_s)
       artist_fetched = artists.first
+      
       if artist_fetched
-        artist = Artist.create({
+        new_artist = Artist.create({
           name: artist_fetched.name,
           image: artist_fetched.images[0]["url"],
           popularity: artist_fetched.popularity,
           spotify_url: artist_fetched.external_urls["spotify"],
           spotify_id: artist_fetched.id
         })
-        artist.save!
+        new_artist.save!
+        # populate genres table
+        artist_fetched.genres.each do |genre|
+          begin
+            new_genre = Genre.create({ name: genre })
+            new_genre.save!
+            new_artist.genres << new_genre
+          rescue => exception
+          end
+          existing_genre = Genre.find_by(name: new_genre.name)
+          new_artist.genres << existing_genre unless new_artist.genres.include?(existing_genre)
+        end
       end
+
     end
 
     # populates albums table
