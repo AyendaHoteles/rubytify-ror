@@ -5,7 +5,7 @@ describe 'GET /api/v1/albums/:id/songs' do
   let!(:album) { create(:album, artist: artist) }
   let!(:song) { create(:song, album: album) }
 
-  it 'return all artists ordered by their popularity' do
+  it 'returns all artists ordered by their popularity' do
     get "/api/v1/albums/#{album.id}/songs"
 
     expect(response.status).to eq(200)

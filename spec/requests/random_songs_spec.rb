@@ -8,7 +8,7 @@ describe 'GET /api/v1/genres/:genre_name/random_song' do
   let!(:song1) { create(:song, name: 'Rock Song', album: album1) }
   let!(:song2) { create(:song, name: 'Pop Song', album: album2) }
 
-  it 'return all artists ordered by their popularity' do
+  it 'returns all artists ordered by their popularity' do
     genre = 'rock'
     get "/api/v1/genres/#{genre}/random_song"
 

@@ -3,7 +3,7 @@ require 'rails_helper'
 describe 'GET /api/v1/artists' do
   let!(:artist) { create(:artist) }
 
-  it 'return all artists ordered by their popularity' do
+  it 'returns all artists ordered by their popularity' do
     get '/api/v1/artists'
 
     expect(response.status).to eq(200)
@@ -20,7 +20,7 @@ describe 'GET /api/v1/artists/:id/albums' do
   let(:artist) { create(:artist) }
   let!(:album) { create(:album, artist: artist) }
 
-  it 'return all albums for an artist' do
+  it 'returns all albums for an artist' do
     get "/api/v1/artists/#{artist.id}/albums"
 
     expect(response.status).to eq(200)
