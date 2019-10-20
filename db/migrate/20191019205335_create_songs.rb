@@ -5,8 +5,8 @@ class CreateSongs < ActiveRecord::Migration[5.2]
       t.string :spotify_url
       t.string :preview_url
       t.integer :duration_ms
-      t.boolean :explicit
-      t.string :spotify_id
+      t.boolean :explicit, default: false
+      t.string :spotify_id, unique: true
       t.references :album, foreign_key: true
 
       t.timestamps
