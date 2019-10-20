@@ -1,10 +1,9 @@
 require 'rspotify'
 
 module Importer
-  def self.start
+  def self.start(yml_path = "#{Rails.root}/config/artists.yml")
     RSpotify.authenticate(ENV['SPOTIFY_CLIENT_ID'], ENV['SPOTIFY_CLIENT_SECRET'])
 
-    yml_path = "#{Rails.root}/config/artists.yml"
     yml = File.exists?(yml_path) ? YAML.load_file(yml_path) : nil
 
     unless yml.nil?

@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Importer, :vcr do
-  let!(:subject) { Importer.start }
+  let!(:subject) { Importer.start("#{Rails.root}/spec/fixtures/artists.yml") }
 
   it 'doesnt broke' do
     expect(subject)
