@@ -6,6 +6,9 @@ Rails.application.routes.draw do
       resources :artists, only: %i[index] do
         get :albums, on: :member
       end
+      resources :albums, only: [] do
+        get :songs, on: :member
+      end
     end
   end
 end
