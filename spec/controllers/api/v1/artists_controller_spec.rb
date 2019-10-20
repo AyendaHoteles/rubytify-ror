@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe ArtistsController, type: :controller do
+RSpec.describe Api::V1::ArtistsController, type: :controller do
   describe '#index' do
     it 'orders by popularity' do
       create(:artist, popularity: 53)

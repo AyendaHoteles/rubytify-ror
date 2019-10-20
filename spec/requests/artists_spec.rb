@@ -15,3 +15,19 @@ describe 'GET /api/v1/artists' do
     expect(JSON.parse(response.body)['data'][0]['spotify_url']).to eq(artist.spotify_url)
   end
 end
+
+describe 'GET /api/v1/artists/:id/albums' do
+  let(:artist) { create(:artist) }
+  let(:album) { create(:album, artist: artist) }
+
+  it 'return all albums for an artist' do
+    get "/api/v1/artists/#{album.id}/albums"
+
+    expect(response.status).to eq(200)
+    expect(JSON.parse(response.body)['data'][0]['id']).to eq(album.id)
+    expect(JSON.parse(response.body)['data'][0]['name']).to eq(album.name)
+    expect(JSON.parse(response.body)['data'][0]['image']).to eq(album.image)
+    expect(JSON.parse(response.body)['data'][0]['spotify_url']).to eq(album.spotify_url)
+    expect(JSON.parse(response.body)['data'][0]['total_tracks']).to eq(album.total_tracks)
+  end
+end

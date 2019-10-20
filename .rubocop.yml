@@ -28,3 +28,5 @@ Style/BlockComments:
   Enabled: false
 Metrics/MethodLength:
   Max: 15
+Style/ClassAndModuleChildren:
+  Enabled: false
