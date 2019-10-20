@@ -2,7 +2,7 @@
 #
 # Table name: songs
 #
-#  id          :integer          not null, primary key
+#  id          :bigint           not null, primary key
 #  name        :string
 #  spotify_url :text
 #  preview_url :text

@@ -2,7 +2,7 @@
 #
 # Table name: artists
 #
-#  id          :integer          not null, primary key
+#  id          :bigint           not null, primary key
 #  name        :string
 #  image       :text
 #  popularity  :integer
@@ -13,7 +13,7 @@
 #
 
 class Artist < ApplicationRecord
-    has_many :albums
+    has_many :albums, dependent: :destroy
     has_and_belongs_to_many :genres
-    validates_presence_of :name, :image, :popularity, :spotify_url, :spotify_id
+    validates_presence_of :name, :image, :popularity, :spotify_url, :spotify_id, :created_at
 end
