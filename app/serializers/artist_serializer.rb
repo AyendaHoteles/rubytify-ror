@@ -12,7 +12,6 @@
 #  updated_at  :datetime         not null
 #
 
-class Artist < ApplicationRecord
-    has_many :albums
-    validates_presence_of :name, :image, :popularity, :spotify_url, :spotify_id
+class ArtistSerializer < ActiveModel::Serializer
+  attributes :id, :name, :image, :popularity, :spotify_url
 end
