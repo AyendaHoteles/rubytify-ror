@@ -23,6 +23,29 @@ module Importer
           artist.genres.each do |g|
             app_artist.genres.find_or_create_by(name: g)
           end
+
+          artist.albums.each do |album|
+            app_album = app_artist.albums.find_or_create_by(
+              name: album.name,
+              image: album.images.first['url'],
+              spotify_id: album.id,
+              spotify_url: album.uri,
+              total_tracks: album.tracks.count
+            )
+
+            if app_album.persisted?
+              album.tracks.each do |track|
+                app_album.songs.find_or_create_by(
+                  name: track.name,
+                  preview_url: track.preview_url,
+                  duration_ms: track.duration_ms,
+                  explicit: track.explicit,
+                  spotify_url: track.uri,
+                  spotify_id: track.id
+                )
+              end
+            end
+          end
         end
       end
     end
