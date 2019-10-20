@@ -3,6 +3,6 @@ Rails.application.routes.draw do
   scope :api, defaults: {format: :json} do
     get 'v1/artists', to: 'artists#index'
     get 'v1/artists/:id/albums', to: 'artists#show'
-    # resources :artists
+    get 'v1/albums/:id/songs', to: 'albums#show'
   end
 end
