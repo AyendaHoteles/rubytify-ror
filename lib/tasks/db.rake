@@ -2,7 +2,7 @@ namespace :db do
   desc "Empty the db and populates with data from spotify API"
   task fetch_and_populate: :environment do
     # drop all databases
-    # Rake::Task['db:reset'].invoke
+    Rake::Task['db:reset'].invoke
 
     RSpotify.authenticate(ENV['SPOTIFY_CLIENT_ID'], ENV['SPOTIFY_SECRET_ID'])
     artists_yaml = YAML.load(File.read("artists.yml"))
