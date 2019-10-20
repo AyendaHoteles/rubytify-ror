@@ -2,7 +2,7 @@ namespace :db do
   desc "Empty the db and populates with data from spotify API"
   task fetch_and_populate: :environment do
     # drop all databases
-    # Rake::Task['db:reset'].invoke
+    Rake::Task['db:reset'].invoke
 
     RSpotify.authenticate(ENV['SPOTIFY_CLIENT_ID'], ENV['SPOTIFY_SECRET_ID'])
     artists_yaml = YAML.load(File.read("artists.yml"))
@@ -23,6 +23,7 @@ namespace :db do
       end
     end
 
+    # populates albums table
     artists_db = Artist.all
     artists_db.each do |artist|
       res = RSpotify::Artist.find(artist.spotify_id)
@@ -40,10 +41,32 @@ namespace :db do
         end
       end
     end
-   
 
-
-
-
+    # populates songs table
+    #  name        :string
+    #  spotify_url :text
+    #  preview_url :text
+    #  duration_ms :integer
+    #  explicit    :boolean
+    #  spotify_id  :string
+    #  album_id    :integer
+    albums_db = Album.all 
+    albums_db.each do |album|
+      res = RSpotify::Album.find(album.spotify_id)
+      if res
+        res.tracks.each do |track|
+          new_track = Song.create({
+            name: track.name,
+            spotify_url: track.external_urls["spotify"],
+            preview_url: track.preview_url,
+            duration_ms: track.duration_ms,
+            explicit: track.explicit,
+            spotify_id: track.id,
+            album_id: abum.id
+          })
+          new_track.save!
+        end
+      end
+    end    
   end
 end
