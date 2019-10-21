@@ -8,9 +8,14 @@
 
 ## Rubytiy API
 
+You can request the API hosted in Heroku here:  
+https://rubytify-ayapi.herokuapp.com/api/v1/artists  
+
 This API has the following endpoints:
 
-- `/api/v1/artists` returns all artists https://rubytify-ayapi.herokuapp.com/api/v1/artists  
+- `/api/v1/artists` returns all artists  
 - `/api/v1/artists/:id/albums` returns all albums for a given artist  
 - `/api/v1/albums/:id/songs` returns all songs for a given album
 - `/api/v1/genres/:genre_name/random_song` returns a random song hat matches the specified genre  
+
+#### Database
