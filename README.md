@@ -18,11 +18,12 @@ This API has the following endpoints:
 - `/api/v1/albums/:id/songs` returns all songs for a given album
 - `/api/v1/genres/:genre_name/random_song` returns a random song hat matches the specified genre  
 
-#### Database
+### Database
 
 - PostgreSQL  
+- `mydb.dump` backup file to restore data to database in heroku app
 
-#### Rake Task 
+### Rake Task 
 
 **warning** Running this task will drop all the databases
 
