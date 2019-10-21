@@ -45,3 +45,4 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem "figaro"
+gem 'rest-client', '~> 2.1.0'

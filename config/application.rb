@@ -19,6 +19,11 @@ Bundler.require(*Rails.groups)
 
 module AyendaTest
   class Application < Rails::Application
+    # Load services folder
+    config.autoload_paths += %W(#{config.root}/services)
+    #config.cache_store = :file_store , "/tmp/cache/app"
+    #config.cache_store = :memory_store, { size: 64.megabytes }
+
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.2
 
@@ -31,5 +36,7 @@ module AyendaTest
     # Middleware like session, flash, cookies can be added back manually.
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
+
+
   end
 end
