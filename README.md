@@ -24,4 +24,6 @@ This API has the following endpoints:
 
 #### Rake Task 
 
-- Run `rake db:fetch_and_populate` to fetch the Spotify API, and populates the Database  
+**warning** Running this task will drop all the databases
+
+- Run `rake db:fetch_and_populate` fetches the Spotify API and populates the Database  
