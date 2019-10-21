@@ -12,8 +12,12 @@
 #  updated_at  :datetime         not null
 #
 
-class Artist < ApplicationRecord
-    has_many :albums, dependent: :destroy
-    has_and_belongs_to_many :genres
-    validates_presence_of :name, :image, :popularity, :spotify_url, :spotify_id
+FactoryBot.define do
+    factory :artist do
+        name { Faker::Name.name }
+        image {'http://image.com'}
+        popularity {98}
+        spotify_url {'www.example.net'}
+        spotify_id {'hkasdhfiyaer469ia'}
+    end
 end

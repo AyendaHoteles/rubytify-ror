@@ -2,7 +2,7 @@
 #
 # Table name: albums
 #
-#  id           :integer          not null, primary key
+#  id           :bigint           not null, primary key
 #  name         :string
 #  image        :text
 #  spotify_url  :text

@@ -8,7 +8,8 @@
 #  updated_at :datetime         not null
 #
 
-class Genre < ApplicationRecord
-    has_and_belongs_to_many :artists
-    validates :name, presence: true, uniqueness: true
+require 'rails_helper'
+
+RSpec.describe Song, type: :model do
+    it { should validate_presence_of(:name) }
 end
