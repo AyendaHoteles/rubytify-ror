@@ -19,3 +19,9 @@ This API has the following endpoints:
 - `/api/v1/genres/:genre_name/random_song` returns a random song hat matches the specified genre  
 
 #### Database
+
+- PostgreSQL  
+
+#### Rake Task 
+
+- Run `rake db:fetch_and_populate` to fetch the Spotify API, and populates the Database  
