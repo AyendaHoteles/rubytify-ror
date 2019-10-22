@@ -4,7 +4,7 @@ lock "~> 3.11.0"
 
 # Change these
 
-set :repo_url,        'git@bitbucket.com:jous32/matri.git'
+set :repo_url,        'git@github.com:jous32/test.git'
 set :application,     'test'
 set :user,            'deployer'
 set :puma_threads,    [4, 16]
