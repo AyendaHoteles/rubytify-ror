@@ -16,7 +16,7 @@ class SpotifyClientService
     if (response_parsed['artists']['total'] > 0)
       #Create locally
       artist_spotify_hash = response_parsed['artists']['items'][0]
-      artist = Artist.find_or_create_by(spotify_url: artist_spotify_hash['external_urls']['spotify'])
+      artist = Artist.find_or_create_by(spotify_id: artist_spotify_hash['id'])
       Artist.update(artist.id, name: artist_spotify_hash['name'],image: artist_spotify_hash['images'][0]['url'],genres: artist_spotify_hash['genres'], popularity: artist_spotify_hash['popularity'],spotify_url: artist_spotify_hash['external_urls']['spotify'])
     end
 
@@ -32,4 +32,6 @@ class SpotifyClientService
     expires_in_seconds = JSON.parse(response.body)['expires_in']
     Rails.cache.write(:access_token, access_token, expires_in: expires_in_seconds.seconds)
   end
+
+
 end
