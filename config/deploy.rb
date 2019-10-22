@@ -33,7 +33,7 @@ set :puma_init_active_record, true  # Change to false when not using ActiveRecor
 # set :format,        :pretty
 # set :log_level,     :debug
 # set :keep_releases, 5
-set :branch, ENV['BRANCH'] if ENV['BRANCH']
+set :branch, :solution
 
 ## Linked Files & Directories (Default None):
  set :linked_files, %w{config/database.yml config/application.yml config/master.key}
