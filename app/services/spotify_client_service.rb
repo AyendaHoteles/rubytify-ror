@@ -18,6 +18,7 @@ class SpotifyClientService
       artist_spotify_hash = response_parsed['artists']['items'][0]
       artist = Artist.find_or_create_by(spotify_id: artist_spotify_hash['id'])
       Artist.update(artist.id, name: artist_spotify_hash['name'],image: artist_spotify_hash['images'][0]['url'],genres: artist_spotify_hash['genres'], popularity: artist_spotify_hash['popularity'],spotify_url: artist_spotify_hash['external_urls']['spotify'])
+      obtain_albums(artist)
     end
 
   end
@@ -31,6 +32,32 @@ class SpotifyClientService
     access_token = JSON.parse(response.body)['access_token']
     expires_in_seconds = JSON.parse(response.body)['expires_in']
     Rails.cache.write(:access_token, access_token, expires_in: expires_in_seconds.seconds)
+  end
+
+  def obtain_albums(artist)
+    #TODO Search all albums
+    headers = {Authorization: "Bearer #{Rails.cache.read(:access_token)}"}
+    url = "#{@@base_url}/artists/#{artist.spotify_id}/albums?offset=0&limit=50"
+    response = RestClient.get(url, headers)
+    response_parsed = JSON.parse(response.body)
+    albums_spotify_hash = response_parsed['items']
+    albums_spotify_hash.each do |album_spotify_hash|
+      begin
+        album = Album.find_or_create_by(spotify_id: album_spotify_hash['id'] )
+        album.artist = artist
+        album.save!
+
+        image_url = !album_spotify_hash['images'].empty? ? album_spotify_hash['images'].first['url'] : ''
+        Album.update(album.id,name: album_spotify_hash['name'], image: image_url, spotify_url: album_spotify_hash['href'], artist_id: artist.id, total_tracks: album_spotify_hash['total_tracks'])
+        obtain_songs(artist, album)
+      rescue  => ex
+        puts ex.message
+      end
+    end
+  end
+
+  def obtain_songs(artist,album)
+
   end
 
 
