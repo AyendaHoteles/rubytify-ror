@@ -25,6 +25,7 @@ require 'capistrano/bundler'
 require 'capistrano/rails/migrations'
 require 'capistrano/puma'
 require 'capistrano/rails/collection'
+require 'capistrano/rake'
 
 
 install_plugin Capistrano::Puma  # Default puma tasks
