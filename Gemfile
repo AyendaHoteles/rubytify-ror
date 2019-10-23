@@ -56,3 +56,5 @@ group :development do
     gem 'capistrano-rails-collection',   require: false
     gem 'capistrano-rake', require: false
 end
+
+gem 'rack-cors'
