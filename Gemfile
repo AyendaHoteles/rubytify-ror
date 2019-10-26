@@ -58,3 +58,17 @@ group :development do
 end
 
 gem 'rack-cors'
+
+
+group :development, :test do
+  gem 'rspec-rails', '~> 3.5'
+  gem 'faker'
+  gem 'factory_bot_rails'
+  gem 'database_cleaner'
+end
+
+group :test do
+  gem 'shoulda-matchers'
+#  gem 'database_cleaner', '~> 1.5'
+#  gem 'faker', '~> 1.6.1'
+end
