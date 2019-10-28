@@ -18,7 +18,7 @@ class Spotify
 
 					artist.albums.build(album_details(albums))
 					artist.save
-					sleep(15.seconds)
+					sleep(45.seconds)
 				end
 			end
 		end
