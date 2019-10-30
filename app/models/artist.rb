@@ -14,6 +14,6 @@
 #
 
 class Artist < ApplicationRecord
-	serialize(:genres, Array)
+	# serialize(:genres, Array)
 	has_many :albums
 end
