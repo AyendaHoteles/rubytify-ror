@@ -7,7 +7,7 @@ namespace :db do
 
 
   desc "load artists in database"
-  task load_artists: :environment do
+  task load_artists: do
 
   	Rake::Task['db:reset'].invoke
 	base_artists = YAML.load(File.read("config/artists.yml"))
