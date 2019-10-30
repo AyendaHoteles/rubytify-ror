@@ -2,14 +2,14 @@ require 'yaml'
 namespace :db do
 
   # Custom reset 
-  desc "Reset"
-  task :reset => ["db:drop", "db:create", "db:migrate", "db:test:prepare", "db:seed", "db:load_artists"]
+  # desc "Reset"
+  # task :reset => ["db:drop", "db:create", "db:migrate", "db:test:prepare", "db:seed", "db:load_artists"]
 
 
   desc "load artists in database"
-  task load_artists: do
+  task load_artists: :environment do
 
-  	Rake::Task['db:reset'].invoke
+  	# Rake::Task['db:reset'].invoke
 	base_artists = YAML.load(File.read("config/artists.yml"))
 	print "artista: "
 	base_artists.values[0].each do |artist|
