@@ -22,7 +22,7 @@ gem 'figaro'
 gem 'bootsnap', '>= 1.1.0', require: false
 
 group :production do
-  gem 'pg' #PostgreSQL database for production environment
+  gem 'pg', '1.1.4' #PostgreSQL database for production environment
 end
 
 group :development, :test do
