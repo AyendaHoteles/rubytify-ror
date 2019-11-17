@@ -13,7 +13,7 @@ class CreateSongs < ActiveRecord::Migration[6.0]
       t.timestamps
     end
     #Change genres default string tyte to Array<string>
-    change_column :songs, :genres, :string, array: true, default: nil
+    change_column :songs, :genres, :string, array: true, default: nil, using: "(string_to_array(genres, ','))"
     
   end
   
