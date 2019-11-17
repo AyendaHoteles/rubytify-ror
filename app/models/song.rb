@@ -1,3 +1,3 @@
 class Song < ApplicationRecord
-  serialize(:genres, Array)
+  #serialize(:genres, Array)
 end
