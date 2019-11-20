@@ -1,6 +1,6 @@
 class Api::V1::ArtistsController < ApplicationController
   def index
-    puts Spotify.authenticate
+    raise request.headers["authorization"]
     render json: { mancha: "gonorrea" }, status: :ok
   end
 end
