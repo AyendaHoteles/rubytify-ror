@@ -6,7 +6,7 @@ class CreateArtists < ActiveRecord::Migration[5.2]
       t.string  :genres
       t.integer :popularity
       t.string  :spotify_url
-      t.string  :spotify_id, null: false, index: { unique: true }
+      t.string  :spotify_id
 
       t.timestamps
     end
