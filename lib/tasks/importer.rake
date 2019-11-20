@@ -7,6 +7,7 @@ task :import => :environment do
     Artist.destroy_all
 
     RSpotify.authenticate("1870d19b854c43eeb9b230c409dde8ab", "2e58dc05201f48acba33d01f17c8824f")
+    
     artist_names = YAML::load(File.read(Rails.root.join('config/artist_names.yml')))["artists"]
     artist_names.each do |artist_name|
         artist_name = artist_name.to_s
@@ -20,25 +21,25 @@ task :import => :environment do
         artist_data = results.first
         artist = Artist.new
         artist.name        = artist_data.name;
-        artist.image       = artist_data.images.first # FIXME sloppy to save as json? save only url?
-        artist.genres      = artist_data.genres # FIXME sloppy to save as json?
+        artist.image       = artist_data.images.first["url"]
+        artist.genres      = artist_data.genres.join('|')
         artist.popularity  = artist_data.popularity
         artist.spotify_url = artist_data.external_urls["spotify"]
         artist.spotify_id  = artist_data.uri.delete_prefix! "spotify:artist:"
         artist.save!
 
         artist_data.albums.each do |album_data|
-            puts "** #{album_data.name} - #{album_data.uri}"
+            puts "\t #{album_data.name} - #{album_data.uri}"
             album = artist.albums.create!(
                 name:         album_data.name,
-                image:        album_data.images.first,
+                image:        album_data.images.first["url"],
                 total_tracks: album_data.total_tracks,
                 spotify_url:  album_data.external_urls["spotify"],
                 spotify_id:   album_data.uri.delete_prefix!("spotify:album:")
             )
 
             album_data.tracks.each do |song_data|
-                puts "**** #{song_data.name} - #{song_data.uri}"
+                puts "\t\t #{song_data.name} - #{song_data.uri}"
                 song = album.songs.create!(
                     name:        song_data.name,
                     preview_url: song_data.preview_url,
