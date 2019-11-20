@@ -13,11 +13,20 @@ module Spotify
     }
 
     response = http_post_request('https://accounts.spotify.com/api/token', headers, params)
-
     @auth_body = JSON.parse(response.body)
     @auth_code = response.code
-
     response
+  end
+
+  def self.fetch_artist(name)
+    return unless @auth_code == '200'
+
+    headers = { "Authorization": self.auth_token }
+    params = {
+      "type": "artist",
+      "q": name
+    }
+    self.http_get_request("https://api.spotify.com/v1/search", headers, params)
   end
 
   def self.auth_body
@@ -37,7 +46,6 @@ module Spotify
 
     headers = { "Authorization": self.auth_token }
     params = { "ids": "0oSGxfWSnnOXhD2fKuz2Gy,3dBVyJ7JuOMt4GE9607Qin" }
-
     self.http_get_request("https://api.spotify.com/v1/artists", headers, params)
   end
 
