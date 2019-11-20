@@ -13,7 +13,8 @@ class Api::V1::SongsController < ApplicationController
     def show_random
         songs = Song.select(:name, :spotify_url, :preview_url, :duration_ms, :explicit)
                     .joins(album: :artist)
-                    .where("artists.genres LIKE ?", "%\"#{params[:genre_name]}\"%")
+                    .where("artists.genres = ? OR artists.genres LIKE ? OR artists.genres LIKE ? OR artists.genres LIKE ?",
+                        "%#{params[:genre_name]}%", "%|#{params[:genre_name]}%", "%|#{params[:genre_name]}|%", "%#{params[:genre_name]}|%")
         random_song = songs.sample(random: Random.new(1))
         render json: {data: random_song.as_json(except: :id)}, status: :ok
     end
