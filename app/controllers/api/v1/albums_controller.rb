@@ -1,2 +1,2 @@
-class AlbumsController < ApplicationController
+class Api::V1::AlbumsController < ApplicationController
 end
