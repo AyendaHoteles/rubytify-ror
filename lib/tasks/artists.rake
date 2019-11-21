@@ -88,7 +88,7 @@ def fetch_songs(albums)
           album_spotify_id: album[:spotify_id],
           artist_name: track["artists"].first["name"]
         }
-      end
+      end if response["items"].present? 
     rescue Errno::ETIMEDOUT => e
       puts "TIMEOUT retying."
       retry
