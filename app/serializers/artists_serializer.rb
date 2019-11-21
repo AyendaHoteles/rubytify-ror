@@ -4,4 +4,8 @@ class ArtistsSerializer < ActiveModel::Serializer
   def root
     "data"
   end
+
+  def id
+    @object.spotify_id
+  end
 end
