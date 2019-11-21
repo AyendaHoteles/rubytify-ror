@@ -29,14 +29,17 @@ require 'yaml'
       if artist
         next
       else
-        Artist.create!(
-          :name => artist_data.name,
-          :image => artist_data.images[0]['url'],
-          :genres => artist_data.genres,
-          :popularity => artist_data.popularity,
-          :spotify_url => artist_data.external_urls['spotify'],
-          :spotify_id => artist_data.id
-        )
+        begin
+          Artist.create!(
+            :name => artist_data.name,
+            :image => artist_data.images[0]['url'],
+            :genres => artist_data.genres,
+            :popularity => artist_data.popularity,
+            :spotify_url => artist_data.external_urls['spotify'],
+            :spotify_id => artist_data.id
+          )
+        rescue
+          puts artist_data
       end
     end
   end
