@@ -10,6 +10,8 @@ class Api::V1::AlbumsController < ApplicationController
     end
   end
 
+  private
+
   def album_params
     params.permit(:id)
   end
