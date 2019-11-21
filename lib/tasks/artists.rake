@@ -105,9 +105,9 @@ def normalize_data(artists, albums, songs)
 
   artists.map do |artist|
     artist_albums = group_albums[artist[:spotify_id]]
-    normalize_albums = artist_albums.map do |album|
+    normalize_albums = artist_albums&.map do |album|
       albums_songs = group_songs[album[:spotify_id]]
-      normalize_songs = albums_songs.map do |song|
+      normalize_songs = albums_songs&.map do |song|
         {
           name: song[:name],
           spotify_url: song[:spotify_url],
@@ -116,7 +116,7 @@ def normalize_data(artists, albums, songs)
           explicit: song[:explicit],
           spotify_id: song[:spotify_id]
         }
-      end
+      end || []
       {
         name: album[:name],
         image: album[:image],
@@ -125,7 +125,7 @@ def normalize_data(artists, albums, songs)
         spotify_id: album[:spotify_id],
         songs_attributes: normalize_songs
       }
-    end
+    end || []
     {
       name: artist[:name],
       image: artist[:image],
