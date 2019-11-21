@@ -1,5 +1,5 @@
 require 'rails_helper'
 
-RSpec.describe AlbumsController, type: :controller do
+RSpec.describe Api::V1::AlbumsController, type: :controller do
 
 end
