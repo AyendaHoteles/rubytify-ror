@@ -43,6 +43,14 @@ module Spotify
       http_get_request("https://api.spotify.com/v1/albums/#{spotify_id}/tracks", headers)
     end
 
+    def fetch_artist_by_names(spotify_ids)
+      return unless @auth_code == '200'
+
+      headers = { "Authorization": auth_token }
+      params = { "ids": spotify_ids }
+      http_get_request("https://api.spotify.com/v1/artists", headers, params)
+    end
+
     def auth_body
       @auth_body
     end
@@ -53,14 +61,6 @@ module Spotify
 
     def auth_token
       "#{@auth_body["token_type"]} #{@auth_body["access_token"]}"
-    end
-
-    def fetch_artist_by_names
-      return unless @auth_code == '200'
-
-      headers = { "Authorization": auth_token }
-      params = { "ids": "0oSGxfWSnnOXhD2fKuz2Gy,3dBVyJ7JuOMt4GE9607Qin" }
-      http_get_request("https://api.spotify.com/v1/artists", headers, params)
     end
 
     private
