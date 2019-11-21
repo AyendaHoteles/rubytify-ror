@@ -7,7 +7,7 @@ RSpec.describe Api::V1::ArtistsController, type: :controller do
     end
 
     it "test get /api/v1/artists/:id/albums route" do
-      should route(:get, "/api/v1/artists").to(action: :albums)
+      should route(:get, "/api/v1/artists/1/albums").to(action: :albums, id: 1)
     end
   end
 end
