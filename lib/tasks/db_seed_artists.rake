@@ -23,9 +23,10 @@ require 'yaml'
   end
 
   def db_seed_artists(spotify_data_artists)
+    
     spotify_data_artists.each do |artist_data|
       # checks if the artist already exists on the database
-      artist = Artist.where(spotify_id: artist_data.id).first_or_create
+      artist = Artist.where(spotify_id: artist_data.id).take
       if artist
         next
       else
@@ -40,6 +41,7 @@ require 'yaml'
           )
         rescue
           puts artist_data
+        end
       end
     end
   end
