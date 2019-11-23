@@ -14,34 +14,34 @@ class SpotifyFetcher
 		artists.each do |artist_name|
 			artist = RSpotify::Artist.search(artist_name.to_s).first
 			next if artist.blank?
-			artist_created = Artist.create(name: artist.name, image: artist.images.first["url"], 
+			artist_created = Artist.create!(name: artist.name, image: artist.images.first["url"], 
 											genres: artist.genres,  popularity: artist.popularity, 
 											spotify_url: artist.external_urls["spotify"], 
 											spotify_id: artist.id)
 			print "$"
-			create_albums(artist.albums)
+			create_albums(artist.albums, artist_created.id)
 		end
 	end
 
-	def create_albums(albums)
+	def create_albums(albums, artist_id)
 		albums.each do |album|
 			next if album.blank?
 
-			album_created = Album.create(name: album.name, image: album.images.first["url"],
+			album_created = Album.create!(name: album.name, image: album.images.first["url"],
 										spotify_url: album.external_urls["spotify"], 
-										spotify_id: album.id, total_tracks: album.total_tracks)
-			create_songs(album.tracks)
+										spotify_id: album.id, total_tracks: album.total_tracks, artist_id: artist_id)
+			create_songs(album.tracks, album_created.id)
 			print "*"
 		end
 	end
 
-	def create_songs(tracks)
+	def create_songs(tracks, album_id)
 		tracks.each do |track|
 			next if track.blank?
 
-			song_created = Song.create(name: track.name, spotify_url: track.external_urls["spotify"], 
+			Song.create!(name: track.name, spotify_url: track.external_urls["spotify"], 
 										preview_url: track.preview_url, explicit: track.explicit, 
-										spotify_id: track.id)
+										spotify_id: track.id, album_id: album_id)
 			print "."
 		end
 	end

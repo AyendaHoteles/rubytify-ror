@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_22_003033) do
+ActiveRecord::Schema.define(version: 2019_11_23_144729) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 2019_11_22_003033) do
     t.string "spotify_url"
     t.string "total_tracks"
     t.string "spotify_id"
+    t.bigint "artist_id"
   end
 
   create_table "artists", force: :cascade do |t|
@@ -45,6 +46,7 @@ ActiveRecord::Schema.define(version: 2019_11_22_003033) do
     t.string "duration_ms"
     t.boolean "explicit"
     t.string "spotify_id"
+    t.bigint "album_id"
   end
 
 end
