@@ -1,0 +1,10 @@
+{
+  "type": "object",
+		"properties": {
+		    "name": { "type": [ "null", "string" ] },
+		    "preview_url": { "type": [ "null", "string" ] },
+		    "spotify_url": { "type": [ "null", "string" ] },
+		    "duration_ms": { "type": [ "null", "string" ] },
+		    "explicit": { "type": [ "null", "boolean" ] }
+		}
+}

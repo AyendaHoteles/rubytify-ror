@@ -1,0 +1,11 @@
+{
+  "type": "object",
+		"properties": {
+		    "id": { "type": "integer" },
+		    "name": { "type": [ "null", "string" ] },
+		    "image": { "type": [ "null", "string" ] },
+		    "genres": { "type": [ "null", "array" ] },
+		    "popularity": { "type": [ "null", "string" ] },
+		    "spotify_url": { "type": [ "null", "string" ] }
+		}
+}

@@ -1,0 +1,10 @@
+{
+  "type": "object",
+		"properties": {
+		    "id": { "type": [ "null", "integer" ] },
+		    "name": { "type": [ "null", "string" ] },
+		    "image": { "type": [ "null", "string" ] },
+		    "spotify_url": { "type": [ "null", "string" ] },
+		    "total_tracks": { "type": [ "null", "string" ] }
+	}
+}

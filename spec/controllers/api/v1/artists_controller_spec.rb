@@ -7,7 +7,7 @@ RSpec.describe Api::V1::ArtistsController, type: :controller do
         JSON.parse(response.body)
     end
 
-		it "should returns correct params of the artists" do
+		it "should returns correct params of artists" do
 		  get :index
 
 		  expect(response.status).to eq 200
