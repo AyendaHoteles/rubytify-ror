@@ -11,7 +11,9 @@ Rails.application.routes.draw do
       	resources :songs, only: [:index]
       end
       resources :genres, only: [:index], param: :name do
-      	get :random_song
+      	resource :songs, only: [:index] do
+          get :random_song, on: :collection
+        end
       end
     end
   end

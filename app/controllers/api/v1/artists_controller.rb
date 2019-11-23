@@ -6,10 +6,6 @@ module Api
 				
 				render json: @artists, each_serializer: Api::V1::ArtistsSerializer, root: 'data', status: :ok
 			end
-
-			def songs
-				
-			end
 		end
 	end
 end
