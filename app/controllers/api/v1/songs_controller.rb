@@ -4,13 +4,20 @@ module Api
 			def index
 				album = Album.find(album_id)
 
-				render json: album.songs, each_serializer: Api::V1::SongsSerializer, root: 'data', status: :ok
+				render json: album.songs, 
+								each_serializer: Api::V1::SongsSerializer, 
+								root: 'data', 
+								status: :ok
 			end
 
 			def random_song
-				song = Song.joins(album: :artist).where!(":name = ANY(artists.genres)", name: genre_name).order("RANDOM()").first
+				song = Song.joins(album: :artist)
+										.where!(":name = ANY(artists.genres)", name: genre_name)
+										.sample
 
-				render json: song, serializer: Api::V1::SongSerializer, root: 'data', status: :ok
+				render json: song, 
+										serializer: Api::V1::SongsSerializer, 
+										root: 'data', status: :ok
 			end
 
 			protected

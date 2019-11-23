@@ -4,7 +4,9 @@ module Api
 			def index
 				@artists = Artist.all
 				
-				render json: @artists, each_serializer: Api::V1::ArtistsSerializer, root: 'data', status: :ok
+				render json: @artists, 
+					each_serializer: Api::V1::ArtistsSerializer, 
+					status: :ok
 			end
 		end
 	end
