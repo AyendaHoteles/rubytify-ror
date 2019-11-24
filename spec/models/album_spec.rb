@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Album, type: :model do
   before(:example) do
-    @album = Album.create!(name:'el condor herido', image:'dummy_url', spotify_url:'dummy_url', total_tracks:11, spotify_id:'6rqhFgbbKwnb9MLmUQDhG6')
+    @album = Album.create!(name:'el condor herido', image:'dummy_url', spotify_url:'dummy_url', total_tracks:'11', spotify_id:'6rqhFgbbKwnb9MLmUQDhG6')
   end
 
   it "is a valid album with valid atributes" do
@@ -30,6 +30,6 @@ RSpec.describe Album, type: :model do
   end
 
   it "is not valid if it does not have at lease 1 track" do
-    expect(@album.total_track).to be > 0
+    expect(@album.total_tracks).to be > 0
   end
 end
