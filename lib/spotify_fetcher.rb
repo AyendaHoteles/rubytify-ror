@@ -12,6 +12,7 @@ class SpotifyFetcher
 
 	def fetch_and_create_artists
 		artists.each do |artist_name|
+			sleep(0.5)
 			artist = RSpotify::Artist.search(artist_name.to_s).first
 			next if artist.blank?
 			artist_created = Artist.create!(name: artist.name, image: artist.images.first["url"], 
@@ -49,7 +50,7 @@ class SpotifyFetcher
 	protected
 
 	def authenticate
-		RSpotify.authenticate(Rails.application.credentials.spotify[:client_id], 
-                      Rails.application.credentials.spotify[:client_secret])
+		RSpotify.authenticate(Rails.application.credentials.spotify[:client_id],
+                           Rails.application.credentials.spotify[:client_secret])
 	end
 end
