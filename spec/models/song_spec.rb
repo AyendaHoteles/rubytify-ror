@@ -21,12 +21,6 @@ RSpec.describe Song, type: :model do
     expect(song.errors[:spotify_url]).to eq(["can't be blank"])
   end
 
-  it "is not a valid song without preview url" do
-    song.preview_url = nil
-    song.valid?
-    expect(song.errors[:preview_url]).to eq(["can't be blank"])
-  end
-
   it "is not a valid song without duration" do
     song.duration_ms = nil
     song.valid?
