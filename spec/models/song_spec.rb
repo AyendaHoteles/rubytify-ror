@@ -36,6 +36,6 @@ RSpec.describe Song, type: :model do
   it "is not a valid song without declaration of explicit" do
     song.explicit = nil
     song.valid?
-    expect(song.errors[:explicit]).to eq(["can't be blank"])
+    expect(song.errors[:explicit]).to eq(["is not included in the list"])
   end
 end
