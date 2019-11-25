@@ -1,0 +1,1 @@
+RSpotify.authenticate(ENV.fetch("SPOTIFY_KEY"), ENV.fetch("SPOTIFY_SECRET"))
