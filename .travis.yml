@@ -1,0 +1,28 @@
+language: ruby
+
+rvm:
+  - 2.6.2
+env:
+  global:
+    - RUBY_GC_MALLOC_LIMIT=90000000
+    - RUBY_GC_HEAP_FREE_SLOTS=200000
+    - SECURITY_SECRET_TOKEN=traviscitraviscitraviscitraviscitravisci
+
+services:
+  - postgresql
+
+before_install:
+  # Solves rainbow issue: https://github.com/sickill/rainbow/issues/48
+  - gem update --system
+
+before_script:
+  - psql -c "CREATE USER \"ruby_tify_user\" WITH PASSWORD '1234';" -U postgres
+  - psql -c "DROP DATABASE IF EXISTS \"ruby_tify_db_test\";" -U postgres
+  - psql -c "CREATE DATABASE \"ruby_tify_db_test\" ENCODING 'utf8';" -U postgres
+  - bundle exec rake db:migrate
+
+script:
+  - bundle exec rubocop app spec -R --format simple
+
+cache:
+  bundler: true

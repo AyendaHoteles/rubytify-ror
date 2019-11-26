@@ -19,8 +19,15 @@ Bundler.require(*Rails.groups)
 
 module AyendaTest
   class Application < Rails::Application
+
+    RSpotify::authenticate(ENV['CLIENT_ID'], ENV['CLIENT_SECRET'])
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.2
+
+    config.action_dispatch.default_headers = {
+      'Access-Control-Allow-Origin' => 'https://api.spotify.com',
+      'Access-Control-Request-Method' => %w{GET POST OPTIONS}.join(",")
+    }
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
