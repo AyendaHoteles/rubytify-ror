@@ -1,6 +1,12 @@
 Rails.application.routes.draw do
-  resources :songs
-  resources :albums
-  resources :artists
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  scope 'api' do
+    scope 'v1' do
+      resources :artists, only: [:index]
+      resources :artists, only: [:index] do
+        resources :albums, only: [:index]
+      end
+    end
+  end
+  
 end
