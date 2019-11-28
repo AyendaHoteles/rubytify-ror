@@ -6,7 +6,7 @@ include AyendaRequest
 namespace :spotify do
     desc "This Task fills the Information Models"
 
-    task :fetch do  
+    task fetch: :environment do  
       puts "Init Task"
       # declare variables
       artists_names = []
@@ -39,7 +39,14 @@ namespace :spotify do
           if  item["name"] == single_name
             artists_ids.push( item["id"] )
             # Set Artists ..........
-
+            artist = Artist.new
+            artist.name = item["name"]
+            artist.image = item["images"][0]["url"] if not item["images"].blank?
+            artist.genres = item["genres"]
+            artist.popularity = item["popularity"]
+            artist.spotify_url = item["href"]
+            artist.spotify_id = item["id"]
+            artist.save!
             # ......................
             break;
           end
