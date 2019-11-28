@@ -53,7 +53,7 @@ namespace :spotify do
         end
         # ............................................
       end
-
+      
       # ............... Get Albums ...............
       artists_ids.each do | art_id |
         request = AyendaRequest.get_request( SpotifyConstants.artists_url.concat( art_id ).concat("/albums") )
@@ -62,12 +62,20 @@ namespace :spotify do
         
         request["items"].each do | item |
           # Set Albums .......... 
+            album = Album.new
+            album.artist = Artist.find_by!(spotify_id: art_id )
+            album.name = item["name"]
+            album.image = item["images"][0]["url"] if not item["images"].blank?
+            album.spotify_url = item["href"]
+            album.total_tracks = item["total_tracks"]
+            album.spotify_id = item["id"]
 
+            album.save!
           # ..................... 
         end
       end
       # ..........................................
-
+      
       # ............... Get Tracks ...............
       albums_dictionary.keys.each do | key |
         albums_dictionary[ key ].each do | album |
