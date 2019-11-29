@@ -1,5 +1,7 @@
 class Api::V1::ArtistsController < ApplicationController
   before_action :set_artist, only: [:show]
+
+
   def index
     @artists = Artist.all
     render json: @artists
@@ -15,4 +17,5 @@ class Api::V1::ArtistsController < ApplicationController
   def set_artist
     @artist = Artist.find(params[:id]) 
   end
+
 end

@@ -3,11 +3,13 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :artists do
-        resources :albums, only: [:index] 
+        resources :albums do
+          resources :songs
+        end
+ 
       end
-    
-      resources :albums
-      resources :albums, only: [:show] do
+
+      resources :albums do
         resources :songs, only: [:index]
       end
 
