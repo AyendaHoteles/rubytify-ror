@@ -8,8 +8,7 @@ class CreateSongs < ActiveRecord::Migration[5.2]
       t.integer :duration_ms
       t.boolean :explicit
       t.string :spotify_id
-
-      t.timestamps
+      
     end
   end
 end

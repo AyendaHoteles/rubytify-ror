@@ -19,8 +19,6 @@ ActiveRecord::Schema.define(version: 2019_11_28_050137) do
     t.string "spotify_url"
     t.integer "total_tracks"
     t.string "spotify_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.index ["artist_id"], name: "index_albums_on_artist_id"
   end
 
@@ -31,8 +29,6 @@ ActiveRecord::Schema.define(version: 2019_11_28_050137) do
     t.integer "popularity"
     t.string "spotify_url"
     t.string "spotify_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "songs", force: :cascade do |t|
@@ -43,8 +39,6 @@ ActiveRecord::Schema.define(version: 2019_11_28_050137) do
     t.integer "duration_ms"
     t.boolean "explicit"
     t.string "spotify_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.index ["album_id"], name: "index_songs_on_album_id"
   end
 
