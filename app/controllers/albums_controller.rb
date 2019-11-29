@@ -7,7 +7,7 @@ class AlbumsController < ApplicationController
       @albums = Album.all
     end
     
-    render json: @albums
+    render json: custom_parser( @albums )
   end
 
 end
