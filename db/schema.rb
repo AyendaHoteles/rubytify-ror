@@ -46,7 +46,7 @@ ActiveRecord::Schema.define(version: 2019_11_29_021544) do
     t.integer "album_id"
     t.string "name"
     t.string "spotify_url"
-    t.string "preview_url"
+    t.text "preview_url"
     t.integer "duration_ms"
     t.boolean "explicit"
     t.string "spotify_id"
