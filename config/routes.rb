@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :genres
   scope 'api' do
     scope 'v1' do
       resources :artists, only: [:index]
