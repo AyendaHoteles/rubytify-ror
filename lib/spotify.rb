@@ -1,0 +1,108 @@
+require "i18n"
+require_relative './modules/ayenda_request.rb'
+
+class Spotify
+    include AyendaRequest
+    include SpotifyConstants
+
+    attr_accessor :artists_names
+    attr_accessor :artists_ids
+    attr_accessor :albums_dictionary
+    
+    def initialize(artists_names)
+        @artists_names = artists_names
+        @artists_ids = []
+        @albums_dictionary = {}
+        AyendaRequest::set_token
+    end
+
+    def set_artists
+        @artists_names.each do | single_name | 
+      
+            single_name = I18n.transliterate( single_name.to_s )
+            single_name.to_s.match(/\s+/) ? current_name = single_name.to_s.gsub(/\s+/, '+') : current_name = single_name.to_s
+    
+            request = AyendaRequest.get_request( SpotifyConstants.search_url.concat( "?type=artist&q=" ).concat( current_name ) )
+    
+            single_name = I18n.transliterate( single_name.to_s ).downcase
+            single_name.gsub!(/\s+/, ' ') if single_name.match(/\s+/)
+            
+            request["artists"]["items"].each do |item|
+              unparsed_name = item["name"].to_s
+              item["name"] = I18n.transliterate( item["name"].to_s ).downcase
+              item["name"].gsub!(/\s+/, ' ') if item["name"].match(/\s+/)
+    
+              if  item["name"] == single_name
+                @artists_ids.push( item["id"] )
+                # Set Artists ..........
+                next if not Artist.find_by(spotify_id: item["id"]).nil?
+                artist = Artist.new
+                artist.name = unparsed_name
+                artist.image = item["images"][0]["url"] if not item["images"].blank?
+                # artist.genres = item["genres"]
+                artist.popularity = item["popularity"]
+                artist.spotify_url = item["href"]
+                artist.spotify_id = item["id"]
+    
+                item["genres"].each do | genre |
+                  if Genre.find_by(name: genre.to_s).nil?
+                    artist.genres << Genre.create!(name: genre.to_s)
+                  else
+                    artist.genres << Genre.find_by(name: genre.to_s)
+                  end
+                end
+                artist.save!
+                # ......................
+                break;
+              end
+            end
+        end
+    end
+
+    def set_albums
+        @artists_ids.each do | art_id |
+            request = AyendaRequest.get_request( SpotifyConstants.artists_url.concat( art_id ).concat("/albums") )
+    
+            @albums_dictionary[art_id] = request["items"].pluck("id")
+            
+            request["items"].each do | item |
+              # Set Albums .......... 
+                next if not Album.find_by(spotify_id: item["id"]).nil?
+                album = Album.new
+                album.artist = Artist.find_by!(spotify_id: art_id )
+                album.name = item["name"]
+                album.image = item["images"][0]["url"] if not item["images"].blank?
+                album.spotify_url = item["href"]
+                album.total_tracks = item["total_tracks"]
+                album.spotify_id = item["id"]
+    
+                album.save!
+              # ..................... 
+            end
+        end
+    end
+
+    def set_songs
+        @albums_dictionary.keys.each do | key |
+            @albums_dictionary[ key ].each do | album |
+              request = AyendaRequest.get_request( SpotifyConstants.albums_url.concat( album ).concat("/tracks") )
+    
+              request["items"].each do | item |
+                # Set Tracks .......... 
+                next if not Song.find_by(spotify_id: item["id"]).nil?
+                song = Song.new
+                song.album = Album.find_by!(spotify_id: album)
+                song.name = item["name"]
+                song.spotify_url = item["href"]
+                song.preview_url = item["preview_url"]
+                song.duration_ms = item["duration_ms"]
+                song.explicit = item["explicit"]
+                song.spotify_id = item["id"]
+                
+                song.save!
+                # ..................... 
+              end
+            end
+        end
+    end
+end
