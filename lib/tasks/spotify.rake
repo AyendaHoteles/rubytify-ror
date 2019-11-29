@@ -34,6 +34,7 @@ namespace :spotify do
         single_name.gsub!(/\s+/, ' ') if single_name.match(/\s+/)
         
         request["artists"]["items"].each do |item|
+          unparsed_name = item["name"].to_s
           item["name"] = I18n.transliterate( item["name"].to_s ).downcase
           item["name"].gsub!(/\s+/, ' ') if item["name"].match(/\s+/)
 
@@ -42,12 +43,20 @@ namespace :spotify do
             # Set Artists ..........
             next if not Artist.find_by(spotify_id: item["id"]).nil?
             artist = Artist.new
-            artist.name = item["name"]
+            artist.name = unparsed_name
             artist.image = item["images"][0]["url"] if not item["images"].blank?
-            artist.genres = item["genres"]
+            # artist.genres = item["genres"]
             artist.popularity = item["popularity"]
             artist.spotify_url = item["href"]
             artist.spotify_id = item["id"]
+
+            item["genres"].each do | genre |
+              if Genre.find_by(name: genre.to_s).nil?
+                artist.genres << Genre.create!(name: genre.to_s)
+              else
+                artist.genres << Genre.find_by(name: genre.to_s)
+              end
+            end
             artist.save!
             # ......................
             break;
