@@ -11,9 +11,7 @@ Rails.application.routes.draw do
         resources :songs, only: [:index, :show]
       end
 
-      resources :genres, only: [:show] do
-        resources :songs, only: [:show]
-      end
+      get "/genres/:genres", to: "genres#show"
     end
   end
 end

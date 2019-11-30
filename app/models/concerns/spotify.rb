@@ -23,12 +23,13 @@ module Spotify
       artist_search = RSpotify::Artist.search(artist).first
       artist_search_name = artist_search.name
       artist_search_image = artist_search.images.first['url']
+      artist_search_genres = artist_search.genres
       artist_search_popularity = artist_search.popularity 
       artist_search_url = artist_search.uri
       artist_search_id = artist_search.id
 
       #image: artist_search_image,
-      Artist.create({name: artist_search_name, image: artist_search_image , popularity: artist_search_popularity,spotify_url:  artist_search_url,spotify_id: artist_search_id })
+      Artist.create({name: artist_search_name, image: artist_search_image , genres: artist_search_genres , popularity: artist_search_popularity,spotify_url:  artist_search_url,spotify_id: artist_search_id })
 
       albums = artist_search.albums
 

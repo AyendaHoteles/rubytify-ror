@@ -6,6 +6,9 @@ class Api::V1::ArtistsController < ApplicationController
   def index
     @artists = Artist.all
     #@artists = testt
+    #@artists = Artist.where("name LIKE '%"+ artic +"%'")
+    #@artists = Artist.artist_name("metal")
+        
     render json: @artists
   end
 
