@@ -9,9 +9,7 @@ module Spotify
   def testt
     connection
     artists = RSpotify::Artist.search('Arctic Monkeys').first.albums
-    arctic_monkeys = artists.first.name
-    #albums = RSpotify::Artist.search('Tranquility Base Hotel & Casino').first.albums
-            album_search = RSpotify::Album.search('Tranquility Base Hotel & Casino').first.name
+    arctic_monkeys = artists.first.images.first['url']
 
   end
 
@@ -19,33 +17,32 @@ module Spotify
 #agregar condiciones por si no se encuentran las busquedas
   def save_info
     connection
-    artists = ["Diomedes Diaz"]
-
+    artists = ["Metallica"]
 
     artists.each do |artist|
       artist_search = RSpotify::Artist.search(artist).first
       artist_search_name = artist_search.name
-      #artist_search_image = artist_search.images.first
+      artist_search_image = artist_search.images.first['url']
       artist_search_popularity = artist_search.popularity 
       artist_search_url = artist_search.uri
       artist_search_id = artist_search.id
 
       #image: artist_search_image,
-      Artist.create({name: artist_search_name,  popularity: artist_search_popularity,spotify_url:  artist_search_url,spotify_id: artist_search_id })
+      Artist.create({name: artist_search_name, image: artist_search_image , popularity: artist_search_popularity,spotify_url:  artist_search_url,spotify_id: artist_search_id })
 
       albums = artist_search.albums
 
       albums.each do |album|
         album_search = RSpotify::Album.search(album.name).first
         album_search_name = album_search.name
-        #album_search_image = album_search.images.first
+        album_search_image = album_search.images.first['url']
         album_search_tracks = album_search.total_tracks
         album_search_url = album_search.uri
         album_search_id = album_search.id
         album_search_artist_id = Artist.last.id
 
         #image: album_search_image,
-        Album.create({name: album_search_name,  spotify_url: album_search_url,total_tracks:  album_search_tracks,spotify_id: album_search_id, artist_id:  album_search_artist_id})
+        Album.create({name: album_search_name,image: album_search_image,  spotify_url: album_search_url,total_tracks:  album_search_tracks,spotify_id: album_search_id, artist_id:  album_search_artist_id})
 
         songs = album_search.tracks
 

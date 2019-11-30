@@ -8,6 +8,4 @@
 
 include Spotify
 
-
-
 save_info
