@@ -12,7 +12,7 @@ class Api::V1::GenresController < ApplicationController
 
     @random_song = @artist_with_genre[random_artist].albums[random_album].songs[random_song]
 
-    render json: @random_song
+    render json: @random_song, serializer: SongSerializer
 
   end
 

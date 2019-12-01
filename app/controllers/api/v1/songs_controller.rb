@@ -4,11 +4,11 @@ class Api::V1::SongsController < ApplicationController
 
   def index
     @songs = @album.songs
-    render json: @songs
+    render json: @songs, each_serializer: SongSerializer
   end
 
   def show
-    render json: @song
+    render json: @song, serializer: SongSerializer
   end
 
   private

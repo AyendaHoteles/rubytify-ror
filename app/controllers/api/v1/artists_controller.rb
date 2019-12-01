@@ -4,13 +4,13 @@ class Api::V1::ArtistsController < ApplicationController
 
   def index
     @artists = Artist.all
-    render json: @artists
+    render json: @artists, each_serializer: ArtistSerializer
   end
 
-  #está bien hecho el show
+  
   def show
     @albums = @artist.albums
-    render json: @albums
+    render json: @albums, each_serializer: AlbumSerializer
   end
 
   private
