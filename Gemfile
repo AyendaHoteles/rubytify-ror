@@ -21,6 +21,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'rspotify'
 
 gem 'active_model_serializers'
+gem 'pg'
 
 
 group :development, :test do
