@@ -61,7 +61,6 @@ def save_info
           end
         end
       end
-      sleep 3
     rescue Exception => e
       
     end
