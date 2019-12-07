@@ -1,16 +1,23 @@
 development:
   adapter: postgresql
-  database: db_development
-  pool: 5
-  timeout: 5000
+  username: xetkdvkzduuhrw
+  password: cc116fddec843c8e86acdc9e1c2168fb3c809f16bbd2b33e80b26631d8d5aa7e
+  port: 5432
+  encoding: utf8
+  host: ec2-174-129-254-238.compute-1.amazonaws.com
+
 test:
   adapter: postgresql
-  database: db_test
-  pool: 5
-  timeout: 5000
+  username: xetkdvkzduuhrw
+  password: cc116fddec843c8e86acdc9e1c2168fb3c809f16bbd2b33e80b26631d8d5aa7e
+  port: 5432
+  encoding: utf8
+  host: ec2-174-129-254-238.compute-1.amazonaws.com
 
 production:
   adapter: postgresql
-  database: db_production
-  pool: 5
-  timeout: 5000
+  username: xetkdvkzduuhrw
+  password: cc116fddec843c8e86acdc9e1c2168fb3c809f16bbd2b33e80b26631d8d5aa7e
+  port: 5432
+  encoding: utf8
+  host: ec2-174-129-254-238.compute-1.amazonaws.com
