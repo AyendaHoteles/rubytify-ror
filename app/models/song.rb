@@ -7,4 +7,12 @@ class Song < ApplicationRecord
   validates :preview_url, presence: :true
   validates :duration_ms, presence: :true
   validates :explicit,    presence: :true
+
+  def self.random_by_genre(genre)
+    Song
+      .joins(album: :artist)
+      .where("? = ANY(genres)", genre)
+      .order("RANDOM()")
+      .limit(1)
+  end
 end
