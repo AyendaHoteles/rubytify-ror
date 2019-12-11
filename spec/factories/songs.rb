@@ -4,8 +4,8 @@ FactoryBot.define do
     spotify_url { "MyString" }
     spotify_id { "MyString" }
     preview_url { "MyString" }
-    duration_ms { "" }
+    duration_ms { 0 }
     explicit { false }
-    album { nil }
+    album
   end
 end

@@ -6,7 +6,6 @@ class Song < ApplicationRecord
   validates :spotify_id,  presence: :true
   validates :preview_url, presence: :true
   validates :duration_ms, presence: :true
-  validates :explicit,    presence: :true
 
   def self.random_by_genre(genre)
     Song

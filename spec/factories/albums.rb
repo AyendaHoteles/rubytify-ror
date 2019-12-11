@@ -5,6 +5,6 @@ FactoryBot.define do
     spotify_url { "MyString" }
     spotify_id { "MyString" }
     total_tracks { 1 }
-    artist { nil }
+    artist
   end
 end
