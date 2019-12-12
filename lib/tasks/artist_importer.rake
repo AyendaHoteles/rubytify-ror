@@ -13,7 +13,6 @@ task :import => :environment do
     puts artist_name
     results = RSpotify::Artist.search(artist_name, limit: 1)
     if results.total == 0
-      puts "Artist '#{artist_name}' not found!"
       puts "Artist not found!"
       next
     end
@@ -21,7 +20,7 @@ task :import => :environment do
     artist_data = results.first
     artist = Artist.create!(
       name: artist_data.name,
-      image: artist_data.images.first, # FIXME(Jhovan) sloppy to save as json? save only url?
+      image: artist_data.images.first["url"],
       genres: artist_data.genres,
       popularity: artist_data.popularity,
       spotify_id: artist_data.uri.delete_prefix!("spotify:artist:"),
@@ -32,7 +31,7 @@ task :import => :environment do
       puts "** #{album_data.name} - #{album_data.uri}"
       album = artist.albums.create!(
         name: album_data.name,
-        image: album_data.images.first, # FIXME(Jhovan) sloppy to save as json? save only url?
+        image: album_data.images.first["url"],
         spotify_id: album_data.uri.delete_prefix!("spotify:album:"),
         spotify_url: album_data.external_urls["spotify"],
         total_tracks: album_data.total_tracks,

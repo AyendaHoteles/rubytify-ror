@@ -5,8 +5,9 @@ RSpec.describe Song, type: :model do
     it { should validate_presence_of(:name) }
     it { should validate_presence_of(:spotify_url) }
     it { should validate_presence_of(:spotify_id) }
-    it { should validate_presence_of(:preview_url) }
     it { should validate_presence_of(:duration_ms) }
+
+    # preview_url can be nil, so says spotify's api docs
 
     it { should belong_to(:album) }
   end
