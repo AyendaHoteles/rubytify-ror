@@ -37,8 +37,8 @@ RSpec.describe "RubitifyApiV1", type: :request do
 
   describe "with multiple items in db" do
     let!(:artists) { create_list(:artist, 3) }
-    let!(:albums)  { create_list(:album, 4, artist: artists[0]) }
-    let!(:songs)   { create_list(:song, 10, album: albums[0]) }
+    let!(:albums)  { create_list(:album, 4, artist: artists.first) }
+    let!(:songs)   { create_list(:song, 10, album: albums.first) }
 
     describe "GET /api/v1/artists" do
       it "returns all artists ordered by their popularity" do
@@ -56,7 +56,7 @@ RSpec.describe "RubitifyApiV1", type: :request do
 
     describe "GET /api/v1/artists/:id/albums" do
       it "returns all albums from given artist" do
-        get "/api/v1/artists/#{artists[0].id}/albums"
+        get "/api/v1/artists/#{artists.first.id}/albums"
         expect_success
         expect(payload).not_to be_empty
         expect(payload[:data].size).to eq(albums.size)
@@ -65,7 +65,7 @@ RSpec.describe "RubitifyApiV1", type: :request do
 
     describe "GET /api/v1/albums/:id/songs" do
       it "returns all songs in given album" do
-        get "/api/v1/albums/#{albums[0].id}/songs"
+        get "/api/v1/albums/#{albums.first.id}/songs"
         expect_success
         expect(payload).not_to be_empty
         expect(payload[:data].size).to eq(songs.size)
@@ -75,9 +75,9 @@ RSpec.describe "RubitifyApiV1", type: :request do
     describe "GET /api/v1/genres/:genre_name/random_song" do
       it "returns a song that matches the specified genre" do
         # TODO(Jhovan) actually test randomness?
-        get "/api/v1/genres/#{artists[0].genres[0]}/random_song"
+        get "/api/v1/genres/#{artists.first.genres.first}/random_song"
         expect_success
-        ret_song = payload[:data][0]
+        ret_song = payload[:data].first
 
         expect(payload).not_to be_empty
         expect(payload[:data].size).to eq(1)
@@ -106,7 +106,7 @@ RSpec.describe "RubitifyApiV1", type: :request do
       it "returns desired fields" do
         get "/api/v1/artists"
         expect_success
-        ret_artist = payload[:data][0]
+        ret_artist = payload[:data].first
 
         expect(ret_artist[:id]).to          eq(artist.id)
         expect(ret_artist[:name]).to        eq(artist.name)
@@ -127,7 +127,7 @@ RSpec.describe "RubitifyApiV1", type: :request do
       it "returns desired fields" do
         get "/api/v1/artists/#{artist.id}/albums"
         expect_success
-        ret_album = payload[:data][0]
+        ret_album = payload[:data].first
 
         expect(ret_album[:id]).to           eq(album.id)
         expect(ret_album[:name]).to         eq(album.name)
@@ -146,7 +146,7 @@ RSpec.describe "RubitifyApiV1", type: :request do
       it "returns desired fields" do
         get "/api/v1/albums/#{album.id}/songs"
         expect_success
-        ret_song = payload[:data][0]
+        ret_song = payload[:data].first
 
         expect(ret_song[:name]).to        eq(song.name)
         expect(ret_song[:explicit]).to    eq(song.explicit)

@@ -8,10 +8,10 @@ class Song < ApplicationRecord
   validates :duration_ms, presence: :true
 
   def self.random_by_genre(genre)
-    Song
-      .joins(album: :artist)
-      .where("? = ANY(genres)", genre)
-      .order("RANDOM()")
-      .limit(1)
+    Song.
+      joins(album: :artist).
+      where("? = ANY(genres)", genre).
+      order("RANDOM()").
+      limit(1)
   end
 end
