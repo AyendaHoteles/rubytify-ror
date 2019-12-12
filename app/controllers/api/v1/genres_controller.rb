@@ -14,5 +14,7 @@ class Api::V1::GenresController < ApplicationController
       )
     end
     render json: { data: @song }, status: :ok
+  rescue ActiveRecord::RecordNotFound => exception
+    render json: { error: exception.message }, status: :not_found
   end
 end

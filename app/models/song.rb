@@ -8,10 +8,10 @@ class Song < ApplicationRecord
   validates :duration_ms, presence: :true
 
   def self.random_by_genre(genre)
-    Song.
-      joins(album: :artist).
-      where("? = ANY(genres)", genre).
-      order("RANDOM()").
-      limit(1)
+    genre_cond = ["? = ANY(genres)", genre]
+    if !Artist.exists?(genre_cond)
+      raise ActiveRecord::RecordNotFound, "No songs found in the '#{genre}' genre"
+    end
+    Song.joins(album: :artist).where(genre_cond).order(Arel.sql("RANDOM()")).limit(1)
   end
 end

@@ -9,30 +9,6 @@ RSpec.describe "RubitifyApiV1", type: :request do
         expect(payload[:data]).to be_empty
       end
     end
-
-    describe "GET /api/v1/artists/:id/albums" do
-      it "returns OK" do
-        get "/api/v1/artists/123/albums"
-        expect_success
-        expect(payload[:data]).to be_empty
-      end
-    end
-
-    describe "GET /api/v1/albums/:id/songs" do
-      it "returns OK" do
-        get "/api/v1/albums/123/songs"
-        expect_success
-        expect(payload[:data]).to be_empty
-      end
-    end
-
-    describe "GET /api/v1/genres/:genre_name/random_song" do
-      it "returns OK" do
-        get "/api/v1/genres/none/random_song"
-        expect_success
-        expect(payload[:data]).to be_empty
-      end
-    end
   end
 
   describe "with multiple items in db" do
@@ -73,26 +49,18 @@ RSpec.describe "RubitifyApiV1", type: :request do
     end
 
     describe "GET /api/v1/genres/:genre_name/random_song" do
+      let!(:other_artist) { create(:artist, genres: ["wanted_genre"]) }
+      let!(:other_album)  { create(:album, artist: other_artist) }
+      let!(:other_song)   { create(:song, album: other_album) }
+
       it "returns a song that matches the specified genre" do
-        # TODO(Jhovan) actually test randomness?
-        get "/api/v1/genres/#{artists.first.genres.first}/random_song"
+        get "/api/v1/genres/#{other_artist.genres.first}/random_song"
         expect_success
         ret_song = payload[:data].first
 
         expect(payload).not_to be_empty
         expect(payload[:data].size).to eq(1)
-
-        expect(ret_song).to include(:name)
-        expect(ret_song).to include(:explicit)
-        expect(ret_song).to include(:preview_url)
-        expect(ret_song).to include(:spotify_url)
-        expect(ret_song).to include(:duration_ms)
-
-        expect(ret_song).not_to include(:id)
-        expect(ret_song).not_to include(:spotify_id)
-        expect(ret_song).not_to include(:album_id)
-        expect(ret_song).not_to include(:created_at)
-        expect(ret_song).not_to include(:updated_at)
+        validate_song_fields(ret_song, other_song)
       end
     end
   end
@@ -147,18 +115,30 @@ RSpec.describe "RubitifyApiV1", type: :request do
         get "/api/v1/albums/#{album.id}/songs"
         expect_success
         ret_song = payload[:data].first
+        validate_song_fields(ret_song, song)
+      end
+    end
+  end
 
-        expect(ret_song[:name]).to        eq(song.name)
-        expect(ret_song[:explicit]).to    eq(song.explicit)
-        expect(ret_song[:preview_url]).to eq(song.preview_url)
-        expect(ret_song[:spotify_url]).to eq(song.spotify_url)
-        expect(ret_song[:duration_ms]).to eq(song.duration_ms)
+  describe "failures with empty db" do
+    describe "GET /api/v1/artists/:id/albums" do
+      it "returns 404 for non existent artist" do
+        get "/api/v1/artists/27/albums"
+        expect_not_found
+      end
+    end
 
-        expect(ret_song).not_to include(:id)
-        expect(ret_song).not_to include(:spotify_id)
-        expect(ret_song).not_to include(:album_id)
-        expect(ret_song).not_to include(:created_at)
-        expect(ret_song).not_to include(:updated_at)
+    describe "GET /api/v1/albums/:id/songs" do
+      it "returns 404 for non xistent album" do
+        get "/api/v1/albums/42/songs"
+        expect_not_found
+      end
+    end
+
+    describe "GET /api/v1/genres/:genre_name/random_song" do
+      it "returns 404 for genres that have no songs associated" do
+        get "/api/v1/genres/uroiug/random_song"
+        expect_not_found
       end
     end
   end
@@ -173,5 +153,25 @@ RSpec.describe "RubitifyApiV1", type: :request do
     expect(payload).to include(:data)
     expect(response).to be_successful
     expect(response).to have_http_status(:ok)
+  end
+
+  def expect_not_found
+    expect(payload).to include(:error)
+    expect(response).not_to be_successful
+    expect(response).to have_http_status(:not_found)
+  end
+
+  def validate_song_fields(expected_song, reference_song)
+    expect(expected_song[:name]).to        eq(reference_song.name)
+    expect(expected_song[:explicit]).to    eq(reference_song.explicit)
+    expect(expected_song[:preview_url]).to eq(reference_song.preview_url)
+    expect(expected_song[:spotify_url]).to eq(reference_song.spotify_url)
+    expect(expected_song[:duration_ms]).to eq(reference_song.duration_ms)
+
+    expect(expected_song).not_to include(:id)
+    expect(expected_song).not_to include(:spotify_id)
+    expect(expected_song).not_to include(:album_id)
+    expect(expected_song).not_to include(:created_at)
+    expect(expected_song).not_to include(:updated_at)
   end
 end
