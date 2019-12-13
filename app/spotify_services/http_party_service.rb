@@ -21,7 +21,7 @@ class HttpPartyService
   def create_artist(artist)
     puts "- Creating Artist  #{artist["name"]} "
     artist_new = Artist.new(name: artist["name"],
-                            image: artist["images"][0],
+                            image: artist["images"].last["url"],
                             genres: artist["genres"],
                             popularity: artist["popularity"],
                             spotify_url: artist["external_urls"]["spotify"],
@@ -41,7 +41,7 @@ class HttpPartyService
                             image: album["images"].last["url"],
                             spotify_url: album["external_urls"]["spotify"],
                             total_tracks: album["total_tracks"],
-                            spotify_id: album["total_tracks"],
+                            spotify_id: album["id"],
                             artist: artist)
       if album_new.save
         response = HTTParty.get("https://api.spotify.com/v1/albums/#{album["id"]}/tracks", headers: { "Accept" => "application/json", "Content-Type" => "application/json", "Authorization" => "Bearer #{@token}" })
