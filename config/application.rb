@@ -33,5 +33,10 @@ module Rubytify
     config.api_only = true
 
     config.autoload_paths += %W(#{Rails.root}/lib)
+    config.time_zone = 'America/Bogota'
+    config.action_dispatch.default_headers = {
+      'Access-Control-Allow-Origin' => '*',
+      'Access-Control-Request-Method' => %w{GET OPTIONS}.join(',')
+    }
   end
 end
