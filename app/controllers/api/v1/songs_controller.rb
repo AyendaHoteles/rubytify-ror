@@ -7,4 +7,13 @@ class Api::V1::SongsController < ApplicationController
       render json: {}, status: :not_found
     end
   end
+
+  def random_song
+    song = Song.random_song_by_genre(params[:genre_name])
+    if song
+      render json: song, adapter: :json, root: 'data', status: :ok
+    else
+      render json: {}, status: :not_found
+    end
+  end
 end
