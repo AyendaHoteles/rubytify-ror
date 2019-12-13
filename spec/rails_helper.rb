@@ -61,3 +61,10 @@ RSpec.configure do |config|
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
 end
+
+#Overwrite to not try and connect to Spotify while running tests.
+module RSpotify
+  def self.authenticate(client_id, client_secret)
+    #noop
+  end
+end
