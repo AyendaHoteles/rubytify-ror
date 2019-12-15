@@ -6,7 +6,7 @@ namespace :spotify_import do
     Album.destroy_all
     Artist.destroy_all
 
-    importMain = ImportMain.new(HttpPartyService.new, ImportArtistsYaml.new)
+    importMain = ImportMain.new(Rspo.new, ImportArtistsYaml.new)
     importMain.spotify_import
   end
 end
