@@ -45,7 +45,7 @@ class HttpPartyService
                             artist: artist)
       if album_new.save
         response = HTTParty.get("https://api.spotify.com/v1/albums/#{album["id"]}/tracks", headers: { "Accept" => "application/json", "Content-Type" => "application/json", "Authorization" => "Bearer #{@token}" })
-
+        puts response
         create_songs(response.parsed_response, album_new) if response.success?
       end
     end
@@ -53,8 +53,7 @@ class HttpPartyService
 
   def create_songs(songs, album_new)
     songs["items"].each do |song|
-      puts song
-      puts "- Creating Song #{song["name"]} "
+      puts "--- Creating Song #{song["name"]} "
       song_new = Song.create(name: song["name"],
                              spotify_url: song["external_urls"]["spotify"],
                              preview_url: song["preview_url"],

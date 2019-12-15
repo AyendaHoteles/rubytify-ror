@@ -1,5 +1,5 @@
-class ImportArtistTxt
-  def get_artist
+class ImportArtistsTxt
+  def get_artists
     file = Rails.root.join("db", "seeds", "artists.txt")
     artists = []
     File.readlines(file).each do |line|
