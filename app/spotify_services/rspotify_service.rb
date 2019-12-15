@@ -52,18 +52,22 @@ class RspotifyService
 
   def create_songs(album, album_new)
     album.tracks.each do |song|
-      puts song.preview_url
+      begin
+        puts song.preview_url
 
-      puts "- Creating Song " + song.name
-      song_new = Song.create(name: song.name,
-                             spotify_url: song.external_urls["spotify"],
-                             preview_url: "song.preview_url.to_s",
-                             duration_ms: song.duration_ms,
-                             explicit: song.explicit,
-                             spotify_id: song.id,
-                             album: album_new)
+        puts "- Creating Song " + song.name
+        song_new = Song.create(name: song.name,
+                               spotify_url: song.external_urls["spotify"],
+                               preview_url: "song.preview_url.to_s",
+                               duration_ms: song.duration_ms,
+                               explicit: song.explicit,
+                               spotify_id: song.id,
+                               album: album_new)
 
-      song_new.save
+        song_new.save
+      rescue RestClient::TooManyRequests => e
+        sleep e.response.headers[:retry_after].to_i
+      end
     end
   end
 end
