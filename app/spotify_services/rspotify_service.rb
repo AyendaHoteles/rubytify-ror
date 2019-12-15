@@ -57,7 +57,7 @@ class RspotifyService
       puts "- Creating Song " + song.name
       song_new = Song.create(name: song.name,
                              spotify_url: song.external_urls["spotify"],
-                             preview_url: song.preview_url.to_s,
+                             preview_url: "song.preview_url.to_s",
                              duration_ms: song.duration_ms,
                              explicit: song.explicit,
                              spotify_id: song.id,
