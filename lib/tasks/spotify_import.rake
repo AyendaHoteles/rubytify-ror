@@ -14,11 +14,11 @@ In this example I create two classes that you can inject for get data 1. Rspotif
 for the import artist dependency I create two classes 1. ImportAritstYml  2. ImportArtistTxt
 
 =end
-    importMain = ImportMain.new(RspotifyService.new, ImportArtistsYml.new)
+    importMain = ImportMain.new(HttpPartyService.new, ImportArtistsYml.new)
     importMain.spotify_import
 
     #Another way
-    #importMain = ImportMain.new(HttpPartyService.new, ImportArtistsTxt.new)
+    #importMain = ImportMain.new(RspotifyRequest.new, ImportArtistsTxt.new)
     #importMain.spotify_import
   end
 end
