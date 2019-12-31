@@ -1,0 +1,23 @@
+ruanas:
+  id: 1
+  name: "Rolling Ruanas"
+  spotify_url: "url"
+  image: "http"
+  genres: "rock"
+  popularity: 10
+
+veloza:
+  id: 2
+  name: "Jorge Veloza"
+  spotify_url: "url"
+  image: "http"
+  genres: "genres"
+  popularity: 20
+
+pantera:
+  id: 3
+  name: "Pantera"
+  spotify_url: "url"
+  image: "http"
+  genres: "genres"
+  popularity: 30

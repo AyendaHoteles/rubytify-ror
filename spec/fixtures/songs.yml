@@ -1,0 +1,26 @@
+track1:
+  id: 1
+  name: "track 1"
+  spotify_url: "url"
+  preview_url: "http"
+  duration_ms: 3000
+  explicit: "true"
+  album_id: 1
+
+track2:
+  id: 2
+  name: "track 2"
+  spotify_url: "url"
+  preview_url: "http"
+  duration_ms: 3000
+  explicit: "true"
+  album_id: 1
+
+track3:
+  id: 3
+  name: "track 3"
+  spotify_url: "url"
+  preview_url: "http"
+  duration_ms: 3000
+  explicit: "true"
+  album_id: 1

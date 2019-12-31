@@ -1,0 +1,23 @@
+antologia1:
+  id: 1
+  name: "Antologia 1"
+  spotify_url: "url"
+  image: "http"
+  artist_id: 1
+  total_tracks: 10
+
+antologia2:
+  id: 2
+  name: "Antologia 2"
+  spotify_url: "url"
+  image: "http"
+  artist_id: 1
+  total_tracks: 10
+
+antologia3:
+  id: 3
+  name: "Antologia 3"
+  spotify_url: "url"
+  image: "http"
+  artist_id: 1
+  total_tracks: 10
