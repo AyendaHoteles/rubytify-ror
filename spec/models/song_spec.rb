@@ -10,6 +10,7 @@ RSpec.describe Song, type: :model do
       should validate_presence_of(:duration_ms)
       should validate_presence_of(:explicit)
       should validate_presence_of(:spotify_id)
+      should validate_presence_of(:albums_id)
     end
   end
 end
