@@ -16,7 +16,7 @@ end
 
 def save_artists(artists_lists)
     artists_lists.each do |artist_spo|
-    artist = Artist.where(spotify_id: artist_spo.id).take
+        artist = Artist.where(spotify_id: artist_spo.id)
     if artist
         save_albums(artist, artist_spo)
         next
@@ -37,18 +37,48 @@ end
 def save_albums(artist, artist_spo)
     albums = artist_spo.albums
     albums.each do |album_spo|
-    album = Album.where(spotify_id: album_spo.id).take
+        album = Album.where(spotify_id: album_spo.id)
     if album
+        save_songs(album, album_spo)
+        next
+    else
+        begin  
+            album = Album.create!(
+                :name => album_spo.name,
+                :image => album_spo.images[0]["url"],
+                :total_tracks => album_spo.total_tracks,
+                :spotify_url => album_spo.external_urls["spotify"],
+                :spotify_id => album_spo.id,
+                :artist_id => artist.id,
+            )
+            save_songs(album, album_spo)
+        rescue => e  
+            puts e
+        end
+    end
+  end
+end
+
+def save_songs(album, album_spo)
+    songs = album_spo.tracks
+    songs.each do |track_spo|
+        track = Song.where(spotify_id: track_spo.id)
+    if track
         next
     else  
-        album = Album.create!(
-            :name => album_spo.name,
-            :image => album_spo.images[0]["url"],
-            :total_tracks => album_spo.total_tracks,
-            :spotify_url => album_spo.external_urls["spotify"],
-            :spotify_id => album_spo.id,
-            :artist_id => artist.id,
-        )
+        begin
+            track = Song.create!(
+                :name => track_spo.name,
+                :spotify_url => track_spo.external_urls["spotify"],
+                :preview_url => track_spo.preview_url,
+                :duration_ms => track_spo.duration_ms,
+                :explicit => track_spo.explicit,
+                :spotify_id => track_spo.id,
+                :albums_id => album.id,
+            )
+        rescue => e  
+            puts e  
+        end
     end
   end
 end
