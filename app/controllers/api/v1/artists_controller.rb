@@ -7,7 +7,8 @@ class Api::V1::ArtistsController < ApplicationController
     end
 
     def albums
-        @albums = Artist.find(params[:id])
+        @artist = Artist.find(params[:id])
+        @albums = Album.where(artist_id: @artist.id)
         render json: { data: @albums }
     end
 end
