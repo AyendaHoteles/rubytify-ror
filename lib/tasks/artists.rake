@@ -18,6 +18,7 @@ def save_artists(artists_lists)
     artists_lists.each do |artist_spo|
     artist = Artist.where(spotify_id: artist_spo.id).take
     if artist
+        save_albums(artist, artist_spo)
         next
     else  
         artist = Artist.create!(
@@ -27,6 +28,26 @@ def save_artists(artists_lists)
             :popularity => artist_spo.popularity,
             :spotify_url => artist_spo.external_urls["spotify"],
             :spotify_id => artist_spo.id,
+        )
+        save_albums(artist, artist_spo)
+    end
+  end
+end
+
+def save_albums(artist, artist_spo)
+    albums = artist_spo.albums
+    albums.each do |album_spo|
+    album = Album.where(spotify_id: album_spo.id).take
+    if album
+        next
+    else  
+        album = Album.create!(
+            :name => album_spo.name,
+            :image => album_spo.images[0]["url"],
+            :total_tracks => album_spo.total_tracks,
+            :spotify_url => album_spo.external_urls["spotify"],
+            :spotify_id => album_spo.id,
+            :artist_id => artist.id,
         )
     end
   end
