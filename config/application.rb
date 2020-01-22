@@ -13,6 +13,10 @@ require "action_cable/engine"
 # require "sprockets/railtie"
 require "rails/test_unit/railtie"
 
+require 'rspotify'
+
+RSpotify::authenticate('06692724b80b4986892a5bb19942aa1c', '91b0cedde97c485e8853025d2d926f9c')
+
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
