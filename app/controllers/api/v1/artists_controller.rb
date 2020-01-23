@@ -2,7 +2,7 @@ class Api::V1::ArtistsController < ApplicationController
     
     # GET /artists
     def index
-        @artists = Artist.order(:popularity)
+        @artists = Artist.order(popularity: :desc)
         render json: { data: @artists }, except: [:updated_at, :created_at, :spotify_id]
     end
     # GET /artists/:id/albums
