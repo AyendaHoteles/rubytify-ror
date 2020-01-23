@@ -3,7 +3,7 @@ class Api::V1::SongsController < ApplicationController
     def index
         @albums = Album.all
         render json: { data: @albums }
-    
+    end
     
     def songs
         @album = Album.find(params[:id])

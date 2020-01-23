@@ -1,7 +1,9 @@
 class Song < ApplicationRecord
-    belongs_to :album, optional: true
+    belongs_to :album
     
-    validates :name, :spotify_url, :spotify_id, presence: true
-    validates :duration_ms, numericality: true
+    validates :name, presence: true
+    validates :spotify_url, presence: true
+    validates :spotify_id, presence: true
+    validates :duration_ms, presence: true
     validates :explicit, inclusion: { in: [true, false] }    
 end

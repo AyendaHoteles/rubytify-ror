@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 #        resources :albums, only: [:index]
       get "artists/:id/albums", to: "artists#albums"
 
+      get "albums", to: "albums#index"
       get "albums/:id/songs", to: "albums#songs" 
       get "genres/:genre_name/random_song", to: "songs#random"
     end

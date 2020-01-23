@@ -61,20 +61,20 @@ end
 
 def save_songs(album, album_spo)
     songs = album_spo.tracks
-    songs.each do |track_spo|
-        track = Song.where(spotify_id: track_spo.id)
-    if track
+    songs.each do |song_spo|
+        song = Song.where(spotify_id: song_spo.id).take
+    if song
         next
     else  
         begin
-            track = Song.create!(
-                :name => track_spo.name,
-                :spotify_url => track_spo.external_urls["spotify"],
-                :preview_url => track_spo.preview_url,
-                :duration_ms => track_spo.duration_ms,
-                :explicit => track_spo.explicit,
-                :spotify_id => track_spo.id,
-                :albums_id => album.id,
+            Song.create!(
+                :name => song_spo.name,
+                :spotify_url => song_spo.external_urls["spotify"],
+                :preview_url => song_spo.preview_url,
+                :duration_ms => song_spo.duration_ms,
+                :explicit => song_spo.explicit,
+                :spotify_id => song_spo.id,
+                :album_id => album.id,
             )
         rescue => e  
             puts e  

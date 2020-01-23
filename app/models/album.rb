@@ -1,5 +1,5 @@
 class Album < ApplicationRecord
-    belongs_to :artist, optional: true
+    belongs_to :artist
     has_many :song
 
     validates :name, presence: true
