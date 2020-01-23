@@ -1,4 +1,5 @@
 class Api::V1::AlbumsController < ApplicationController
+
     # GET /albums
     def index
         @albums = Album.all
