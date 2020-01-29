@@ -7,11 +7,25 @@ namespace :import_from_spotify do
     end
   end
 
-  desc 'Import all info on the albums of the artist stored in db'
+  desc 'Import all albums info of the artist stored in db'
   task albums: :environment do
     artists = Artist.all
     artists.each do |artist|
-      AlbumImportJob.perform_later(artist.id)
+      AlbumsImportJob.perform_later(
+        artist_id: artist.id,
+        artist_spotify_id: artist.spotify_id
+      )
+    end
+  end
+
+  desc 'Import all tracks info of the albums stored in db'
+  task tracks: :environment do
+    albums = Album.all
+    albums.each do |album|
+      AlbumsImportJob.perform_later(
+        album_id: album.id,
+        album_spotify_id: album.spotify_id
+      )
     end
   end
 end
