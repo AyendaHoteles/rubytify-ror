@@ -26,7 +26,6 @@ module AyendaTest
       g.test_framework :rspec,
         fixtures: true,
         routing_specs: false
-      end
     end
 
     config.middleware.insert_before 0, Rack::Cors do
