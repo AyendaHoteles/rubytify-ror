@@ -22,7 +22,7 @@ namespace :import_from_spotify do
   task tracks: :environment do
     albums = Album.all
     albums.each do |album|
-      AlbumsImportJob.perform_later(
+      TracksImportJob.perform_later(
         album_id: album.id,
         album_spotify_id: album.spotify_id
       )
