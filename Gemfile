@@ -12,7 +12,7 @@ gem 'rspotify'
 gem 'sidekiq'
 gem 'redis', '~> 4.0'
 gem 'sidekiq-failures', '~> 1.0'
-# gem 'jbuilder', '~> 2.5'
+gem 'jbuilder', '~> 2.5'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

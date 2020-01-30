@@ -1,0 +1,19 @@
+song_1:
+  name: "Test Song"
+  album: album_1
+
+vallenato_1:
+  name: "Vallenato 1"
+  album: vallenatos
+
+vallenato_2:
+  name: "Vallenato 2"
+  album: vallenatos
+
+rock_1:
+  name: "Rock 1"
+  album: rockcito
+
+rock_2:
+  name: "Rock 2"
+  album: rockcito

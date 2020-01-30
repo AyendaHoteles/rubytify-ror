@@ -1,0 +1,17 @@
+artist_1:
+  popularity: 25,
+  spotify_id: "7Ln80lUS6He07XvHI8qqH1"
+
+artist_2:
+  popularity: 50,
+  spotify_id: "7Ln80lUS6He07XvHI8qqH2"
+
+vallenatero:
+  popularity: 60,
+  spotify_id: "7Ln80lUS6He07XvHI8qqH3"
+  genres: ["pop", "vallenato"]
+
+rockero:
+  popularity: 70,
+  spotify_id: "7Ln80lUS6He07XvHI8qqH4"
+  genres: ["pop", "rock"]

@@ -1,7 +1,13 @@
 require 'rails_helper'
 
-RSpec.describe [ArtistImportJob, TracksImportJob, AlbumsImportJob], type: :job do
-  scenario 'import one artists, his albums and songs' do
+RSpec.describe "ArtistImportJob, TracksImportJob, AlbumsImportJob", type: :job do
+  before do
+    Artist.destroy_all
+    Album.destroy_all
+    Song.destroy_all
+  end
+
+  scenario 'imports sucessfully one artists, his albums and songs' do
     ActiveJob::Base.queue_adapter = :test
     ArtistImportJob.perform_now('Carlos Vives')
     expect(Artist.count).to eq 1
