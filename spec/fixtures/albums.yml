@@ -1,3 +1,11 @@
 album_1:
   spotify_id: '7v6FNgLDS8KmaWA1amUtqe'
   artist: artist_1
+
+vallenatos:
+  spotify_id: '7v6FNgLDS8KmaWA1asdtqe'
+  artist: vallenatero
+
+rockcito:
+  spotify_id: '7v6FNgLDS8KmaWA1asdtqe'
+  artist: rockero
