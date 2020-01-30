@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
       resources :artists, only: :index
+      match '*unmatched', to: 'base#bad_request', via: :all
     end
   end
 end
