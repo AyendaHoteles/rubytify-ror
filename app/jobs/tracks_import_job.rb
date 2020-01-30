@@ -18,6 +18,7 @@ class TracksImportJob < ApplicationJob
       spotify_url: song_data.external_urls['spotify'],
       preview_url: song_data.preview_url,
       duration_ms: song_data.duration_ms,
+      explicit: song_data.explicit,
       spotify_id: spotify_id,
       album_id: args[:album_id]
     )
