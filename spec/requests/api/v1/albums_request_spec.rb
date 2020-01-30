@@ -20,4 +20,9 @@ RSpec.describe "Albums", type: :request do
     }
     expect(response.body).to eq json_valid_object.to_json
   end
+
+  scenario 'GET /api/v1/artists/:artist_id/albums returns 404 if an artist id does not existis' do
+    get api_v1_artist_albums_url(artist_id: 100_000)
+    expect(response).to have_http_status '404'
+  end
 end
