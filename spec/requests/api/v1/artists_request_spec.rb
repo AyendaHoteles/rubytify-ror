@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Artists", type: :request do
+RSpec.describe "GET /api/v1/artists", type: :request do
   before do
     2.times do |i|
       Artist.create!(
@@ -10,7 +10,7 @@ RSpec.describe "Artists", type: :request do
     end
   end
 
-  scenario 'GET /api/v1/artists returns the correct data, order and format' do
+  scenario 'returns the correct data, order and format' do
     get api_v1_artists_url
     expect(response).to have_http_status '200'
     json_valid_object = {

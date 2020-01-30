@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe [ArtistImportJob, TracksImportJob, AlbumsImportJob], type: :job do
+RSpec.describe "ArtistImportJob, TracksImportJob, AlbumsImportJob", type: :job do
   scenario 'imports sucessfully one artists, his albums and songs' do
     ActiveJob::Base.queue_adapter = :test
     ArtistImportJob.perform_now('Carlos Vives')

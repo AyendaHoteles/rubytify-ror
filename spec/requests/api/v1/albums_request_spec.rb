@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Albums", type: :request do
+RSpec.describe "GET /api/v1/artists/:artist_id/albums", type: :request do
   before do
     @artist = Artist.create!(
       spotify_id: '7Ln80lUS6He07XvHI8qqH'
@@ -11,7 +11,7 @@ RSpec.describe "Albums", type: :request do
     )
   end
 
-  scenario 'GET /api/v1/artists/:artist_id/albums returns the correct data, order and format' do
+  scenario 'returns the correct data, order and format' do
     get api_v1_artist_albums_url(@artist)
     expect(response).to have_http_status '200'
     json_valid_object = {
@@ -21,7 +21,7 @@ RSpec.describe "Albums", type: :request do
     expect(response.body).to eq json_valid_object.to_json
   end
 
-  scenario 'GET /api/v1/artists/:artist_id/albums returns 404 if an artist id does not existis' do
+  scenario 'returns 404 if an artist id does not existis' do
     get api_v1_artist_albums_url(artist_id: 100_000)
     expect(response).to have_http_status '404'
   end
