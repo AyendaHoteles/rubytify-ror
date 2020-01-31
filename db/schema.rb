@@ -10,12 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_30_224017) do
+ActiveRecord::Schema.define(version: 2020_01_31_050251) do
 
   create_table "artists", force: :cascade do |t|
     t.string "name"
     t.string "image"
-    t.text "genres"
+    t.string "genres"
     t.integer "popularity"
     t.string "spotify_url"
     t.string "spotify_id"
