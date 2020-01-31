@@ -1,6 +1,6 @@
 module Api
   module V1
-    class ArtistsController < ApplicationController
+    class AlbumsController < ApplicationController
       def index
         render json: 200
 
