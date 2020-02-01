@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_31_053146) do
+ActiveRecord::Schema.define(version: 2020_02_01_202609) do
 
   create_table "albums", force: :cascade do |t|
     t.string "name"
@@ -27,10 +27,22 @@ ActiveRecord::Schema.define(version: 2020_01_31_053146) do
   create_table "artists", force: :cascade do |t|
     t.string "name"
     t.string "image"
-    t.string "genres"
     t.integer "popularity"
     t.string "spotify_url"
     t.string "spotify_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "artists_genres", id: false, force: :cascade do |t|
+    t.integer "artists_id"
+    t.integer "genres_id"
+    t.index ["artists_id"], name: "index_artists_genres_on_artists_id"
+    t.index ["genres_id"], name: "index_artists_genres_on_genres_id"
+  end
+
+  create_table "genres", force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -43,9 +55,11 @@ ActiveRecord::Schema.define(version: 2020_01_31_053146) do
     t.string "spotify_url"
     t.boolean "explicit"
     t.integer "album_id"
+    t.integer "artist_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["album_id"], name: "index_songs_on_album_id"
+    t.index ["artist_id"], name: "index_songs_on_artist_id"
   end
 
 end
