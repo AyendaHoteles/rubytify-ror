@@ -35,10 +35,10 @@ ActiveRecord::Schema.define(version: 2020_02_01_202609) do
   end
 
   create_table "artists_genres", id: false, force: :cascade do |t|
-    t.integer "artists_id"
-    t.integer "genres_id"
-    t.index ["artists_id"], name: "index_artists_genres_on_artists_id"
-    t.index ["genres_id"], name: "index_artists_genres_on_genres_id"
+    t.integer "artist_id"
+    t.integer "genre_id"
+    t.index ["artist_id"], name: "index_artists_genres_on_artist_id"
+    t.index ["genre_id"], name: "index_artists_genres_on_genre_id"
   end
 
   create_table "genres", force: :cascade do |t|

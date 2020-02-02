@@ -7,8 +7,8 @@ class CreateGenres < ActiveRecord::Migration[5.2]
     end
 
     create_table :artists_genres, id: false do |t|
-      t.belongs_to :artists
-      t.belongs_to :genres
+      t.belongs_to :artist
+      t.belongs_to :genre
     end
   end
 end
