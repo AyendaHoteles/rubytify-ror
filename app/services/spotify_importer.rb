@@ -2,12 +2,17 @@ class SpotifyImporter
 
   def import_artists
     artist_names = SpotifyImporter.load_yaml
+    p "Artists YAML loaded" if artist_names
+    p "-"*20
+    p "Fetching data"
     artist_names.each do |name|
       spotify_artist = SpotifyImporter.get_artist name
       if spotify_artist
         local_artist = SpotifyImporter.create_artist spotify_artist
-        create_albums(local_artist,spotify_artist)
+        SpotifyImporter.create_albums(local_artist, spotify_artist)
+        SpotifyImporter.set_genres(local_artist, spotify_artist)
       end
+      p "Artist #{name} succesfuly imported"
     end
   end
 
@@ -53,6 +58,14 @@ class SpotifyImporter
 
     def load_yaml
       YAML.load_file(Rails.root.join('db', 'artists.yml'))['artists']
+    end
+
+    def set_genres local_artist, spotify_artist
+      spotify_artist.genres.each do |genre_name|
+        local_genre = Genre.find_by(name: genre_name.downcase) ||
+                      Genre.create(name: genre_name.downcase)
+        local_artist.genres << local_genre
+      end
     end
   end
 end
