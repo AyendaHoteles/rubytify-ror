@@ -4,22 +4,34 @@ class SpotifyImporter
     artist_names = SpotifyImporter.load_yaml
     artist_names.each do |name|
       spotify_artist = SpotifyImporter.get_artist name
-      local_artist = SpotifyImporter.create_artist spotify_artist
-
+      if spotify_artist
+        local_artist = SpotifyImporter.create_artist spotify_artist
+        create_albums(local_artist,spotify_artist)
+      end
     end
   end
 
   class << self
     def create_albums local_artist, spotify_artist
       return unless local_artist&.persisted?
-      artist.albums.each do |album|
-        local_artist.albums.create(
+      spotify_artist.albums.each do |album|
+        local_album = local_artist.albums.create(
             name: album.name,
             image: album.images&.first['url'],
             total_tracks: album.total_tracks,
             spotify_id: album.id,
-            spotify_url: album.href
+            spotify_url: album.external_urls['spotify']
             )
+        album.tracks.each do |track|
+          local_album.songs.create(
+              name: track.name,
+              preview_url: track.preview_url,
+              duration_ms: track.duration_ms,
+              spotify_id: track.id,
+              spotify_url: track.external_urls['spotify'],
+              explicit: track.explicit
+          )
+        end
       end
 
     end
@@ -28,7 +40,7 @@ class SpotifyImporter
           name: artist.name,
           image: artist.images&.first['url'],
           popularity: artist.popularity,
-          spotify_url: artist.href,
+          spotify_url: artist.external_urls['spotify'],
           spotify_id: artist.id
       )
     end
