@@ -33,6 +33,7 @@ class SpotifyImporter
               spotify_url: track.external_urls['spotify'],
               explicit: track.explicit
           )
+          sleep(0.5)
         end
       end
 
