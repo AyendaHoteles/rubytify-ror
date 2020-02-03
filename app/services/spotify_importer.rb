@@ -2,22 +2,15 @@ class SpotifyImporter
 
   def import_artists
     artist_names = SpotifyImporter.load_yaml
-    p "Artists YAML loaded" if artist_names
-    p "-"*20
-    p "Fetching data"
-    start = DateTime.now
-    p "Import rake started at #{start}"
     artist_names.each do |name|
       spotify_artist = SpotifyImporter.get_artist name.to_s
+      next if spotify_artist.nil?
       if spotify_artist
         local_artist = SpotifyImporter.create_artist spotify_artist
         SpotifyImporter.create_albums(local_artist, spotify_artist)
         SpotifyImporter.set_genres(local_artist, spotify_artist)
       end
-      p "Artist #{name} succesfuly imported"
     end
-    p "Successfully imported #{artist_names.count} artists at #{DateTime.now}"
-    p "Time Spent: #{(DateTime.now.to_f - start.to_f).to_i} seconds"
   end
 
   class << self
