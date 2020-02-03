@@ -1,6 +1,6 @@
 class ArtistSerializer < ActiveModel::Serializer
-  attributes :id, :name, :image, :spotify_id, :spotify_url, :popularity
-  attribute :genres do
-    JSON.parse(object.genres)
+  attributes :id, :name, :image, :popularity, :spotify_url
+  has_many :genres do
+    object.genres.pluck(:name)
   end
 end
