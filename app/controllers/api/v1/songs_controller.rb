@@ -2,8 +2,7 @@ module Api
   module V1
     class SongsController < ApplicationController
       def index
-        render json: 200
-
+        render json: {data: data_wrapper(Album.find(params[:album_id]).songs)}
       end
     end
   end

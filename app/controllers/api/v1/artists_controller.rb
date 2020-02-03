@@ -2,7 +2,7 @@ module Api
   module V1
     class ArtistsController < ApplicationController
       def index
-        render json: {data: data_wrapper(Artist.all)}
+        render json: {data: data_wrapper(Artist.all.order(popularity: :desc))}
       end
 
       def create
@@ -18,7 +18,7 @@ module Api
       private
 
       def artist_create_permitted_params
-        params.require(:artist).permit(:name, :image, :popularity, :spotify_id, :spotify_url, genres: [])
+        params.require(:artist).permit(:name, :image, :popularity, :spotify_id, :spotify_url)
       end
     end
   end
