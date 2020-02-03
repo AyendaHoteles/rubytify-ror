@@ -55,11 +55,9 @@ ActiveRecord::Schema.define(version: 2020_02_01_202609) do
     t.string "spotify_url"
     t.boolean "explicit"
     t.integer "album_id"
-    t.integer "artist_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["album_id"], name: "index_songs_on_album_id"
-    t.index ["artist_id"], name: "index_songs_on_artist_id"
   end
 
 end
