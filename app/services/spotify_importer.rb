@@ -63,7 +63,7 @@ class SpotifyImporter
       spotify_artist.genres.each do |genre_name|
         local_genre = Genre.find_by(name: genre_name.downcase) ||
                       Genre.create(name: genre_name.downcase)
-        local_artist.genres << local_genre unless local_artist.include? local_genre
+        local_artist.genres << local_genre unless local_artist.genres.include? local_genre
       end
     end
   end
