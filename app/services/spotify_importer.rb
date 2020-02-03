@@ -5,8 +5,10 @@ class SpotifyImporter
     p "Artists YAML loaded" if artist_names
     p "-"*20
     p "Fetching data"
+    start = DateTime.now
+    p "Import rake started at #{start}"
     artist_names.each do |name|
-      spotify_artist = SpotifyImporter.get_artist name
+      spotify_artist = SpotifyImporter.get_artist name.to_s
       if spotify_artist
         local_artist = SpotifyImporter.create_artist spotify_artist
         SpotifyImporter.create_albums(local_artist, spotify_artist)
@@ -14,21 +16,23 @@ class SpotifyImporter
       end
       p "Artist #{name} succesfuly imported"
     end
+    p "Successfully imported #{artist_names.count} artists at #{DateTime.now}"
+    p "Time Spent: #{(DateTime.now.to_f - start.to_f).to_i} seconds"
   end
 
   class << self
     def create_albums local_artist, spotify_artist
       return unless local_artist&.persisted?
       spotify_artist.albums.each do |album|
-        local_album = local_artist.albums.create(
+        local_album = local_artist.albums.find_or_create_by(
             name: album.name,
-            image: album.images&.first['url'],
+            image: album.images&.first.try(:[], 'url'),
             total_tracks: album.total_tracks,
             spotify_id: album.id,
             spotify_url: album.external_urls['spotify']
             )
         album.tracks.each do |track|
-          local_album.songs.create(
+          local_album.songs.find_or_create_by(
               name: track.name,
               preview_url: track.preview_url,
               duration_ms: track.duration_ms,
@@ -41,13 +45,15 @@ class SpotifyImporter
 
     end
     def create_artist artist
-      Artist.create(
+      Artist.find_or_create_by(
           name: artist.name,
           image: artist.images&.first['url'],
           popularity: artist.popularity,
           spotify_url: artist.external_urls['spotify'],
           spotify_id: artist.id
       )
+    rescue
+      return artist
     end
 
     def get_artist name
@@ -57,7 +63,7 @@ class SpotifyImporter
     end
 
     def load_yaml
-      YAML.load_file(Rails.root.join('db', 'artists.yml'))['artists']
+      YAML.load_file(Rails.root.join('db', 'artists.yaml'))['artists']
     end
 
     def set_genres local_artist, spotify_artist
