@@ -1,0 +1,5 @@
+
+puts ENV['SPOTIFY_CLIENT_ID']
+puts ENV['SPOTIFY_SECRET_ID']
+#RSpotify.authenticate(ENV['SPOTIFY_CLIENT_ID'], ENV['SPOTIFY_SECRET_ID'])
+RSpotify.authenticate('ab52ab5fa28944b384cdc79609855557', 'c8d7690edc7b4d888248296bd5b8ba83')
