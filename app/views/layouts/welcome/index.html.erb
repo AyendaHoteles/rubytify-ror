@@ -1,0 +1,60 @@
+<center><h1>Rubitify</h1></center>
+
+<p>  You can try the following endpoints: </p>
+
+<ul>
+  <li>
+    <b>api/v1/artists</b> returns all artists ordered by their popularity
+    <p>
+      <em>Example:
+          <a href="https://cami-ayenda.herokuapp.com/api/v1/artists">https://cami-ayenda.herokuapp.com/api/v1/artists</a>
+      </em>
+    </p>
+  </li>
+
+  <li>
+    <b>api/v1/artists/:id/albums</b> returns all albums for an artist
+    <p>change :id for a number between 1 to 23<br>
+      <em>Example:
+        <a href="https://cami-ayenda.herokuapp.com/api/v1/artists/2/albums">https://cami-ayenda.herokuapp.com/api/v1/artists/2/albums</a>
+      </em>
+    <p>
+  </li>
+
+  <li>
+    <b>api/v1/albums/:id/songs</b> returns all songs for an album
+    <p>change :id for a number between 1 to 437<br>
+      <em>Example:
+        <a href=" https://cami-ayenda.herokuapp.com/api/v1/albums/50/songs"> https://cami-ayenda.herokuapp.com/api/v1/albums/50/songs</a>
+      </em>
+    <p>
+  </li>
+
+  <li>
+    <b>api/v1/genres/:genre_name/random_song</b> return all songs for an album
+    <p>change :genre_name for the name of a genre<br>
+      <em>Example:
+        <a href=" https://cami-ayenda.herokuapp.com/api/v1/genres/rock/random_song"> https://cami-ayenda.herokuapp.com/api/v1/genres/rock/random_song</a>
+      </em>
+    <p>
+  </li>
+</ul>
+
+<h2>Avaliable Artist</h2>
+
+<p> Artic Monkeys - Metallica - Nirvana - Diomedes Diaz - AC/DC - 311 - Calle 13</p>
+<p> BTS - El ultimo de la fila - Atercipelados - Alci Acosta - Green Day - Tormenta - Chuck Berry</p>
+<p> Joe Cuba - Compay Segundo - Buena Vista Social Club - Masacre - Pantera - Ruben Blades</p>
+<p> Los Hermanos Zuleta - Carlos Vives - Muse</p>
+<p><em>Total 23 Artists</em></p>
+
+<h2>Poblate the date base</h2>
+
+<p>
+In case you want to try this repository locally you have to run <b>rake db:migrate</b> and <b>rake db:spotify</b><br>
+Don't worry if it takes time, it is because of the amount of the songs
+
+If you want to run test, just try <b>rspec</b>
+</p>
+
+<em>By Cami Meneses</em>
