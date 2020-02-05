@@ -1,0 +1,10 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+muse_song:
+  name: The Dark Side
+  spotify_url: The Dark Side's spotify_url
+  preview_url: The Dark Side's preview_url
+  duration_ms: 227213
+  explicit: false
+  spotify_id: The Dark Side's spotify_id
+  album: muse_album

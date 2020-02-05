@@ -1,0 +1,9 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+muse_album:
+  name: Simulation Theory
+  image: Simulation Theory's image
+  spotify_url: Simulation Theory's spotify_url
+  total_tracks: 20
+  spotify_id: Simulation Theory's spotify_id
+  artist: muse

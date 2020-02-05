@@ -1,0 +1,9 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+muse:
+  name: Muse
+  image: Muse's image
+  genres: modern rock
+  popularity: 82
+  spotify_url: Muse's url
+  spotify_id: Muse's id
