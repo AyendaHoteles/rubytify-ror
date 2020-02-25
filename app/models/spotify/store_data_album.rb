@@ -22,8 +22,8 @@ module Spotify
     def build_album(artist, record)
       artist.albums.create_with(album_params(record))
             .find_or_create_by(spotify_id: record.id)
-    rescue StandardError
-      raise RecordParamsError, record
+    # rescue StandardError
+    #   raise RecordParamsError, record
     end
 
     def album_params(record)
