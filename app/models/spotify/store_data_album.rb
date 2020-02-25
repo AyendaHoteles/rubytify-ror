@@ -4,7 +4,9 @@ module Spotify
   class StoreDataAlbum < Spotify::ResourcesData
     def search_albums
       Artist.all.each do |artist|
-        record = RSpotify::Artist.find(artist.spotify_id) if artist.albums <= 19
+        next if artist.albums.count <= 19
+
+        record = RSpotify::Artist.find(artist.spotify_id)
         next if record.blank?
 
         create_albums(artist, record)
