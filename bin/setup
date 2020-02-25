@@ -17,10 +17,9 @@ chdir APP_ROOT do
   system! 'gem install bundler --conservative'
   system('bundle check') || system!('bundle install')
 
-  # puts "\n== Copying sample files =="
-  # unless File.exist?('config/database.yml')
-  #   cp 'config/database.yml.sample', 'config/database.yml'
-  # end
+  puts "\nDelete logs -----------------"
+  system!('rm log/*.log') if Dir['log/*.log'].any?
+  system!('rm log/*.log.*') if Dir['log/*.log.*'].any?
 
   puts "\n== Preparing database =="
   system! 'bin/rails db:setup'

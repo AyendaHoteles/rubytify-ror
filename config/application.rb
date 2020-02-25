@@ -27,9 +27,35 @@ module AyendaTest
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
 
+    # Don't generate files.
+    config.generators do |generator|
+      generator.orm                 :active_record, primary_key_type: :uuid
+      generator.system_tests        false
+      generator.fixture_replacement :factory_bot, dir: 'spec/factories'
+      generator.helper              false
+      generator.jbuilder            false
+      generator.test_framework      :rspec,
+                                    fixtures: true,
+                                    view_specs: false,
+                                    helper_specs: false,
+                                    controller_specs: false,
+                                    routing_specs: false,
+                                    request_specs: true
+    end
+
     # Only loads a smaller set of middleware suitable for API only apps.
     # Middleware like session, flash, cookies can be added back manually.
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
+    config.session_store :cookie_store, key: '_ayenda_session'
+    config.middleware.use ActionDispatch::Cookies # Required for all session management
+    config.middleware.use ActionDispatch::Session::CookieStore, config.session_options
+
+    config.middleware.insert_before 0, Rack::Cors do
+      allow do
+        origins '*'
+        resource '*', headers: :any, methods: [:get, :options]
+      end
+    end
   end
 end
