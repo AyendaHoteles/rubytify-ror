@@ -1,6 +1,11 @@
 class Api::V1::GenresController < ApplicationController
   def random_song
-    render json: {data: Song.random_song_by_genre(genre_param[:genre_name])}
+    serialized_response = ActiveModelSerializers::SerializableResource.new(
+      Song.random_song_by_genre(genre_param[:genre_name])
+    )
+    render json: {
+      data: serialized_response
+    }
   end
 
   private

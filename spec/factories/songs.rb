@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :song do
-    album { nil }
+    album
     name { "MyString" }
     spotify_url { "MyString" }
     preview_url { "MyString" }

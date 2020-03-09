@@ -2,7 +2,7 @@ class Api::V1::ArtistsController < ApplicationController
   before_action :load_artist, only: [:albums]
 
   def index
-    render json: build_response(Artist.all, ArtistSerializer)
+    render json: build_response(Artist.order(popularity: :desc), ArtistSerializer)
   end
 
   def albums

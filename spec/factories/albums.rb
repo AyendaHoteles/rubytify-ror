@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :album do
-    artist { nil }
+    artist
     name { "MyString" }
     image { "MyString" }
     spotify_url { "MyString" }

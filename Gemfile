@@ -38,7 +38,7 @@ group :development, :test do
 end
 
 group :test do
-  gem 'database_cleaner'
+  gem 'database_cleaner-active_record'
   gem 'faker', '~> 1.8.4'
   gem 'shoulda-matchers', github: 'thoughtbot/shoulda-matchers'
   gem 'simplecov', require: false
