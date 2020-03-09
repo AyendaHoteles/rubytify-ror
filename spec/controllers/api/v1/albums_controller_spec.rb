@@ -14,14 +14,14 @@ RSpec.describe Api::V1::AlbumsController, type: :controller do
           {
             duration_ms: 1,
             explicit: false,
-            name: "song2",
+            name: "song1",
             preview_url: "MyString",
             spotify_url: "MyString"
           },
           {
             duration_ms: 1,
             explicit: false,
-            name: "song1",
+            name: "song2",
             preview_url: "MyString",
             spotify_url: "MyString"
           }

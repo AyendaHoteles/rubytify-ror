@@ -16,7 +16,7 @@ development:
 
 test:
   <<: *default
-  database: ayenda_test_development
+  database: ayenda_test_test
 
 production:
   <<: *default

@@ -69,16 +69,16 @@ RSpec.describe Api::V1::ArtistsController, type: :controller do
       {
         data:[
           {
-            id: album2.id,
+            id: album.id,
             image: "MyString",
-            name: "album2",
+            name: "album1",
             spotify_url: "MyString",
             total_tracks: 1
           },
           {
-            id: album.id,
+            id: album2.id,
             image: "MyString",
-            name: "album1",
+            name: "album2",
             spotify_url: "MyString",
             total_tracks: 1
           }
