@@ -5,7 +5,7 @@ namespace :import do
   desc 'Import data from spotify API'
   task artists: :environment do
     file = YAML.load_file('config/import.yml')
-    artists = file['artists'].split(', ')
+    artists = file['import'].split(', ')
 
     artists.each do |name|
       artist = find_artist_information(name)
