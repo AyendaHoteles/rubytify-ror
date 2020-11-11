@@ -4,8 +4,8 @@ require 'rspotify'
 namespace :import do
   desc 'Import data from spotify API'
   task artists: :environment do
-    file = YAML.load_file('config/import.yml')
-    artists = file['import'].split(', ')
+    file = YAML.load_file('artist.yml')
+    artists = file['artists'].split(', ')
 
     artists.each do |name|
       artist = find_artist_information(name)
@@ -15,14 +15,25 @@ namespace :import do
 
       # Save artist albums data and songs
       create_artist_albums(artist, artist_local_id)
+
+    rescue RestClient::TooManyRequests => e
+      sleep_time = if e.response.headers[:retry_after].present?
+                     (e.response.headers[:retry_after]).to_i.seconds + 0.5
+                   else
+                     0.5
+                   end
+      p "#{e}, I will sleep and retry in a #{sleep_time} seconds"
+      sleep(sleep_time)
+      retry
+    end
   end
 end
 
 private
 
 def find_artist_information(name)
-  client_id = Rails.application.credentials.spotify[fe36f195e48447428a88b9e8dce4cde6]
-  client_secret = Rails.application.credentials.spotify[bad5f171552842d8b2d86916c2a6ec6d]
+  client_id = 'fe36f195e48447428a88b9e8dce4cde6'
+  client_secret = 'bad5f171552842d8b2d86916c2a6ec6d'
   RSpotify.authenticate(client_id, client_secret)
 
   RSpotify::Artist.search(name).first
