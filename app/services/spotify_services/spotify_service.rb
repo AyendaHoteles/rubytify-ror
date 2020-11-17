@@ -23,7 +23,8 @@ class SpotifyService
 
   def create_genres(artist, genres)
     genres.each do |genre_spotify|
-      genre = Genre.find_or_create_by(name: genre_spotify)
+      name = genre_spotify.downcase.gsub(/\s+/, '_')
+      genre = Genre.find_or_create_by(name: name)
       artist_gender = ArtistGenre.new(artist_id: artist.id, genre_id: genre.id)
       artist_gender.save
     end
