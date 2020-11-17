@@ -12,12 +12,44 @@ class SpotifyService
     @songs_service ||= SongsService.new
   end
 
-  def create_artist(data)
-    new_artist = Artist.new(data.except(:genres, :albums))
-    if new_artist.save
-      create_genres(new_artist, data[:genres]) if data[:genres].present?
-      create_albums(new_artist, data[:albums]) if data[:albums].present?
+  def get_artist(artist_new)
+    artist = Artist.find_by(spotify_id: artist_new[:spotify_id])
+    if  artist.present?
+      artist
+    else
+      new_artist = Artist.new(artist_new.except(:genres, :albums))
+      new_artist.save ? new_artist : nil
     end
+  end
+
+  def get_album(album_new)
+    album = Album.find_by(spotify_id: album_new[:spotify_id])
+    if  album.present?
+      puts "Album Exist".colorize(:green)
+      album
+    else
+      puts "Album Artist Success".colorize(:green)
+      new_album = Album.new(album_new.except(:genres, :albums))
+      new_album.save ? new_album : nil
+    end
+  end
+
+  def get_song(song_new)
+    song = Song.find_by(spotify_id: song_new[:spotify_id])
+    if  song.present?
+      puts "Song Exist".colorize(:green)
+      song
+    else
+      puts "Create Artist Success".colorize(:green)
+      new_song = Song.new(song_new.except(:genres, :albums))
+      new_song.save ? new_song : nil
+    end
+  end
+
+  def create_artist(data, spotify=false)
+    artist = get_artist(data)
+    create_genres(artist, data[:genres]) if spotify && data[:genres].present? && artist.present?
+    create_albums(artist, data[:albums]) if spotify && data[:albums].present? && artist.present?
   end
 
   def create_genres(artist, genres)
@@ -30,35 +62,22 @@ class SpotifyService
 
   def create_albums( artist, albums )
     albums.each do |album|
-      exist_album = Album.find_by( spotify_id: album[:spotify_id] )
-      if !exist_album
-        new_album = Album.new(album.except(:tracks))
-        new_album.artist_id = artist.id
-        if new_album.save 
-          create_songs( new_album, album[:tracks] ) if album[:tracks].present?
-        end
-      end
+      album_get = get_album(album)
+      create_songs( album_get, album[:tracks] ) if album[:tracks].present? && album_get.present?
     end
   end
 
   def create_songs( album, songs )
     songs.each do |song|
-      exist_song = Song.find_by( spotify_id: song[:spotify_id] )
-      if !exist_song
-        new_song = Song.new(song)
-        new_song.album_id = album.id
-        new_song.save
-      end
+      get_song(song)
     end
   end
 
   def migration_data_by_artist(artists_name)
-    debugger
-    artist_exist = Artist.find_by(name: artists_name)
-    artist = artist_service.get_artist_by_name(artists_name) if !artist_exist.present?
-    if artist.present?
-      new_artist = create_artist(artist)
-    end
+    artist = Artist.find_by(name: artists_name)
+    spotify = artist.present? ? false : true
+    artist = artist_service.get_artist_by_name(artists_name) if !artist.present?
+    new_artist = create_artist(artist, spotify) if artist.present?
   end
 
   def migration_albums_by_artist(artist)

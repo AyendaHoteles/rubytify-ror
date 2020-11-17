@@ -53,3 +53,6 @@ gem 'rspotify'
 
 # Gem Serializer
 gem 'active_model_serializers'
+
+# Gem colorize
+gem 'colorize'
