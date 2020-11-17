@@ -1,5 +1,10 @@
 class GenresService
-  def get_song_by_gender_aleaotry(params_genre)
+
+  def initialize
+    
+  end
+
+  def get_song_by_gender_aleatory(params_genre)
     genre = Genre.find_by(name: params_genre)
     songs = get_songs_by_artist_aleatory(genre) if genre.present?
     get_song_aleatory(songs) if songs.present?

@@ -3,7 +3,7 @@ module Api
       class GenresController < ApplicationController
         def aleatory_song_by_gender
           genre_service = GenresService.new
-          @song = genre_service.get_song_by_gender_aleaotry(params[:genre_name])
+          @song = genre_service.get_song_by_gender_aleatory(params[:genre_name])
           if @song.present?
             render json: @song
           else
