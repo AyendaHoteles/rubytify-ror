@@ -38,11 +38,22 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3'
+  # Gem Rspec Rails
+  gem 'rspec-rails', ">= 3.9.0"
+  gem 'factory_bot_rails'
+  gem 'factory_bot'
+  gem 'faker', '~> 1.6', '>= 1.6.3'
 end
 
 group :production do 
   gem 'pg'
   #gem 'pg', '~> 1.2.3'
+end
+
+group :test do
+  gem 'shoulda-matchers', '~> 3.1', require: false
+  gem 'factory_bot'
+  gem 'factory_bot_rails'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
