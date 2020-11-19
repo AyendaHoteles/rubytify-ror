@@ -5,7 +5,7 @@ module Api
           album = Album.find_by(id: params[:id])
           if album.present?
             @songs = album.songs
-            render json: @songs
+            render json: @songs, root: 'data', adapter: :json, each_serializer: SongSerializer
           else
             render :json => {msg: "album with id #{params[:id]}, not found "}.to_json, :status => 404 
           end
