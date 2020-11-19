@@ -4,7 +4,6 @@ class SpotifyService
     @artist_service ||= ArtistsService.new
   end
 
-  
   def albums_service
     @albums_service ||= AlbumsService.new
   end
