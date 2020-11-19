@@ -32,3 +32,5 @@ rake imported:import_data_spotify
 ```bash
 rails s
 ```
+ ![alt text](https://github.com/cmblandon/EasyBE/blob/master/screens/screen-rubityfy
+ .png?raw=true)
