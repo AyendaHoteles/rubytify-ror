@@ -2,11 +2,11 @@
   API for artist:
   - Artists:
   https://rubitify-api.herokuapp.com/api/v1/artists
-  - Albums by artists
+  - Albums by artists:
   https://rubitify-api.herokuapp.com/api/v1/artists/:id/albums
-  - Songs by album
+  - Songs by album:
   https://rubitify-api.herokuapp.com/api/v1/albums/:id/songs
-  - Aleatory song by genre
+  - Aleatory song by genre:
   https://rubitify-api.herokuapp.com/api/v1/genres/:genre_name/songs
 
 ## Instructions
