@@ -2,7 +2,7 @@
   API for artists:
   - Artists:
   https://rubitify-api.herokuapp.com/api/v1/artists
-  - Albums by artists:
+  - Albums by artist:
   https://rubitify-api.herokuapp.com/api/v1/artists/:id/albums
   - Songs by album:
   https://rubitify-api.herokuapp.com/api/v1/albums/:id/songs
