@@ -13,13 +13,6 @@ class AlbumsService
   def get_albums_by_artist(artist_id,  retry_attempts=0)
     artist = artists_service.get_artist_by_id(artist_id)
     artist.present? ? struct_data_albums(artist.albums) : nil
-    rescue SocketError => error
-      if retry_attempts > 0
-        retry_attempts -= 1
-        sleep 5 
-        retry
-      end
-      raise
   end
 
   def get_album_by_id(id, struct_data = true)
