@@ -67,3 +67,6 @@ gem 'active_model_serializers'
 
 # Gem colorize
 gem 'colorize'
+
+# Gem for config cors
+gem 'rack-cors'

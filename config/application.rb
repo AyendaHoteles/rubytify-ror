@@ -37,13 +37,7 @@ module AyendaTest
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
-    # config/application.rb
-    
-    config.action_dispatch.default_headers = {
-      'Access-Control-Allow-Origin' => '*',
-      'Access-Control-Request-Method' => %w{GET POST OPTIONS}.join(",")
-    }
-    
+    # config/application.rb  
     RSpotify::authenticate("d7d83b0f46524bcb937e07082358aa8f", "50a89db580f14d09809e2f5ef57b3a9d")
   end
 end
