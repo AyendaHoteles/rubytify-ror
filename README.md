@@ -1,5 +1,5 @@
 # Rubytify
-  API for artist:
+  API for artists:
   - Artists:
   https://rubitify-api.herokuapp.com/api/v1/artists
   - Albums by artists:
