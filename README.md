@@ -7,7 +7,7 @@
   - Songs by album:
   https://rubitify-api.herokuapp.com/api/v1/albums/:id/songs
   - Aleatory song by genre:
-  https://rubitify-api.herokuapp.com/api/v1/genres/:genre_name/songs
+  https://rubitify-api.herokuapp.com/api/v1/genres/:genre_name/random_song
 
 ## Instructions
 
