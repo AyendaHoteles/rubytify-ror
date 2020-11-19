@@ -1,7 +1,7 @@
 require 'colorize'
 desc "Imported data from Spotify"
 namespace :imported do
-  task :import_artists_and_albums_spotify => :environment do
+  task :import_data_spotify => :environment do
     puts "Start Importation".colorize(:blue)
     list_artists = YAML.load_file(Rails.root.join('config', 'artists_list.yml'))
     spotify_service = SpotifyService.new
