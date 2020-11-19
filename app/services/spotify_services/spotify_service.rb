@@ -13,7 +13,8 @@ class SpotifyService
   end
 
   def create_artist(data)
-    new_artist = Artist.new(data.except(:genres, :albums))
+    exist_artist = Artist.find_by( spotify_id: data[:spotify_id] )
+    new_artist = Artist.new(data.except(:genres, :albums)) if !exist_artist.present?
     if new_artist.save
       create_genres(new_artist, data[:genres]) if data[:genres].present?
       create_albums(new_artist, data[:albums]) if data[:albums].present?
