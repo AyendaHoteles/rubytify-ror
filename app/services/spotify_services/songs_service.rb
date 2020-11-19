@@ -20,18 +20,18 @@ class SongsService
       data << struct_data_song(song) if song.present?
     end
     data
-end
+  end
 
-def struct_data_song(song)
-  {
-    name: song.name,
-    explicit: song.explicit,
-    preview_url: song.preview_url,
-    duration_ms: song.duration_ms,
-    spotify_id: song.id,
-    spotify_url: song.href
-  }
-end
+  def struct_data_song(song)
+    {
+      name: song.name,
+      explicit: song.explicit,
+      preview_url: song.preview_url,
+      duration_ms: song.duration_ms,
+      spotify_id: song.id,
+      spotify_url: song.href
+    }
+  end
 
   def get_artist_recommendations_by_genres(genres)
     recommendations = RSpotify::Recommendations.generate(seed_genres: [genres])
