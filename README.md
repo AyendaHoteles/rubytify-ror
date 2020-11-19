@@ -32,4 +32,7 @@ rake imported:import_data_spotify
 ```bash
 rails s
 ```
+## Postman collection
+  https://www.getpostman.com/collections/d6a230add566928cf46e
+
  ![alt text](https://github.com/juanfer2/rubytify-ror/blob/master/screens/screen-rubityfy.png?raw=true)
