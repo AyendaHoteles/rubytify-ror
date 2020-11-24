@@ -16,7 +16,7 @@ require "rails/test_unit/railtie"
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
-
+RSpotify::authenticate("ca482325837548aeb5e71b96c713f14f", "693b4fc4b2ae4fe0a7784d8eff8f71b0")
 module AyendaTest
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
