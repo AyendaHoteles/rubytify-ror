@@ -1,0 +1,30 @@
+# == Schema Information
+#
+# Table name: artists
+#
+#  id          :integer          not null, primary key
+#  name        :string
+#  image       :text
+#  genres      :text
+#  popularity  :integer
+#  spotify_url :text
+#  spotify_id  :text
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#
+
+one:
+  name: MyString
+  image: MyText
+  genres: MyText
+  popularity: 1
+  spotify_url: MyText
+  spotify_id: MyText
+
+two:
+  name: MyString
+  image: MyText
+  genres: MyText
+  popularity: 1
+  spotify_url: MyText
+  spotify_id: MyText

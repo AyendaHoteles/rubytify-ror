@@ -1,0 +1,30 @@
+# == Schema Information
+#
+# Table name: songs
+#
+#  id          :integer          not null, primary key
+#  name        :string
+#  spotify_url :text
+#  preview_url :text
+#  duration_ms :string
+#  explicit    :boolean
+#  spotify_id  :text
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#
+
+one:
+  name: MyString
+  spotify_url: MyText
+  preview_url: MyText
+  duration_ms: MyString
+  explicit: false
+  spotify_id: MyText
+
+two:
+  name: MyString
+  spotify_url: MyText
+  preview_url: MyText
+  duration_ms: MyString
+  explicit: false
+  spotify_id: MyText

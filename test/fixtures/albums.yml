@@ -1,0 +1,27 @@
+# == Schema Information
+#
+# Table name: albums
+#
+#  id           :integer          not null, primary key
+#  name         :string
+#  image        :text
+#  spotify_url  :text
+#  total_tracks :integer
+#  spotify_id   :text
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#
+
+one:
+  name: MyString
+  image: MyText
+  spotify_url: MyText
+  total_tracks: 1
+  spotify_id: MyText
+
+two:
+  name: MyString
+  image: MyText
+  spotify_url: MyText
+  total_tracks: 1
+  spotify_id: MyText
