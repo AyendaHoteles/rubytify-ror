@@ -18,6 +18,9 @@ gem 'puma', '~> 3.11'
 gem 'hamlit'
 gem 'simple_form'
 gem 'annotate'
+gem 'rspotify'
+gem 'rack-cors'
+gem 'active_model_serializers'
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 
