@@ -9,6 +9,7 @@
 #  duration_ms :integer
 #  explicit    :boolean
 #  spotify_id  :text
+#  album       :references
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #

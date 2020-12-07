@@ -6,6 +6,7 @@ class CreateAlbums < ActiveRecord::Migration[5.2]
       t.text :spotify_url
       t.integer :total_tracks
       t.text :spotify_id
+      t.references :artist
 
       t.timestamps
     end

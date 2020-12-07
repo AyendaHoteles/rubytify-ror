@@ -8,6 +8,7 @@
 #  spotify_url  :text
 #  total_tracks :integer
 #  spotify_id   :text
+#  artist       :references
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #
