@@ -1,5 +1,10 @@
 require 'yaml'
 require 'rspotify'
+require 'logger'
+
+
+logger = Logger.new(STDOUT)
+logger.level = Logger::INFO
 
 namespace :import do
   desc 'Import data from spotify API'
@@ -22,7 +27,7 @@ namespace :import do
                    else
                      0.5
                    end
-      p "#{e}, I will sleep and retry in a #{sleep_time} seconds"
+      logger.info "#{e}, I will sleep and retry in a #{sleep_time} seconds"
       sleep(sleep_time)
       retry
     end
@@ -54,7 +59,7 @@ end
 def save_artist(data)
   Artist.find_or_create_by(spotify_id: data[:spotify_id])
         .update!(data)
-  p "Artist: #{data[:name]} updated"
+  logger.info "Artist: #{data[:name]} updated"
   artist = Artist.find_by(spotify_id: data[:spotify_id])
   artist.id
 end
@@ -77,7 +82,7 @@ end
 def save_album(data)
   Album.find_or_create_by(spotify_id: data[:spotify_id])
        .update!(data)
-  p "Album: #{data[:name]} updated"
+  logger.info "Album: #{data[:name]} updated"
   album = Album.find_by(spotify_id: data[:spotify_id])
   album.id
 end
@@ -98,7 +103,6 @@ def create_albums_songs(album, album_id)
 end
 
 def save_song(data)
-  Song.find_or_create_by(spotify_id: data[:spotify_id])
-      .update!(data)
-  p "Song: #{data[:name]} updated"
+  Song.find_or_create_by(spotify_id: data[:spotify_id]).update!(data)
+  logger.info "Song: #{data[:name]} updated"
 end
