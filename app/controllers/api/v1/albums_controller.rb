@@ -2,7 +2,7 @@ class Api::V1::AlbumsController < ApplicationController
   before_action :get_artist, only: [:index]
 
   def index
-    render json: @artist.albums
+    render json: @artist.albums, root: 'data', adapter: :json
   end
 
   private
