@@ -3,7 +3,7 @@ class Api::V1::RandomSongController < ApplicationController
   before_action :get_song, only: [:show_song]
 
   def show_song
-    render json: @song, root: 'data', adapter: :json
+    render json: @song, root: 'data', adapter: :json, serializer: SongSerializer
   end
 
   private
