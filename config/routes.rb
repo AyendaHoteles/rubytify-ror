@@ -8,6 +8,7 @@ Rails.application.routes.draw do
       resources :albums, only: [:index] do
         resources :songs, only: [:index]
       end
+      get '/genres/:genre_name/random_song', to: "random_song#show_song" 
     end
   end
 end
