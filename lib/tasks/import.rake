@@ -37,10 +37,10 @@ end
 private
 
 def find_artist_information(name)
-  client_id = 'fe36f195e48447428a88b9e8dce4cde6'
-  client_secret = 'bad5f171552842d8b2d86916c2a6ec6d'
-  RSpotify.authenticate(client_id, client_secret)
+  Rails.application.credentials.spotify(client_id)
+  Rails.application.credentials.spotify(client_secret)
 
+  RSpotify.authenticate(client_id, client_secret)
   RSpotify::Artist.search(name).first
 end
 
