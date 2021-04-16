@@ -9,7 +9,7 @@ logger.level = Logger::INFO
 namespace :import do
   desc 'Import data from spotify API'
   task artists: :environment do
-    file = YAML.load_file('artist.yml')
+    file = YAML.load_file('artists.yml')
     artists = file['artists'].split(', ')
 
     artists.each do |name|
@@ -37,8 +37,8 @@ end
 private
 
 def find_artist_information(name)
-  Rails.application.credentials.spotify(client_id)
-  Rails.application.credentials.spotify(client_secret)
+  client_id = Rails.application.credentials.spotify[:client_id]
+  client_secret = Rails.application.credentials.spotify[:client_secret]
 
   RSpotify.authenticate(client_id, client_secret)
   RSpotify::Artist.search(name).first
