@@ -32,6 +32,11 @@ module AyendaTest
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
 
+    config.action_dispatch.default_headers = {
+      'Access-Control-Allow-Origin' => ENV['CONSUMER_SITE'] || 'http://my-web-service-consumer-site.com',
+      'Access-Control-Request-Method' => %w{GET POST OPTIONS}.join(",")
+    }
+
     p '=> Spotify auth successful :)' if RSpotify.authenticate(Rails.application.credentials.spotify[:client_id],
                                                                Rails.application.credentials.spotify[:client_secret])
 
