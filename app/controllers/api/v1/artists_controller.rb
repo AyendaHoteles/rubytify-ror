@@ -10,14 +10,14 @@ class Api::V1::ArtistsController < ApplicationController
 
   # GET /api/v1//artists/1/albums
   def albums
-    render json: { data: @artist.albums.as_json(only: %w[id name image spotify_url total_tracks]) }
+    render json: { data: !@artist.nil? ? @artist.albums.as_json(only: %w[id name image spotify_url total_tracks]) : [] }
   end
 
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_artist
-      @artist = Artist.find(params[:id])
+      @artist = Artist.find_by(id: params[:id])
     end
 
     # Only allow a list of trusted parameters through.

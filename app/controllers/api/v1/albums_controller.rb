@@ -9,14 +9,14 @@ class Api::V1::AlbumsController < ApplicationController
 
   # GET /api/v1/albums/1
   def show
-    render json: { data: @album.songs.as_json(only: %w[name spotify_url preview_url duration_ms explicit ]) }
+    render json: { data: !@album.nil? ? @album.songs.as_json(only: %w[name spotify_url preview_url duration_ms explicit ]) : [] }
   end
 
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_album
-      @album = Album.find(params[:id])
+      @album = Album.find_by(id: params[:id])
     end
 
     # Only allow a list of trusted parameters through.
