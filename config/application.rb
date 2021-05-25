@@ -31,5 +31,9 @@ module AyendaTest
     # Middleware like session, flash, cookies can be added back manually.
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
+
+    p '=> Spotify auth successful :)' if RSpotify.authenticate(Rails.application.credentials.spotify[:client_id],
+                                                               Rails.application.credentials.spotify[:client_secret])
+
   end
 end
