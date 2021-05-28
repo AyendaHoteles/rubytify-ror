@@ -45,7 +45,7 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 group :production do
-  gem 'pg', '1.2.3'
+  gem 'pg'
 end
 
 gem 'active_model_serializers'
