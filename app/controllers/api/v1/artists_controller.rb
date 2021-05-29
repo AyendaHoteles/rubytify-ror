@@ -1,15 +1,9 @@
 class Api::V1::ArtistsController < ApplicationController
 
-   #GET /artists
+   #GET /api/v1/artists
    def index
-      @artists = Artist.all
-      render json: @artists
-   end
-   
-   #GET /artists/:id
-   def show
-      @artist = Artist.find_by_id(params[:id])
-      render json: @artist
+      @artists = Artist.all.order("popularity DESC")
+      render json: @artists, root: 'data', each_serializer: ArtistSerializer, adapter: :json
    end
    
 end
