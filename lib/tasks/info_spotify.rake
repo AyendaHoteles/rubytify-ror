@@ -7,14 +7,11 @@ namespace :info_spotify do
    def load_artists
       f_artists = YAML.load(File.read("./config/artists.yml"))
       
-      f_artists_mg = File.open("./config/artists_mg.yml")
-      artists_mg = f_artists_mg.read
-      f_artists_mg.close
-      
       f_artists['artists'].each do |s_artist|
-      
-         unless artists_mg.include? s_artist.to_s
          
+         logsArtist = LogsArtist.find_by(artist_name: s_artist.to_s)
+         
+         if not logsArtist
             spotify_artists = RSpotify::Artist.search(s_artist.to_s)
             
             spotify_artist = spotify_artists.first
@@ -28,7 +25,8 @@ namespace :info_spotify do
                end
             end
             
-            File.write("./config/artists_mg.yml", s_artist.to_s + "\n", mode: "a")
+            logsArtistN = LogsArtist.new(artist_name: s_artist.to_s)
+            logsArtistN.save
          end
       end
    end
