@@ -14,8 +14,19 @@ class Song < ApplicationRecord
    end
    
    def self.create_from_spotify_song(album_id, spotify_song)
-      song = self.new_from_spotify_song(album_id, spotify_song)
-      song.save
-      song
+      if not self.exist_song(spotify_song.id)
+         song = self.new_from_spotify_song(album_id, spotify_song)
+         song.save
+         song
+      else
+         @song
+      end
+   end
+   
+   def self.exist_song(spotify_id)
+      @song = Song.find_by(spotify_id: spotify_id)
+      if @song
+         return true
+      end
    end
 end
