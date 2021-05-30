@@ -3,7 +3,7 @@ class Api::V1::GenresController < ApplicationController
    #GET /api/v1/genres/:genre_name/random_song
    def random_song
    
-      search = "genres LIKE '%" + params[:genre_name] + "%'"
+      search = "genres::varchar LIKE '%" + params[:genre_name] + "%'"
       @artists = Artist.all.where(search)
       
       len_artists = @artists.length
