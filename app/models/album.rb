@@ -27,6 +27,8 @@ class Album < ApplicationRecord
       @album = Album.find_by(spotify_id: spotify_id)
       if @album
          return true
+      else
+         return false
       end
    end
 end

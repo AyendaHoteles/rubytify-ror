@@ -27,6 +27,8 @@ class Song < ApplicationRecord
       @song = Song.find_by(spotify_id: spotify_id)
       if @song
          return true
+      else
+         return false
       end
    end
 end

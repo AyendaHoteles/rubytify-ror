@@ -26,6 +26,8 @@ class Artist < ApplicationRecord
       @artist = Artist.find_by(spotify_id: spotify_id)
       if @artist
          return true
+      else
+         return false
       end
    end
 end

@@ -1,2 +1,0 @@
-class LogsArtist < ApplicationRecord
-end
