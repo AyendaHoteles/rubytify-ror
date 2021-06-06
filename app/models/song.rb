@@ -3,7 +3,7 @@ class Song < ApplicationRecord
 
   validates :name, presence: true
   validates :duration_ms, presence: true
-  validates :explicit, presence: true
+  validates :explicit, inclusion: { in: [true, false] }
   validates :preview_url, presence: true
   validates :spotify_url, presence: true
   validates :spotify_id, presence: true
