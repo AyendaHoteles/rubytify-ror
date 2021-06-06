@@ -11,7 +11,7 @@ RSpec.describe Artist, type: :model do
       should validate_presence_of(:spotify_id)
     end
 
-    it 'validate relations' do
+    it 'validate has_many relations' do
       should have_many(:songs)
       should have_many(:albums)
     end
