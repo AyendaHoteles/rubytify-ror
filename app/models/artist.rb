@@ -4,7 +4,7 @@ class Artist < ApplicationRecord
 
   validates :name, presence: true
   validates :image, presence: true
-  validates :genre, presence: true
+  validates :genres, presence: true
   validates :popularity, presence: true
   validates :spotify_url, presence: true
   validates :spotify_id, presence: true
