@@ -6,6 +6,11 @@ Rails.application.routes.draw do
       resources :artists, only: [:index] do
         resources :albums, only: [:index]
       end
+
+      resources :albums do
+        resources :songs, only: [:index]
+      end
+
     end
   end
 
