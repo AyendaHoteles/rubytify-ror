@@ -5,10 +5,6 @@ ruby '2.6.2'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.3'
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3'
-# Use the PostgreSQL client library for Ruby
-gem 'pg', '~> 1.2', '>= 1.2.3'
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
@@ -31,6 +27,8 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'rack-cors'
 
 group :development, :test do
+  # Use sqlite3 as the database for Active Record
+  gem 'sqlite3'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'rspec-rails'
@@ -48,6 +46,11 @@ group :test do
   gem 'shoulda-matchers'
   gem 'faker'
   gem 'database_cleaner'
+end
+
+group :production do
+  # Use the PostgreSQL client library for Ruby
+  gem 'pg', '~> 1.2', '>= 1.2.3'
 end
 
 # A ruby wrapper for the Spotify Web API. Read more: https://github.com/guilhermesad/rspotify

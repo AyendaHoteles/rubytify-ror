@@ -11,7 +11,7 @@ namespace :db do
       artists['artists'].each do |artist|
         the_artists = RSpotify::Artist.search(artist.to_s)
         an_artist = the_artists.first
-        puts 'Importing artists'
+
         if an_artist
           new_artist = Artist.create({
             name: an_artist.name,
@@ -22,8 +22,8 @@ namespace :db do
             spotify_id: an_artist.id
           })
           new_artist.save!
-        end # aquí termina de crearse artist y funciona
-        puts 'Importing albums'
+        end
+
         albums = an_artist.albums
         albums.each do |album|
           new_album = Album.create({
@@ -34,9 +34,8 @@ namespace :db do
             spotify_id: album.id,
             artist_id: new_artist.id
           })
-          new_album.save! # hasta aquí trae los objetos de artista y albums. Works!
+          new_album.save!
 
-          puts 'Importing songs'
           if new_album
             songs = album.tracks
             songs.each do |song|
@@ -52,11 +51,9 @@ namespace :db do
               new_song.save!
             end
           end
-
         end
 
       end
-      puts 'Finish'
     end
   end
 end
