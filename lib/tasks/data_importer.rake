@@ -9,6 +9,7 @@ namespace :db do
       artists = YAML.load(File.read('db/seeds/artist_list.yml'))
 
       artists['artists'].each do |artist|
+        sleep(1)
         the_artists = RSpotify::Artist.search(artist.to_s)
         an_artist = the_artists.first
 
@@ -26,6 +27,7 @@ namespace :db do
 
         albums = an_artist.albums
         albums.each do |album|
+          sleep(1)
           new_album = Album.create({
             name: album.name,
             image: album.images[0],
@@ -39,6 +41,7 @@ namespace :db do
           if new_album
             songs = album.tracks
             songs.each do |song|
+              sleep(1)
               new_song = Song.create({
                 name: song.name,
                 duration_ms: song.duration_ms,
