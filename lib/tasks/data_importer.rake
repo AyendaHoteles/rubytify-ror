@@ -9,8 +9,8 @@ namespace :db do
       artists = YAML.load(File.read('db/seeds/artist_list.yml'))
 
       artists['artists'].each do |artist|
+        the_artists = RSpotify::Artist.search(artist.to_s)
         begin
-          the_artists = RSpotify::Artist.search(artist.to_s)
           an_artist = the_artists.first
 
           if an_artist
