@@ -1,1 +1,1 @@
-RSpotify::authenticate(CLIENT_ID, CLIENT_SECRET)
+RSpotify::authenticate(ENV['CLIENT_ID'], ENV['CLIENT_SECRET'])
