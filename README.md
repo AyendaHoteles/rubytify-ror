@@ -56,6 +56,16 @@ Rubytify is an API that fetch info from the Spotify API and serve its over this 
 ```
 
 
+### A few screenshots
+
+`/api/v1/genres/:genre_name/random_song`
+
+
+![Screen Shot 2021-06-08 at 1 10 20 AM](https://user-images.githubusercontent.com/28455356/121132438-be171c80-c7f6-11eb-90a9-74e691785eb6.png)
+
+![Screen Shot 2021-06-08 at 1 10 48 AM](https://user-images.githubusercontent.com/28455356/121132444-c0797680-c7f6-11eb-99e1-5a090c79e712.png)
+
+
 ## App Live Demo
 
 Check the app live in Heroku here [App Link](https://rubytify-api-nathsotomayor.herokuapp.com/api/v1/artists)
