@@ -9,53 +9,54 @@ namespace :db do
       artists = YAML.load(File.read('db/seeds/artist_list.yml'))
 
       artists['artists'].each do |artist|
-        sleep(1)
-        the_artists = RSpotify::Artist.search(artist.to_s)
-        an_artist = the_artists.first
+        begin
+          the_artists = RSpotify::Artist.search(artist.to_s)
+          an_artist = the_artists.first
 
-        if an_artist
-          new_artist = Artist.create({
-            name: an_artist.name,
-            image: an_artist.images.first['url'],
-            genres: an_artist.genres,
-            popularity: an_artist.popularity,
-            spotify_url: an_artist.external_urls['spotify'],
-            spotify_id: an_artist.id
-          })
-          new_artist.save!
-        end
+          if an_artist
+            new_artist = Artist.create({
+              name: an_artist.name,
+              image: an_artist.images.first['url'],
+              genres: an_artist.genres,
+              popularity: an_artist.popularity,
+              spotify_url: an_artist.external_urls['spotify'],
+              spotify_id: an_artist.id
+            })
+            new_artist.save!
+          end
 
-        albums = an_artist.albums
-        albums.each do |album|
-          sleep(1)
-          new_album = Album.create({
-            name: album.name,
-            image: album.images[0],
-            total_tracks: album.total_tracks,
-            spotify_url: album.external_urls['spotify'],
-            spotify_id: album.id,
-            artist_id: new_artist.id
-          })
-          new_album.save!
+          albums = an_artist.albums
+          albums.each do |album|
+            new_album = Album.create({
+              name: album.name,
+              image: album.images[0],
+              total_tracks: album.total_tracks,
+              spotify_url: album.external_urls['spotify'],
+              spotify_id: album.id,
+              artist_id: new_artist.id
+            })
+            new_album.save!
 
-          if new_album
-            songs = album.tracks
-            songs.each do |song|
-              sleep(1)
-              new_song = Song.create({
-                name: song.name,
-                duration_ms: song.duration_ms,
-                explicit: song.explicit,
-                preview_url: song.preview_url,
-                spotify_url: song.external_urls['spotify'],
-                spotify_id: song.id,
-                album_id: new_album.id
-              })
-              new_song.save!
+            if new_album
+              songs = album.tracks
+              songs.each do |song|
+                new_song = Song.create({
+                  name: song.name,
+                  duration_ms: song.duration_ms,
+                  explicit: song.explicit,
+                  preview_url: song.preview_url,
+                  spotify_url: song.external_urls['spotify'],
+                  spotify_id: song.id,
+                  album_id: new_album.id
+                })
+                new_song.save!
+              end
             end
           end
+        rescue RestClient::TooManyRequests => e
+          puts 'Cooling down petitions'
+          sleep(0.1)
         end
-        sleep(1)
       end
     end
   end
