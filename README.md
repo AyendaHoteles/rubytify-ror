@@ -1,15 +1,17 @@
 # Rubytify
-[rubytify_image](https://www.canva.com/design/DAEgdZMOINk/FZCEl77YOD8HJw9zIOZ6sg/view?utm_content=DAEgdZMOINk&utm_campaign=designshare&utm_medium=link&utm_source=publishsharelink)
+![rubytify_image](https://user-images.githubusercontent.com/28455356/121103707-14b83280-c7c6-11eb-8c54-bc07770f5a8b.png)
+
 
 Rubytify is an API that fetch info from the Spotify API and serve its over this Rails REST API.
 
 
 ## Requirements
-Ruby 2.6.3
-Rails 5.2.3
+
+* Ruby 2.6.3
+* Rails 5.2.3
 
 
-## Endpoints
+## API Endpoints
 
 * The endpoint `/api/v1/artists` return all artists ordered by their popularity with the following fields:
 
@@ -56,7 +58,7 @@ Rails 5.2.3
 
 ## App Live Demo
 
-Check the app live in Heroku here [App Link]()
+Check the app live in Heroku here [App Link](https://rubytify-api-nathsotomayor.herokuapp.com/api/v1/artists)
 
 
 
