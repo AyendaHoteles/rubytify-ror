@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_26_193125) do
+ActiveRecord::Schema.define(version: 2021_06_27_204902) do
 
   create_table "albums", force: :cascade do |t|
     t.string "name"
@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 2021_06_26_193125) do
     t.string "spotitify_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "fieldname"
   end
 
   create_table "songs", force: :cascade do |t|
@@ -42,6 +43,20 @@ ActiveRecord::Schema.define(version: 2021_06_26_193125) do
     t.string "spotify_id"
     t.string "spotify_id_album"
     t.boolean "explicit"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "fieldname"
+  end
+
+  create_table "tracks", force: :cascade do |t|
+    t.string "name"
+    t.string "preview_url"
+    t.integer "duration_ms"
+    t.string "spotify_url"
+    t.string "spotify_id"
+    t.string "spotify_id_album"
+    t.boolean "explicit"
+    t.string "genres"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

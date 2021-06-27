@@ -21,7 +21,7 @@ module AyendaTest
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.2
-
+    RSpotify::authenticate("9bd71a997cef48f4883d2f6151c8f736", "288223500b1240eb837be51c870026a1")
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading

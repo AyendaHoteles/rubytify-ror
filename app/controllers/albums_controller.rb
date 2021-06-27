@@ -1,5 +1,4 @@
 class AlbumsController < ApplicationController
-  before_action :set_album, only: [:show, :update, :destroy]
 
   # GET /albums
   def index
@@ -10,32 +9,16 @@ class AlbumsController < ApplicationController
 
   # GET /albums/1
   def show
-    render json: @album
-  end
-
-  # POST /albums
-  def create
-    @album = Album.new(album_params)
-
-    if @album.save
-      render json: @album, status: :created, location: @album
-    else
-      render json: @album.errors, status: :unprocessable_entity
-    end
-  end
-
-  # PATCH/PUT /albums/1
-  def update
-    if @album.update(album_params)
-      render json: @album
-    else
-      render json: @album.errors, status: :unprocessable_entity
-    end
-  end
-
-  # DELETE /albums/1
-  def destroy
-    @album.destroy
+      @arr = []      
+      param = params[:id]
+      @album = Album.where(spotify_id_artist: param.to_s)
+      render json: "{data:#{@album.to_json(only: [:id, :name, :image, :spotify_url, :total_tracks, :spotify_id])}}"
+    rescue ActiveRecord::RecordNotFound => e
+      logger.info e
+      return render json: { message: 'album is not found' }, status: :not_found 
+    rescue => e
+      logger.info e
+      return render json: { message: 'Is there an error. Try again' }, status: :not_found 
   end
 
   private
