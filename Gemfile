@@ -10,7 +10,6 @@ gem "pg"
 # Use Puma as the app server
 gem "puma", "~> 3.11"
 
-gem "wdm"
 gem "faraday"
 gem "uri"
 gem "json"
