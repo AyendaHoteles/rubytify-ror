@@ -17,11 +17,19 @@ class ApplicationController < ActionController::API
 
   # /api/v1/genres/:genre_name/random_song
   def song_by_genre
-    songs_list = Song.select(:name, :spotify_url, :preview_url, :duration_ms, :explicit)
-      .joins("INNER JOIN albums ON songs.id_album = albums.id
-        INNER JOIN artists ON albums.id_artist = artists.id")
-      .where("genres like ?", "%#{params[:genre_name]}%")
+    songs_list = Song.select(:name, :spotify_url, :preview_url, :duration_ms, :explicit, :genres)
+      .joins("INNER JOIN albums ON songs.id_album = albums.id INNER JOIN artists ON albums.id_artist = artists.id")
 
-    render json: { :data => songs_list[Random.rand(0...songs_list.length() - 1)] }.to_json
+    results_list = []
+
+    for i in songs_list
+      for item in i.genres
+        if item == params[:genre_name]
+          results_list.push("name" => i.name, "spotify_url" => i.spotify_url, "preview_url" => i.preview_url, "duration_ms" => i.duration_ms, "explicit" => i.explicit)
+        end
+      end
+    end
+
+    render json: { :data => results_list[Random.rand(0...results_list.length() - 1)] }.to_json
   end
 end
