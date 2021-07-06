@@ -20,7 +20,7 @@ class ApplicationController < ActionController::API
     songs_list = Song.select(:name, :spotify_url, :preview_url, :duration_ms, :explicit)
       .joins("INNER JOIN albums ON songs.id_album = albums.id
         INNER JOIN artists ON albums.id_artist = artists.id")
-      .where("genres like :like", :like => "%#{params[:genre_name]}%")
+      .where("genres like ?", "%#{params[:genre_name]}%")
 
     render json: { :data => songs_list[Random.rand(0...songs_list.length() - 1)] }.to_json
   end
